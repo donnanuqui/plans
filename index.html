@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan Finder | Donna Nuqui, Sun Life Advisor</title>
+<meta name="description" content="Find the Sun Life plan that fits you. Enter your age and what matters most, and see personalized plan estimates instantly.">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" />
 <style>
@@ -31,8 +38,8 @@
     --whl:#CDAE7A;--whll:#3A3222; --leg:#B3A3C9;--legl:#2E2A35; --hlt:#D693A8;--hltl:#3A2530;
     --gua:#8FC2B8;--gual:#203230; --inc:#A3AFD1;--incl:#262B3A; --onlane:#191815;
   }
-  .pf-wrap *, .pf-wrap *::before, .pf-wrap *::after{ box-sizing:border-box; margin:0; padding:0; }
-  .pf-wrap{ background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.55; width:100%; padding:72px 20px 64px; }
+  .pf-wrap, .pf-wrap *, .pf-wrap *::before, .pf-wrap *::after{ box-sizing:border-box; margin:0; padding:0; }
+  .pf-wrap{ background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.55; width:100%; max-width:100%; padding:72px 20px 64px; overflow-x:hidden; -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   .pf-inner{ max-width:900px; margin:0 auto; }
 
   /* Site header — matches me.donnanuqui.com's live nav exactly (fixed, 6vw side padding) so this tool feels like part of the site */
@@ -209,6 +216,8 @@
     .pf-bar-val{ font-size:.82rem; }
   }
 </style>
+</head>
+<body>
 <div class="pf-wrap">
   <div class="pf-topnav">
     <a class="pf-nav-logo" href="https://me.donnanuqui.com/">Donna Nuqui</a>
@@ -836,3 +845,5 @@
   pfTrack('pf_page_viewed', {});
 })();
 </script>
+</body>
+</html>
