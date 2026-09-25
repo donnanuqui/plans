@@ -745,8 +745,7 @@
     var messengerUrl = 'https://m.me/financial.advisor.donna.n?text=' + encodeURIComponent(msg);
 
     html += '<div class="pf-modal-ctas">'
-      + '<a class="pf-btn pf-btn-primary" href="https://www.donnanuqui.com/financial-check-plan" target="_blank" onclick="pfTrack(\'pf_cta_click\',{cta:\'book_call\',plan:\'' + plan.id + '\'})">Book My Free Planning Call →</a>'
-      + '<a class="pf-btn pf-btn-outline" href="' + messengerUrl + '" target="_blank" onclick="pfTrack(\'pf_cta_click\',{cta:\'messenger\',plan:\'' + plan.id + '\'})">Message Donna About This Plan</a>'
+      + '<a class="pf-btn pf-btn-primary" href="' + messengerUrl + '" target="_blank" onclick="pfTrack(\'pf_cta_click\',{cta:\'messenger\',plan:\'' + plan.id + '\'})">Message Donna About This Plan</a>'
       + '</div>';
 
     body.innerHTML = html;
@@ -845,5 +844,6 @@
   pfTrack('pf_page_viewed', {});
 })();
 </script>
+
 </body>
 </html>
