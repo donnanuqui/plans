@@ -1,0 +1,838 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" />
+<style>
+  body{ margin:0; }
+  .pf-wrap{
+    --bg:#F7F5F0;--card:#FFFFFF;--ink:#1A1916;--muted:#6B6860;--line:#E6DDD0;--soft:#EDE9E0;
+    --gold:#B89C6E;--goldd:#8B6F3F;--goldl:#F2EAD9;
+    /* Same 8-color system as the Life-Stage Funnel Map, extended from 5 lanes to 8 plan types */
+    --inv:#5E7E99;--invl:#E1E8EF;      /* Insurance + Investment */
+    --sav:#6E8A69;--savl:#E3EADF;      /* Insurance + Guaranteed Savings */
+    --trm:#C9785B;--trml:#F5E3DA;      /* Term Life */
+    --whl:#8B6F3F;--whll:#F2EAD9;      /* Whole Life */
+    --leg:#7A6A8E;--legl:#ECE7F1;      /* Estate & Legacy */
+    --hlt:#A8556B;--hltl:#F1E0E6;      /* Health & Critical Illness */
+    --gua:#4F8C82;--gual:#DEEAE7;      /* Guaranteed Acceptance */
+    --inc:#5A6B94;--incl:#E3E6EF;      /* Retirement & Education Income */
+    --onlane:#FFFFFF;
+    --serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){ .pf-wrap:not([data-theme="light"]){
+    --bg:#191815;--card:#23221E;--ink:#F1EDE4;--muted:#ABA698;--line:#3A3730;--soft:#2C2A25;
+    --gold:#CDAE7A;--goldd:#CDAE7A;--goldl:#3A3222;
+    --inv:#8EB0CC;--invl:#243039; --sav:#9AB894;--savl:#27322A; --trm:#E0997E;--trml:#3A2A23;
+    --whl:#CDAE7A;--whll:#3A3222; --leg:#B3A3C9;--legl:#2E2A35; --hlt:#D693A8;--hltl:#3A2530;
+    --gua:#8FC2B8;--gual:#203230; --inc:#A3AFD1;--incl:#262B3A; --onlane:#191815;
+  }}
+  .pf-wrap[data-theme="dark"]{
+    --bg:#191815;--card:#23221E;--ink:#F1EDE4;--muted:#ABA698;--line:#3A3730;--soft:#2C2A25;
+    --gold:#CDAE7A;--goldd:#CDAE7A;--goldl:#3A3222;
+    --inv:#8EB0CC;--invl:#243039; --sav:#9AB894;--savl:#27322A; --trm:#E0997E;--trml:#3A2A23;
+    --whl:#CDAE7A;--whll:#3A3222; --leg:#B3A3C9;--legl:#2E2A35; --hlt:#D693A8;--hltl:#3A2530;
+    --gua:#8FC2B8;--gual:#203230; --inc:#A3AFD1;--incl:#262B3A; --onlane:#191815;
+  }
+  .pf-wrap *, .pf-wrap *::before, .pf-wrap *::after{ box-sizing:border-box; margin:0; padding:0; }
+  .pf-wrap{ background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.55; width:100%; padding:72px 20px 64px; }
+  .pf-inner{ max-width:900px; margin:0 auto; }
+
+  /* Site header — matches me.donnanuqui.com's live nav exactly (fixed, 6vw side padding) so this tool feels like part of the site */
+  .pf-topnav{ position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:1.25rem 6vw; background:var(--bg); border-bottom:1px solid var(--line); }
+  .pf-nav-logo{ font-family:var(--serif); font-size:1.1rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); text-decoration:none; }
+  .pf-nav-links{ display:flex; gap:2.5rem; list-style:none; }
+  .pf-nav-links a{ font-size:1.08rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+  .pf-nav-links a:hover{ color:var(--ink); }
+  .pf-nav-links a[aria-current="page"]{ color:var(--ink); font-weight:600; }
+  .pf-nav-toggle{ display:none; background:none; border:none; cursor:pointer; padding:.5rem; flex-direction:column; gap:5px; z-index:101; }
+  .pf-nav-toggle span{ display:block; width:24px; height:2px; background:var(--ink); transition:all .3s; }
+  .pf-nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .pf-nav-toggle.open span:nth-child(2){ opacity:0; }
+  .pf-nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  @media(max-width:768px){
+    .pf-wrap{ padding-top:100px; }
+    .pf-nav-toggle{ display:flex; }
+    .pf-nav-links{ position:fixed; top:0; right:0; bottom:0; width:100%; max-width:320px; background:var(--bg); flex-direction:column; justify-content:center; align-items:center; gap:2rem; transform:translateX(100%); transition:transform .3s ease; padding:2rem; box-shadow:-4px 0 24px rgba(0,0,0,.1); z-index:99; }
+    .pf-nav-links.open{ transform:translateX(0); }
+    .pf-nav-links a{ font-size:1.25rem; letter-spacing:.15em; }
+    .pf-nav-links li{ list-style:none; }
+  }
+  .pf-eyebrow{ font-size:.74rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--goldd); margin-bottom:8px; }
+  .pf-h1{ font-family:var(--serif); font-weight:500; font-size:clamp(2.1rem,5vw,3rem); line-height:1.08; margin:0 0 10px; text-wrap:balance; }
+  .pf-h1 em{ font-style:italic; color:var(--goldd); }
+  .pf-sub{ color:var(--muted); max-width:64ch; margin:0 0 28px; }
+
+  .pf-field{ margin-bottom:20px; }
+  .pf-field label{ display:block; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:9px; }
+  .pf-age-row{ max-width:200px; }
+  .pf-age-row input[type=number]{
+    width:100%; font:inherit; font-family:var(--serif); font-size:1.5rem; font-weight:600; color:var(--ink);
+    background:var(--card); border:1px solid var(--line); padding:11px 14px; text-align:center;
+  }
+  .pf-age-row input[type=number]:focus{ outline:2px solid var(--gold); outline-offset:-1px; }
+  .pf-age-hint{ font-size:.8rem; color:var(--muted); margin-top:8px; }
+
+  .pf-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .pf-chip{ font-family:var(--sans); font-size:.82rem; font-weight:600; color:var(--ink); background:var(--card); border:1px solid var(--line); padding:9px 15px; cursor:pointer; transition:all .15s; }
+  .pf-chip:hover{ border-color:var(--gold); }
+  .pf-chip.active{ background:var(--lc,var(--ink)); color:var(--onlane); border-color:var(--lc,var(--ink)); }
+
+  .pf-results-meta{ font-size:.82rem; color:var(--muted); margin:24px 0 14px; }
+
+  .pf-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px; }
+  .pf-card{
+    background:var(--card); border:1px solid var(--line); border-left:4px solid var(--lc); padding:20px 22px;
+    text-align:left; cursor:pointer; display:flex; flex-direction:column; width:100%; font-family:inherit; color:inherit;
+    transition:box-shadow .15s,transform .15s; -webkit-tap-highlight-color:transparent;
+  }
+  .pf-card:hover, .pf-card:focus-visible{ box-shadow:0 4px 18px rgba(26,25,22,.12); transform:translateY(-2px); }
+  .pf-card-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+  .pf-card-badge{ flex-shrink:0; font-size:.6rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); background:var(--ink); padding:4px 9px; white-space:nowrap; }
+  .pf-tag{ display:inline-block; align-self:flex-start; background:var(--lc); color:var(--onlane); padding:4px 11px; font-size:.64rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; margin-bottom:0; }
+  .pf-card h3{ font-size:1.05rem; font-weight:700; margin-bottom:4px; }
+  .pf-card .pf-type{ font-size:.72rem; color:var(--lc); text-transform:uppercase; letter-spacing:.08em; font-weight:700; margin-bottom:10px; }
+  .pf-card .pf-headstat{ display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+  .pf-card .pf-headstat b{ font-family:var(--serif); font-size:1.45rem; font-weight:600; color:var(--lc); line-height:1; }
+  .pf-card .pf-headstat span{ font-size:.82rem; color:var(--muted); }
+  .pf-card .pf-tline{ font-family:var(--serif); font-style:italic; font-size:1.02rem; color:var(--muted); margin-bottom:14px; }
+  .pf-card-price{ display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-top:auto; padding-top:14px; border-top:1px solid var(--line); }
+  .pf-price-amt{ font-family:var(--serif); font-size:1.5rem; font-weight:600; color:var(--lc); }
+  .pf-price-mo{ font-size:.78rem; color:var(--muted); }
+  .pf-price-note{ font-size:.72rem; color:var(--muted); margin-top:4px; }
+  .pf-custom{ font-size:.86rem; color:var(--goldd); font-weight:600; margin-top:auto; padding-top:14px; border-top:1px solid var(--line); }
+  .pf-card-more{ font-size:.74rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:10px; }
+  .pf-card:hover .pf-card-more{ color:var(--lc); }
+
+  .pf-excluded{ font-size:.78rem; color:var(--muted); line-height:1.6; margin-top:22px; padding-top:16px; border-top:1px solid var(--line); }
+
+  .pf-btn{ display:inline-block; text-decoration:none; text-transform:uppercase; letter-spacing:.1em; font-size:.78rem; font-weight:600; padding:15px 30px; transition:opacity .2s; text-align:center; border:none; cursor:pointer; font-family:var(--sans); min-height:44px; }
+  .pf-btn-primary{ background:var(--ink); color:var(--bg); }
+  .pf-btn-primary:hover{ opacity:.85; }
+  .pf-btn-outline{ background:transparent; color:var(--ink); border:1px solid var(--ink); }
+  .pf-btn-outline:hover{ background:var(--ink); color:var(--bg); }
+
+  .pf-contact{ border-top:1px solid var(--line); margin-top:40px; padding-top:24px; text-align:center; }
+  .pf-contact a{ color:var(--ink); text-decoration:none; display:inline-block; margin:6px 14px; font-size:.9rem; font-weight:500; }
+  .pf-contact a:hover{ color:var(--goldd); }
+  .pf-disclaimer{ color:var(--muted); font-size:.75rem; line-height:1.6; margin-top:24px; text-align:center; }
+
+  /* Detail modal */
+  .pf-modal{ display:none; position:fixed; inset:0; z-index:9999; background:rgba(26,25,22,.85); padding:24px; overflow-y:auto; }
+  .pf-modal.open{ display:flex; align-items:flex-start; justify-content:center; }
+  .pf-modal-inner{ background:var(--bg); max-width:660px; width:100%; position:relative; box-shadow:0 20px 60px rgba(0,0,0,.4); margin:24px 0; border-top:4px solid var(--lc); }
+  .pf-modal-close{ position:absolute; top:-42px; right:0; z-index:2; background:none; border:none; color:#fff; font-size:1.8rem; line-height:1; cursor:pointer; padding:6px 10px; }
+  .pf-modal-close:hover{ color:var(--gold); }
+  .pf-modal-body{ padding:30px 28px 26px; }
+  .pf-modal-tag{ display:inline-block; background:var(--lc); color:var(--onlane); padding:4px 11px; font-size:.64rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; margin-bottom:14px; }
+  .pf-modal-title{ font-family:var(--serif); font-size:1.85rem; font-weight:600; line-height:1.15; margin-bottom:6px; }
+  .pf-modal-type{ font-size:.76rem; color:var(--lc); text-transform:uppercase; letter-spacing:.08em; font-weight:700; margin-bottom:10px; }
+  .pf-modal-tline{ font-family:var(--serif); font-style:italic; font-size:1.12rem; color:var(--muted); margin-bottom:8px; }
+  .pf-modal-intro{ font-size:.86rem; line-height:1.6; color:var(--muted); margin-bottom:16px; }
+  .pf-modal-cover{ font-size:.82rem; font-weight:500; color:var(--ink); background:var(--card); border:1px solid var(--line); padding:9px 12px; margin-bottom:18px; }
+  .pf-modal-cover span{ display:block; font-size:.64rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--lc); margin-bottom:3px; }
+
+  .pf-h{ font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lc); margin:18px 0 9px; }
+  .pf-h:first-of-type{ margin-top:0; }
+
+  /* Your personalized number — the headline answer to "what's in it for me" */
+  .pf-price-personal{ background:var(--ink); color:var(--bg); padding:16px 18px; }
+  .pf-price-personal .pf-pp-lbl{ display:block; font-size:.66rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+  .pf-basis-tag{ display:block; background:var(--goldl,var(--soft)); border:1px solid var(--gold); color:var(--goldd); font-size:.8rem; font-weight:600; line-height:1.5; padding:10px 14px; margin-bottom:14px; }
+  .pf-price-personal .pf-pp-num{ font-family:var(--serif); font-size:1.9rem; font-weight:600; line-height:1.1; }
+  .pf-price-personal .pf-pp-num small{ font-size:1rem; font-weight:500; opacity:.75; }
+  .pf-price-personal .pf-pp-sub{ font-size:.8rem; opacity:.8; margin-top:6px; line-height:1.5; }
+  .pf-price-personal.pf-pp-empty{ background:var(--card); color:var(--ink); border:1px dashed var(--line); }
+  .pf-price-personal.pf-pp-empty .pf-pp-lbl{ color:var(--lc); }
+
+
+  .pf-tiles{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+  .pf-tile{ position:relative; background:var(--card); border:1px solid var(--line); padding:16px 16px 15px; display:flex; flex-direction:column; gap:8px; transition:box-shadow .15s, transform .15s, border-color .15s; }
+  .pf-tile:hover{ box-shadow:0 8px 22px rgba(26,25,22,.10); transform:translateY(-2px); border-color:var(--lc); }
+  .pf-tile-icon{ width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  .pf-tile-icon svg{ width:26px; height:26px; display:block; }
+  .pf-tile-num{ font-family:var(--serif); font-size:1.75rem; font-weight:600; line-height:1.05; }
+  .pf-tile-lbl{ font-size:.82rem; color:var(--ink); line-height:1.45; }
+  .pf-tile-g{ position:absolute; top:.8rem; right:.8rem; font-size:.58rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#2F6358; background:rgba(79,140,130,.13); border:1px solid rgba(79,140,130,.4); padding:3px 8px; border-radius:20px; }
+
+  .pf-chart{ background:var(--card); border:1px solid var(--line); padding:14px 14px 4px; }
+  .pf-bar-row{ margin-bottom:12px; }
+  .pf-bar-lbl{ font-size:.76rem; color:var(--muted); margin-bottom:4px; }
+  .pf-bar-lbl small{ opacity:.75; }
+  .pf-bar-track{ display:flex; align-items:center; gap:8px; }
+  .pf-bar{ height:20px; min-width:6px; }
+  .pf-bar-val{ font-family:var(--serif); font-size:1rem; font-weight:600; white-space:nowrap; }
+  .pf-chart-note{ font-size:.74rem; color:var(--muted); margin:8px 0 2px; line-height:1.5; }
+
+  .pf-for{ display:flex; flex-wrap:wrap; gap:6px; }
+  .pf-for span{ background:var(--card); border:1px solid var(--line); padding:6px 12px; font-size:.82rem; }
+
+  .pf-know{ list-style:none; display:flex; flex-direction:column; gap:7px; }
+  .pf-know li{ font-size:.86rem; line-height:1.55; padding:8px 10px 8px 14px; background:var(--card); border-left:3px solid var(--ll,var(--soft)); }
+
+  .pf-get{ list-style:none; display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+  .pf-get li{ font-size:.86rem; line-height:1.5; padding:16px 16px 15px; background:var(--card); border:1px solid var(--line); display:flex; flex-direction:column; gap:8px; transition:box-shadow .15s, transform .15s, border-color .15s; }
+  .pf-get li:hover{ box-shadow:0 8px 22px rgba(26,25,22,.10); transform:translateY(-2px); border-color:var(--lc); }
+  .pf-get-icon{ width:46px; height:46px; border-radius:50%; background:rgba(79,140,130,.13); display:flex; align-items:center; justify-content:center; }
+  .pf-get-icon svg{ width:24px; height:24px; display:block; }
+
+  .pf-need-quote{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; background:var(--soft); border:1px dashed var(--line); padding:12px 14px; font-size:.84rem; color:var(--muted); margin-bottom:12px; }
+  .pf-need-quote a{ color:var(--lc); font-weight:700; text-decoration:none; }
+  .pf-need-quote a:hover{ text-decoration:underline; }
+
+  .pf-modal-fa{ font-size:.76rem; color:var(--muted); margin-top:16px; }
+  .pf-modal-ctas{ display:flex; flex-direction:column; gap:10px; margin-top:18px; }
+
+  @media(max-width:640px){
+    .pf-wrap{ padding:100px 14px 48px; }
+    .pf-grid{ gap:10px; }
+    .pf-card{ padding:16px 18px; }
+    .pf-tiles{ grid-template-columns:1fr 1fr; gap:8px; }
+    .pf-tile{ padding:13px 13px 11px; gap:6px; }
+    .pf-tile-icon{ width:38px; height:38px; }
+    .pf-tile-icon svg{ width:21px; height:21px; }
+    .pf-tile-num{ font-size:1.35rem; }
+    .pf-tile-lbl{ font-size:.75rem; }
+    .pf-price-personal .pf-pp-num{ font-size:1.6rem; }
+    .pf-bar-lbl{ font-size:.72rem; }
+    .pf-bar-val{ font-size:.88rem; }
+    .pf-modal{ padding:0; }
+    .pf-modal-inner{ max-width:100%; margin:0; min-height:100%; }
+    .pf-modal-close{ top:8px; right:8px; background:rgba(0,0,0,.5); border-radius:50%; width:36px; height:36px; padding:0; }
+    .pf-modal-body{ padding:26px 20px 24px; }
+    .pf-modal-title{ font-size:1.5rem; }
+    .pf-contact a{ display:block; margin:10px auto; min-height:44px; line-height:44px; }
+  }
+  @media(max-width:400px){
+    .pf-tiles{ grid-template-columns:1fr; }
+    .pf-get{ grid-template-columns:1fr; }
+    .pf-card-badge{ font-size:.56rem; padding:3px 7px; }
+    .pf-price-personal{ padding:14px 15px; }
+    .pf-bar-track{ gap:6px; }
+    .pf-bar-val{ font-size:.82rem; }
+  }
+</style>
+<div class="pf-wrap">
+  <div class="pf-topnav">
+    <a class="pf-nav-logo" href="https://me.donnanuqui.com/">Donna Nuqui</a>
+    <button class="pf-nav-toggle" id="pfNavToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="pf-nav-links" id="pfNavLinks">
+      <li><a href="https://me.donnanuqui.com/#about">Meet Donna</a></li>
+      <li><a href="https://me.donnanuqui.com/#services">Services</a></li>
+      <li><a href="https://me.donnanuqui.com/#tools">Tools</a></li>
+      <li><a href="https://plans.donnanuqui.com" aria-current="page">Plans</a></li>
+      <li><a href="https://me.donnanuqui.com/#contact">Contact</a></li>
+    </ul>
+  </div>
+  <script>
+  (function(){
+    var t = document.getElementById('pfNavToggle');
+    var l = document.getElementById('pfNavLinks');
+    if(t && l){
+      t.addEventListener('click', function(){ t.classList.toggle('open'); l.classList.toggle('open'); });
+      var links = l.querySelectorAll('a');
+      for(var i=0;i<links.length;i++){
+        links[i].addEventListener('click', function(){ t.classList.remove('open'); l.classList.remove('open'); });
+      }
+    }
+  })();
+  </script>
+  <div class="pf-inner">
+    <p class="pf-eyebrow">Free plan finder</p>
+    <h1 class="pf-h1">Browse plans, <em>your</em> way</h1>
+    <p class="pf-sub">Enter your age and pick what matters most to you. I'll show you which Sun Life plans fit, with real numbers for each — not just descriptions. Tap any card for the full breakdown.</p>
+
+    <div class="pf-field">
+      <label for="pfAge">Your age</label>
+      <div class="pf-age-row"><input type="number" id="pfAge" inputmode="numeric" min="18" max="80" placeholder="e.g. 32"></div>
+      <p class="pf-age-hint" id="pfAgeHint">Pricing shown is an estimate, based on your age.</p>
+    </div>
+
+    <div class="pf-field">
+      <label>What are you looking for?</label>
+      <div class="pf-chips" id="pfChips"></div>
+    </div>
+
+    <p class="pf-results-meta" id="pfResultsMeta"></p>
+    <div class="pf-grid" id="pfGrid"></div>
+    <p class="pf-excluded" id="pfExcluded" style="display:none"></p>
+
+    <div class="pf-contact">
+      <p class="pf-eyebrow" style="margin-bottom:10px">Prefer to talk now?</p>
+      <a href="https://m.me/financial.advisor.donna.n" target="_blank" onclick="pfTrack('pf_cta_click',{cta:'messenger_general'})">Message Donna</a>
+      <a href="tel:+639623858115">0962 385 8115</a>
+      <a href="mailto:donnadel.g.nuqui@sunlife.com.ph">donnadel.g.nuqui@sunlife.com.ph</a>
+    </div>
+    <p class="pf-disclaimer">Prices shown are estimated monthly premiums for the base plan only, at each plan's minimum coverage amount, non-smoker &mdash; riders and add-ons cost extra and are not included. These are estimates only and your actual premium may vary. Educational summary only, not a formal quote &mdash; benefits, limits, issue ages and eligibility are subject to underwriting and the actual policy contract; dividends and investment returns are not guaranteed. Donna Nuqui is a licensed Sun Life advisor. Sources: SLOCPI Product Guide (07.18.2025) and sunlife.com.ph.</p>
+  </div>
+
+  <div class="pf-modal" id="pfModal">
+    <div class="pf-modal-inner" id="pfModalInner">
+      <button class="pf-modal-close" id="pfModalClose" aria-label="Close">&times;</button>
+      <div class="pf-modal-body" id="pfModalBody"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function pfTrack(name, params){
+    try{ if(typeof gtag === 'function'){ gtag('event', name, params || {}); } }catch(e){}
+  }
+  window.pfTrack = pfTrack;
+
+  /* Same 8-color system as the Life-Stage Funnel Map (life-stage-funnel-map.md),
+     one lane color per plan type instead of one per life stage. */
+  var CATS = [
+    {id:'all', label:'All plans', v:null},
+    {id:'invest', label:'Insurance + Investment', v:'inv'},
+    {id:'savings', label:'Insurance + Guaranteed Savings', v:'sav'},
+    {id:'term', label:'Term Life (lowest cost)', v:'trm'},
+    {id:'whole', label:'Whole Life (lifetime)', v:'whl'},
+    {id:'health', label:'Health & Critical Illness', v:'hlt'},
+    {id:'guaranteed', label:'Guaranteed Acceptance', v:'gua'},
+    {id:'income', label:'Retirement & Education Income', v:'inc'},
+    {id:'legacy', label:'Estate & Legacy', v:'leg'}
+  ];
+  var CAT_BY_ID = {}; CATS.forEach(function(c){ CAT_BY_ID[c.id] = c; });
+
+  /* Numeric-tile icon set and semantic colors — matches the icon/number
+     system already used on donnanuqui.com's Plans section, so the "what's
+     in it for you" tiles here look and read the same as the live site. */
+  var C_SAGE = '#6E8A69', C_TERRA = '#C9785B', C_BLUE = '#5E7E99', C_GOLD = '#8B6F3F', C_GREY = '#9A958A', C_LSAGE = '#8FA68A';
+  var ICONS = {
+    heart: '<path d="M24 40s-14-8.5-14-19a8 8 0 0 1 14-5 8 8 0 0 1 14 5c0 10.5-14 19-14 19z"/>',
+    ribbon: '<path d="M24 6c-5 0-8 4-8 8 0 5 4 10 8 15 4-5 8-10 8-15 0-4-3-8-8-8zM18 26l-6 14 6-3 3 5 5-11M30 26l6 14-6-3-3 5-5-11"/>',
+    pulse: '<path d="M6 26h9l4-9 6 17 5-12 3 4h9" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>',
+    shield: '<path d="M24 5l15 6v11c0 11-7 18-15 21C16 40 9 33 9 22V11z"/>',
+    family: '<circle cx="17" cy="13" r="5"/><circle cx="32" cy="17" r="4"/><path d="M8 40c0-8 4-14 9-14s9 6 9 14zM25 40c0-6 3-11 7-11s7 5 7 11z"/>',
+    cal: '<rect x="7" y="10" width="34" height="30" rx="4"/><rect x="7" y="10" width="34" height="9" rx="3" fill="rgba(0,0,0,0.25)"/><rect x="14" y="5" width="4" height="9" rx="2"/><rect x="30" y="5" width="4" height="9" rx="2"/>',
+    coin: '<circle cx="24" cy="24" r="17"/><text x="24" y="31" text-anchor="middle" font-size="19" font-family="DM Sans" font-weight="700" fill="#fff">₱</text>',
+    gift: '<rect x="8" y="20" width="32" height="20" rx="2"/><rect x="5" y="13" width="38" height="9" rx="2"/><rect x="21" y="13" width="6" height="27" fill="rgba(255,255,255,0.6)"/><path d="M24 13c-4-8-12-6-8-1M24 13c4-8 12-6 8-1" fill="none" stroke-width="3"/>',
+    check: '<rect x="9" y="5" width="26" height="36" rx="3"/><circle cx="33" cy="33" r="10" fill="#fff"/><path d="M28 33l4 4 7-8" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>',
+    tick: '<path d="M9 25l10 10 20-22" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>',
+    hourglass: '<path d="M12 6h24v4c0 7-8 10-8 14s8 7 8 14v4H12v-4c0-7 8-10 8-14s-8-7-8-14z"/>',
+    accident: '<path d="M8 30l5-11h20l5 11v8H8z"/><circle cx="15" cy="38" r="4" fill="#fff"/><circle cx="33" cy="38" r="4" fill="#fff"/><path d="M26 4l-5 9h6l-5 9" fill="none" stroke-width="3"/>'
+  };
+  function icon(name, color, size){
+    size = size || 34;
+    var p = ICONS[name] || ICONS.coin;
+    return '<svg viewBox="0 0 48 48" width="' + size + '" height="' + size + '" fill="' + color + '" stroke="' + color + '" stroke-width="0" aria-hidden="true">' + p.replace(/stroke-width="([0-9.]+)"/g, 'stroke="' + color + '" stroke-width="$1"') + '</svg>';
+  }
+  function hexToRgba(hex, a){
+    hex = String(hex).replace('#','');
+    if(hex.length === 3){ hex = hex.split('').map(function(ch){ return ch + ch; }).join(''); }
+    var r = parseInt(hex.substring(0,2),16), g = parseInt(hex.substring(2,4),16), b = parseInt(hex.substring(4,6),16);
+    if(isNaN(r) || isNaN(g) || isNaN(b)){ return 'rgba(107,104,96,' + a + ')'; }
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+  }
+
+  /* Snapshot of Donna's benchmark table, taken 2026-09-25. Yearly premium,
+     base plan only, non-smoker, at each plan's minimum Face Amount. Update
+     this object whenever the internal dashboard's Benchmarks tab changes.
+     Descriptive copy (tline/why/bullets), tiles, charts, forList and know
+     mirror the approved wording and numbers already live on donnanuqui.com's
+     Plans section and the Protection Match quiz. */
+  var PLANS = [
+    {
+      id:'maxilink-prime', name:'Sun MaxiLink Prime', cat:'invest',
+      type:'VUL · Insurance + Investment', tline:'Life insurance that also grows your money.',
+      head:{num:'₱2M', lbl:'guaranteed life benefit, plus your fund'},
+      cover:'Pay for 10 years · covered up to age 88',
+      why:'You want protection and growth in one plan, and you want to be done paying in 10 years. Ito talaga ang pinaka-nirerecommend ko.',
+      bullets:['Life cover of at least 2× your plan’s Face Amount','Built-in investment you can grow over time (not guaranteed)','Pay for 10 years, with the option to add top-ups','Partial withdrawals for emergencies'],
+      minFA:'₱350,000', ageMin:18, ageMax:65,
+      bench:{25:17587.5, 31:null, 35:20860, 50:37187.5, 62:67980.5},
+      sample:{yr:'50,210', mo:'4,184', term:'for 10 years (target)', cov:'₱1M face amount with accident rider'},
+      tiles:[
+        {n:'₱2M', l:'guaranteed life benefit, plus your fund value', i:'shield', c:C_SAGE, g:1},
+        {n:'+₱1M', l:'more if it’s due to an accident', i:'accident', c:C_TERRA},
+        {n:'10', l:'years of paying (target)', i:'cal', c:C_GREY},
+        {n:'88', l:'age your coverage is designed to reach', i:'hourglass', c:C_BLUE}
+      ],
+      chart:{
+        title:'Built for the long run',
+        rows:[
+          {l:'Value at year 10', s:'at 6%', v:493342, t:'₱493K', c:C_LSAGE},
+          {l:'Value at year 20', s:'at 6%', v:716381, t:'₱716K', c:C_SAGE}
+        ],
+        note:'Fund value plus cash payouts, projected at 6%. Not guaranteed: it can be higher or lower.'
+      },
+      forList:['Long-term investors','Want protection and growth','Can commit to the full term','Okay with market ups and downs'],
+      know:['The fund isn’t guaranteed. If it runs low, you may need to pay beyond 10 years.','Best kept for 15 to 20 years or more, not as short-term savings.']
+    },
+    {
+      id:'maxilink-100', name:'Sun MaxiLink 100', cat:'invest',
+      type:'VUL · Insurance + Investment', tline:'More coverage for your budget, covered for life.',
+      head:{num:'100', lbl:'covered until age 100, with investment'},
+      cover:'Regular pay · covered up to age 100',
+      why:'You want insurance with investment, pero sulit ang bawat piso. The monthly is lighter, you get more coverage for your budget, and you’re covered up to age 100.',
+      bullets:['Double life cover, up to age 100','Built-in investment you can grow over time (not guaranteed)','Lower regular payments, so you get more coverage for your budget'],
+      minFA:'₱350,000', ageMin:18, ageMax:70,
+      bench:{25:13191.5, 31:null, 35:15631, 50:26810, 62:52339},
+      tiles:[
+        {n:'200%', l:'of your face amount as life coverage, plus your fund', i:'shield', c:C_SAGE},
+        {n:'100', l:'age you’re covered until', i:'hourglass', c:C_BLUE},
+        {n:'Year 10', l:'first loyalty bonus, then every 5 years', i:'gift', c:C_GOLD},
+        {n:'Anytime', l:'withdraw from your fund in emergencies', i:'coin', c:C_GREY}
+      ],
+      forList:['Young professionals','Want lifetime coverage','Smaller regular budget','Long-term investors'],
+      know:['You pay regularly. The fund value moves with the market and is not guaranteed.','Message me for a sample illustration based on your age and budget.']
+    },
+    {
+      id:'fit-and-well-adv-10', name:'Sun Fit and Well Advantage 10', cat:'health', badge:'Best seller',
+      type:'Comprehensive Health · 10-Pay', tline:'The most comprehensive health protection.',
+      head:{num:'₱1.5M', lbl:'cash if diagnosed with cancer'},
+      cover:'Pay for 10 years · covered up to age 100',
+      why:'This is actually my best seller. It covers 114 critical illnesses, compared to just 36 in a typical add-on. And the best time to get it is now, habang healthy ka pa.',
+      bullets:['Covers 114 critical illnesses, up to age 100','Pays for minor critical illnesses too, not just major ones','Benefits for diagnosis, treatment and recovery','5% cash back every year for 8 years'],
+      minFA:'₱300,000', ageMin:18, ageMax:60,
+      bench:{25:14865, 31:null, 35:17007, 50:26943},
+      sample:{yr:'59,510', mo:'4,960', term:'for 10 years', cov:'₱1M major illness coverage'},
+      tiles:[
+        {n:'₱1M', l:'if diagnosed with a major illness (64 conditions)', i:'pulse', c:C_TERRA},
+        {n:'₱1.5M', l:'if it’s one of 16 covered cancers', i:'ribbon', c:C_BLUE},
+        {n:'₱200K', l:'for early-stage illness, claimable up to 3 times', i:'heart', c:C_SAGE},
+        {n:'₱400K', l:'cash back from age 65, even if you never claim', i:'coin', c:C_GOLD, g:1},
+        {n:'10', l:'years of paying, then you’re done', i:'cal', c:C_GREY},
+        {n:'100', l:'age you’re covered until', i:'shield', c:C_LSAGE}
+      ],
+      chart:{
+        title:'Cash you could get back',
+        rows:[
+          {l:'Living benefit at 65', s:'illustrated', v:1376476, t:'₱1.38M', c:C_LSAGE},
+          {l:'Living benefit at 75', s:'illustrated', v:2213728, t:'₱2.21M', c:C_SAGE}
+        ],
+        note:'Illustrated at the current 4.5% dividend rate. The ₱400K cash back is guaranteed; the rest comes from dividends and is not.'
+      },
+      forList:['Working adults','Already have an HMO','Want big medical coverage','Want to finish paying early'],
+      know:['Your HMO pays the hospital. This plan pays you, in cash, to use however you need.','The illness must be one of the covered conditions in the policy.']
+    },
+    {
+      id:'lifeassure', name:'Sun LifeAssure', cat:'term',
+      type:'Term + Critical Illness', tline:'The most affordable way to get protected.',
+      head:{num:'₱27', lbl:'a day for ₱1M critical illness coverage'},
+      cover:'Renews every 5 years · covered up to age 70',
+      why:'You don’t need a big budget to start. This is the most affordable plan I offer, and dito nagsisimula ang marami kong clients. You can always upgrade later as your income grows.',
+      bullets:['Pays out on death OR diagnosis of any of 36 critical illnesses','Coverage up to age 70','One of the most affordable ways to get covered'],
+      minFA:'₱1,000,000', ageMin:18, ageMax:60,
+      bench:{25:7720, 31:null, 35:8720, 50:21710},
+      sample:{yr:'9,740', mo:'812', term:'for the first 5 years, then it adjusts with age', cov:'₱1M coverage with accident rider'},
+      tiles:[
+        {n:'₱1M', l:'cash if diagnosed with a critical illness', i:'pulse', c:C_TERRA},
+        {n:'36', l:'critical illnesses and surgeries covered', i:'heart', c:C_BLUE},
+        {n:'₱1M', l:'for your family if you pass away', i:'family', c:C_SAGE},
+        {n:'+₱1M', l:'more if it’s due to an accident', i:'accident', c:C_GOLD},
+        {n:'₱27', l:'a day (₱9,740 a year) to start', i:'coin', c:C_GREY},
+        {n:'70', l:'age you’re covered until, renewing every 5 years', i:'shield', c:C_LSAGE}
+      ],
+      chart:{
+        title:'Your yearly premium, by age',
+        rows:[
+          {l:'Ages 30–34', v:9740, t:'₱9,740', c:C_SAGE},
+          {l:'Ages 40–44', v:12820, t:'₱12,820', c:C_LSAGE},
+          {l:'Ages 50–54', v:20600, t:'₱20,600', c:'#B89C6E'},
+          {l:'Ages 60–64', v:32380, t:'₱32,380', c:C_GOLD},
+          {l:'Ages 65–69', v:58240, t:'₱58,240', c:C_TERRA}
+        ],
+        note:'Coverage renews every 5 years regardless of your health. The premium adjusts to your age, so it’s lowest when you start young.'
+      },
+      forList:['Tight budget','First-time insurance buyers','Already have an HMO','Breadwinners'],
+      know:['Pure protection: no cash value and no money back if you stay healthy.','It pays once, and a diagnosis within the first 90 days is not covered.']
+    },
+    {
+      id:'secure-income-10', name:'Sun Secure Income 10', cat:'income',
+      type:'Guaranteed Income · 10-Pay', tline:'A reliable income — for retirement or your kids.',
+      head:{num:'₱60K', lbl:'every year, guaranteed, until age 100'},
+      cover:'Pay for 10 years · covered up to age 100',
+      why:'This is my favorite for parents. It pays a guaranteed amount every year, so you can plan your kids’ schooling around it. Walang hula-hula.',
+      bullets:['Guaranteed 6% of Face Amount every year, up to age 100','200% life cover from day 1','Advance benefits at ages 80, 85, 90 and 95'],
+      minFA:'₱250,000', ageMin:18, ageMax:65,
+      bench:{25:56362.5, 31:null, 35:56830, 50:58945, 62:62855},
+      sample:{yr:'228,030', mo:'19,003', term:'for 10 years', cov:'₱1M face amount with accident rider'},
+      tiles:[
+        {n:'₱60K', l:'every year from age 36 to 100', i:'coin', c:C_GOLD, g:1},
+        {n:'₱2M', l:'life insurance from day 1 until 100', i:'shield', c:C_SAGE, g:1},
+        {n:'₱250K', l:'bonus at ages 80, 85, 90 and 95', i:'gift', c:C_TERRA, g:1},
+        {n:'₱1M', l:'maturity benefit at age 100', i:'hourglass', c:C_BLUE, g:1}
+      ],
+      chart:{
+        title:'Guaranteed cash you receive over time',
+        rows:[
+          {l:'Received by age 60', v:1500000, t:'₱1.5M', c:'#B89C6E'},
+          {l:'Received by age 70', v:2100000, t:'₱2.1M', c:C_GOLD},
+          {l:'Received by age 80', v:2700000, t:'₱2.7M', c:C_SAGE}
+        ],
+        note:'Guaranteed payouts only, and they keep coming until age 100. Dividends and interest on payouts left with Sun Life are extra and not guaranteed.'
+      },
+      forList:['Education fund','Retirement income','Want guaranteed returns','Legacy for your kids'],
+      know:['Tip: make your child the insured and the plan can run for almost 100 years, reaching your grandchildren.','Commit to all 10 years. The ₱60K payout is fixed, so plan with inflation in mind.']
+    },
+    {
+      id:'premier-legacy', name:'Sun Life Premier Legacy', cat:'legacy',
+      type:'Legacy Planning · Whole Life', tline:'Preserve and pass on your wealth, your way.',
+      cover:'Pay for 2, 5 or 10 years · covered up to age 100',
+      why:'This is the plan I recommend for passing on wealth your way. Your family gets cash right away for estate taxes, and you decide how and when each beneficiary receives their share.',
+      bullets:['Large life insurance coverage for your family and heirs','Cash your family can receive quickly, so your wealth stays intact','200% of Face Amount from day 1, up to age 100','Legacy Settlement Option: you decide who receives what, when, and how','Mental Incapacity Benefit: a trusted family member can access benefits if you can’t'],
+      minFA:null, ageMin:18, ageMax:80,
+      bench:{},
+      tiles:[
+        {n:'200%', l:'of your Face Amount from day 1, for estate liquidity', i:'shield', c:C_SAGE, g:1},
+        {n:'100', l:'age you’re covered until', i:'hourglass', c:C_BLUE},
+        {n:'2, 5 or 10', l:'years of paying — your choice', i:'cal', c:C_GREY},
+        {n:'Your call', l:'decide who receives what, when, and how (Legacy Settlement Option)', i:'gift', c:C_GOLD}
+      ],
+      forList:['Business owners','High-net-worth families','Estate planning','Passing on wealth'],
+      know:['This plan is best discussed one-on-one. Message me and we can go through it together.']
+    },
+    {
+      id:'smarter-life-classic', name:'SUN Smarter Life Classic', cat:'whole',
+      type:'Whole Life · No Investment', tline:'Guaranteed protection, no market risk.',
+      cover:'Pay for 5 or 10 years (or regular pay) · covered up to age 100',
+      why:'You want protection lang, no investment, and coverage for life. Simple, guaranteed, up to age 100. No need to watch the market.',
+      bullets:['Life insurance your family receives if you pass away','No investment component, so your coverage does not depend on the market','Double the Face Amount as life cover, up to age 100','Guaranteed cash values you can borrow against in emergencies','Optional riders for accidents, disability, and critical illness'],
+      minFA:'₱200,000', ageMin:18, ageMax:80,
+      bench:{25:15874, 31:null, 35:19384, 50:26546, 62:61825},
+      tiles:[
+        {n:'200%', l:'of your Face Amount as life cover, up to age 100', i:'shield', c:C_SAGE, g:1},
+        {n:'100', l:'age you’re covered until', i:'hourglass', c:C_BLUE},
+        {n:'5 or 10', l:'years of paying, then covered for life', i:'cal', c:C_GREY},
+        {n:'Cash value', l:'you can borrow against in emergencies, guaranteed', i:'coin', c:C_GOLD, g:1}
+      ],
+      forList:['Breadwinners','Parents with young kids','Prefer simple over complicated','Do not want market risk'],
+      know:['Message me for a sample illustration based on your age and budget.']
+    },
+    {
+      id:'acceler8', name:'Sun Acceler8', cat:'savings',
+      type:'Protection + Guaranteed Savings · 8-Pay', tline:'Guaranteed cash back for your next big goal.',
+      head:{num:'₱2M', lbl:'guaranteed back for ₱1.65M paid'},
+      cover:'Pay for 8 years · covered for 20 years',
+      why:'You’re saving for something big, like a house, a business, or your retirement fund. You get guaranteed cash back along the way, and protected ka the whole time.',
+      bullets:['Guaranteed cash back every 2 years, starting at the end of year 8','The cash back increases each time','Life cover that grows during the first 8 years','20 years of coverage'],
+      minFA:'₱250,000', ageMin:18, ageMax:65,
+      bench:{25:51825, 31:null, 35:52475, 50:55120, 62:63492.5},
+      sample:{yr:'207,340', mo:'17,278', term:'for 8 years', cov:'₱1M face amount with accident rider'},
+      tiles:[
+        {n:'₱2M', l:'guaranteed cash and maturity, for ₱1.65M paid', i:'coin', c:C_GOLD, g:1},
+        {n:'₱2.28M', l:'life insurance, growing 16% a year', i:'shield', c:C_BLUE, g:1},
+        {n:'8', l:'years of paying, benefits for 20', i:'cal', c:C_GREY},
+        {n:'+₱1M', l:'more if it’s due to an accident', i:'accident', c:C_TERRA}
+      ],
+      chart:{
+        title:'Guaranteed cash every 2 years',
+        rows:[
+          {l:'Age 38', v:80000, t:'₱80K', c:'#B89C6E'},
+          {l:'Age 40', v:100000, t:'₱100K', c:'#B89C6E'},
+          {l:'Age 42', v:120000, t:'₱120K', c:'#B89C6E'},
+          {l:'Age 44', v:140000, t:'₱140K', c:'#B89C6E'},
+          {l:'Age 46', v:160000, t:'₱160K', c:C_GOLD},
+          {l:'Age 48', v:180000, t:'₱180K', c:C_GOLD},
+          {l:'Age 50', v:200000, t:'₱200K', c:C_GOLD},
+          {l:'Age 50 maturity', v:1020000, t:'₱1.02M', c:C_SAGE}
+        ],
+        note:'Payouts every 2 years from age 38 to 50 (₱980K total), plus ₱1.02M at maturity. Bonuses and dividends could bring it to about ₱2.9M, not guaranteed.'
+      },
+      forList:['Want savings with protection','Milestones in 10 to 20 years','Want guaranteed cash','Prefer a shorter plan'],
+      know:['It’s a 20-year plan. Coverage ends when the plan matures.','Commit to all 8 years. Stopping early may mean getting back less than you paid.']
+    },
+    {
+      id:'easylink-protect', name:'Sun Life EasyLink Protect 10', cat:'guaranteed', badge:'Easy approval',
+      type:'Guaranteed Acceptance', tline:'Coverage even with an existing health condition.',
+      head:{num:'No exam', lbl:'guaranteed acceptance, simple application'},
+      cover:'Pay for 5 or 10 years · covered up to age 100',
+      why:'Walang medical exam, just a simple application. You get life coverage up to age 100, and your plan earns bonuses as long as you stay on track. Heads up: if death is due to illness within the first 2 years, the plan pays back the fund value plus charges — accidental death is covered in full from day 1.',
+      bullets:['Guaranteed acceptance, no medical exam','Life coverage up to age 100','Built-in investment with bonuses for staying on track','Pay for 5 or 10 years','Life insurance only: no health or critical illness benefits'],
+      minFA:'₱375,000', ageMin:18, ageMax:70,
+      bench:{25:30000, 31:null, 35:30000, 50:30000, 62:30000},
+      sample:{yr:'80,000', mo:'6,667', term:'for 10 years', cov:'₱1M coverage'},
+      tiles:[
+        {n:'0', l:'medical exams needed to apply', i:'check', c:C_SAGE},
+        {n:'₱1M', l:'life insurance from year 10 until age 100', i:'shield', c:C_BLUE},
+        {n:'10', l:'years of paying for lifetime coverage', i:'cal', c:C_GREY},
+        {n:'+25%', l:'premium bonus at year 10 (₱20,000)', i:'gift', c:C_GOLD}
+      ],
+      chart:{
+        title:'Your life coverage grows every year',
+        rows:[
+          {l:'Years 1–4', v:400000, t:'₱400K', c:C_LSAGE},
+          {l:'Year 5', v:500000, t:'₱500K', c:C_LSAGE},
+          {l:'Year 7', v:700000, t:'₱700K', c:C_SAGE},
+          {l:'Year 10 to age 100', v:1000000, t:'₱1M', c:C_BLUE}
+        ],
+        note:'In the first 2 years, accidents are covered in full. For other causes, your family receives the fund value plus the charges you paid.'
+      },
+      forList:['Have a medical condition','Put off insurance because of the process','Small yearly budget','Want lifetime coverage'],
+      know:['Guaranteed acceptance has limits: coverage caps apply, your form must be complete, and you can’t have been declined by Sun Life in the last 3 years.','The fund isn’t guaranteed. If it runs low, you may need to pay beyond 10 years.']
+    },
+    {
+      id:'save-and-protect', name:'Sun Life Save and Protect', cat:'savings',
+      type:'Protection + Money Back · 20 Years', tline:'Sure ka: your money comes back if nothing happens.',
+      cover:'Pay for 5 or 10 years · covered for 20 years',
+      why:'You want to be sure. If nothing happens, babalik ang pera mo. You’re protected for 20 years, and your basic premiums come back to you at the end, guaranteed.',
+      bullets:['Life insurance for your family','Guaranteed savings you can count on','No medical exam needed to apply','Get back at least 100% of your basic premiums after 20 years','Life cover from day 1'],
+      minFA:'₱460,000', ageMin:18, ageMax:50,
+      bench:{25:23000, 31:null, 35:23000, 50:28750},
+      tiles:[
+        {n:'100%', l:'of your basic premiums, guaranteed back after 20 years', i:'coin', c:C_GOLD, g:1},
+        {n:'Day 1', l:'your life cover starts immediately', i:'shield', c:C_SAGE},
+        {n:'0', l:'medical exams needed to apply', i:'check', c:C_BLUE},
+        {n:'20', l:'years of coverage', i:'cal', c:C_GREY}
+      ],
+      forList:['First-time savers','Small budget','Want guaranteed savings','Do not want a medical exam'],
+      know:['Message me for a sample illustration based on your age and budget.']
+    }
+  ];
+
+  var currentCat = 'all';
+  var debounceTimer = null;
+  var lastAgeVal = null, lastHasAge = false;
+
+  function fmtPeso(n){ return '₱' + Math.round(n).toLocaleString('en-PH'); }
+
+  function estimate(plan, age){
+    var keys = Object.keys(plan.bench).map(Number).filter(function(k){
+      return plan.bench[k] !== null && plan.bench[k] !== undefined;
+    }).sort(function(a,b){ return a-b; });
+    if(!keys.length) return null;
+    if(plan.bench[age] !== undefined && plan.bench[age] !== null){ return { value: plan.bench[age], exact: true }; }
+    var lower = null, upper = null;
+    keys.forEach(function(k){
+      if(k < age) lower = k;
+      if(k > age && upper === null) upper = k;
+    });
+    if(lower !== null && upper !== null){ return { value:(plan.bench[lower]+plan.bench[upper])/2, exact:false, lo:lower, hi:upper }; }
+    if(lower !== null){ return { value: plan.bench[lower], exact:false, lo:lower, hi:null }; }
+    if(upper !== null){ return { value: plan.bench[upper], exact:false, lo:null, hi:upper }; }
+    return null;
+  }
+
+  function priceNoteText(ageVal){
+    return 'Estimated · age ' + ageVal;
+  }
+
+  function buildChips(){
+    var wrap = document.getElementById('pfChips');
+    CATS.forEach(function(c){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'pf-chip' + (c.id === currentCat ? ' active' : '');
+      if(c.v) btn.style.setProperty('--lc', 'var(--' + c.v + ')');
+      btn.textContent = c.label;
+      btn.addEventListener('click', function(){
+        currentCat = c.id;
+        document.querySelectorAll('.pf-chip').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        pfTrack('pf_category_selected', { category: c.id });
+        render();
+      });
+      wrap.appendChild(btn);
+    });
+  }
+
+  function tilesHtml(tiles){
+    var out = '';
+    for(var i=0;i<tiles.length;i++){
+      var t = tiles[i];
+      out += '<div class="pf-tile">'
+        + '<div class="pf-tile-icon" style="background:' + hexToRgba(t.c, .14) + '">' + icon(t.i, t.c, 26) + '</div>'
+        + '<span class="pf-tile-num" style="color:' + t.c + '">' + t.n + '</span>'
+        + '<span class="pf-tile-lbl">' + t.l + '</span>'
+        + (t.g ? '<span class="pf-tile-g">Guaranteed</span>' : '') + '</div>';
+    }
+    return out;
+  }
+
+  function chartHtml(ch){
+    var max = 0, i, out = '';
+    for(i=0;i<ch.rows.length;i++){ if(ch.rows[i].v > max){ max = ch.rows[i].v; } }
+    for(i=0;i<ch.rows.length;i++){
+      var r = ch.rows[i];
+      var w = Math.max(8, Math.round(r.v / max * 100));
+      out += '<div class="pf-bar-row"><div class="pf-bar-lbl">' + r.l + (r.s ? ' <small>' + r.s + '</small>' : '') + '</div>' +
+        '<div class="pf-bar-track"><div class="pf-bar" style="width:' + w + '%;background:' + r.c + '"></div><span class="pf-bar-val">' + r.t + '</span></div></div>';
+    }
+    return out;
+  }
+
+  function forHtml(items){
+    var out = '';
+    for(var i=0;i<items.length;i++){ out += '<span>' + items[i] + '</span>'; }
+    return out;
+  }
+  function knowHtml(items){
+    var out = '';
+    for(var i=0;i<items.length;i++){ out += '<li>' + items[i] + '</li>'; }
+    return out;
+  }
+  function getHtml(items){
+    var out = '';
+    for(var i=0;i<items.length;i++){
+      out += '<li><div class="pf-get-icon">' + icon('tick', '#4F8C82', 22) + '</div><span>' + items[i] + '</span></li>';
+    }
+    return out;
+  }
+
+  function openModal(plan){
+    var hasAge = lastHasAge, ageVal = lastAgeVal;
+    var est = hasAge ? estimate(plan, ageVal) : null;
+    var v = CAT_BY_ID[plan.cat].v;
+    var modal = document.getElementById('pfModal');
+    var inner = document.getElementById('pfModalInner');
+    var body = document.getElementById('pfModalBody');
+    inner.style.setProperty('--lc', 'var(--' + v + ')');
+    inner.style.setProperty('--ll', 'var(--' + v + 'l)');
+    modal.className = 'pf-modal open';
+
+    var html = '<span class="pf-modal-tag">' + CAT_BY_ID[plan.cat].label + '</span>'
+      + '<h2 class="pf-modal-title">' + plan.name + '</h2>'
+      + '<p class="pf-modal-type">' + plan.type + '</p>'
+      + '<p class="pf-modal-tline">' + plan.tline + '</p>'
+      + '<p class="pf-modal-intro">' + plan.why + '</p>'
+      + '<p class="pf-modal-cover"><span>How long you’re covered</span>' + plan.cover + '</p>';
+
+    /* Numbers first: your personalized estimate, one number, front and center. */
+    html += '<p class="pf-h" style="margin-top:0">Your estimated premium</p>';
+    if(est){
+      html += '<div class="pf-price-personal"><span class="pf-pp-lbl">Age ' + ageVal + ' · at ' + plan.minFA + ' coverage</span>'
+        + '<div class="pf-pp-num">' + fmtPeso(est.value/12) + ' <small>/ month</small></div>'
+        + '<p class="pf-pp-sub">' + fmtPeso(est.value) + ' a year · ' + priceNoteText(ageVal) + '</p></div>';
+    } else if(hasAge){
+      html += '<div class="pf-price-personal"><span class="pf-pp-lbl">Age ' + ageVal + '</span>'
+        + '<div class="pf-pp-num" style="font-size:1.3rem">Custom pricing</div>'
+        + '<p class="pf-pp-sub">Message Donna for an exact quote.</p></div>';
+    } else {
+      html += '<div class="pf-price-personal pf-pp-empty"><span class="pf-pp-lbl">Enter your age above</span>'
+        + '<div class="pf-pp-num" style="font-size:1.3rem">See your estimated premium</div>'
+        + '<p class="pf-pp-sub">It only takes your age to get a starting number for this plan.</p></div>';
+    }
+
+    /* What you get — icon/number tiles when we have them, icon checklist cards otherwise. */
+    html += '<p class="pf-h">What you get</p>';
+    if(plan.sample){
+      html += '<div class="pf-basis-tag">Sample numbers below are at ₱1,000,000 coverage — a different coverage amount than your estimated premium above (' + plan.minFA + ').</div>';
+    }
+    if(plan.tiles){
+      html += '<div class="pf-tiles">' + tilesHtml(plan.tiles) + '</div>';
+    } else {
+      var askQuoteMsg = 'Hi Donna! Can you send me the exact numbers or a sample quotation for ' + plan.name + '?';
+      var askQuoteUrl = 'https://m.me/financial.advisor.donna.n?text=' + encodeURIComponent(askQuoteMsg);
+      html += '<div class="pf-need-quote">No sample numbers on file for this plan yet — <a href="' + askQuoteUrl + '" target="_blank" onclick="pfTrack(\'pf_cta_click\',{cta:\'ask_quote\',plan:\'' + plan.id + '\'})">ask Donna for your exact quotation →</a></div>';
+      html += '<ul class="pf-get">' + getHtml(plan.bullets) + '</ul>';
+    }
+
+    if(plan.chart){
+      html += '<p class="pf-h">' + plan.chart.title + '</p>'
+        + '<div class="pf-chart">' + chartHtml(plan.chart) + '</div>'
+        + '<p class="pf-chart-note">' + plan.chart.note + '</p>';
+    }
+
+    html += '<p class="pf-h">Best for</p><div class="pf-for">' + forHtml(plan.forList) + '</div>';
+    html += '<p class="pf-h">Good to know</p><ul class="pf-know">' + knowHtml(plan.know) + '</ul>';
+
+    if(plan.minFA){ html += '<p class="pf-modal-fa">Your estimated premium above is at minimum coverage amount: ' + plan.minFA + '</p>'; }
+
+    var msg = hasAge
+      ? ('Hi Donna! I’m ' + ageVal + ' and I’m interested in ' + plan.name + '. Pwede ba nating pag-usapan?')
+      : ('Hi Donna! Gusto ko malaman more about ' + plan.name + '. Pwede ba nating pag-usapan?');
+    var messengerUrl = 'https://m.me/financial.advisor.donna.n?text=' + encodeURIComponent(msg);
+
+    html += '<div class="pf-modal-ctas">'
+      + '<a class="pf-btn pf-btn-primary" href="https://www.donnanuqui.com/financial-check-plan" target="_blank" onclick="pfTrack(\'pf_cta_click\',{cta:\'book_call\',plan:\'' + plan.id + '\'})">Book My Free Planning Call →</a>'
+      + '<a class="pf-btn pf-btn-outline" href="' + messengerUrl + '" target="_blank" onclick="pfTrack(\'pf_cta_click\',{cta:\'messenger\',plan:\'' + plan.id + '\'})">Message Donna About This Plan</a>'
+      + '</div>';
+
+    body.innerHTML = html;
+    document.body.style.overflow = 'hidden';
+    inner.scrollTop = 0;
+    pfTrack('pf_card_opened', { plan: plan.id, age: hasAge ? ageVal : null });
+  }
+
+  function closeModal(){
+    document.getElementById('pfModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('pfModalClose').addEventListener('click', closeModal);
+  document.getElementById('pfModal').addEventListener('click', function(e){ if(e.target === this) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+  function render(){
+    var ageInput = document.getElementById('pfAge');
+    var ageVal = parseInt(ageInput.value, 10);
+    var hasAge = !isNaN(ageVal) && ageVal >= 18 && ageVal <= 80;
+    lastAgeVal = ageVal; lastHasAge = hasAge;
+
+    var hint = document.getElementById('pfAgeHint');
+    hint.textContent = hasAge ? 'Showing estimated pricing for age ' + ageVal + '.'
+      : (ageInput.value ? 'Enter an age between 18 and 80 to see pricing.' : 'Enter your age above to see estimated pricing per plan.');
+
+    var list = PLANS.filter(function(p){ return currentCat === 'all' || p.cat === currentCat; });
+    var shown = [], excluded = [];
+    list.forEach(function(p){
+      if(hasAge && (ageVal < p.ageMin || ageVal > p.ageMax)){ excluded.push(p); } else { shown.push(p); }
+    });
+
+    var meta = document.getElementById('pfResultsMeta');
+    meta.textContent = shown.length + (shown.length === 1 ? ' plan matches' : ' plans match') + (currentCat === 'all' ? '' : ' “' + CAT_BY_ID[currentCat].label + '”');
+
+    var grid = document.getElementById('pfGrid');
+    grid.innerHTML = '';
+    shown.forEach(function(p){
+      var v = CAT_BY_ID[p.cat].v;
+      var card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'pf-card';
+      card.style.setProperty('--lc', 'var(--' + v + ')');
+      card.style.setProperty('--ll', 'var(--' + v + 'l)');
+
+      var html = '<div class="pf-card-top"><span class="pf-tag">' + CAT_BY_ID[p.cat].label + '</span>'
+        + (p.badge ? '<span class="pf-card-badge">' + p.badge + '</span>' : '') + '</div>'
+        + '<h3>' + p.name + '</h3>'
+        + '<p class="pf-type">' + p.type + '</p>';
+      if(p.head){
+        html += '<div class="pf-headstat"><b>' + p.head.num + '</b><span>' + p.head.lbl + '</span></div>';
+      } else {
+        html += '<p class="pf-tline">' + p.tline + '</p>';
+      }
+      card.innerHTML = html;
+
+      if(hasAge){
+        var est = estimate(p, ageVal);
+        if(est){
+          var priceRow = document.createElement('div'); priceRow.className = 'pf-card-price';
+          var amt = document.createElement('span'); amt.className = 'pf-price-amt'; amt.textContent = fmtPeso(est.value/12) + '/mo';
+          priceRow.appendChild(amt);
+          card.appendChild(priceRow);
+          var note = document.createElement('p'); note.className = 'pf-price-note'; note.textContent = priceNoteText(ageVal);
+          card.appendChild(note);
+        } else {
+          var custom = document.createElement('p'); custom.className = 'pf-custom'; custom.textContent = 'Message Donna for pricing — tap for details';
+          card.appendChild(custom);
+        }
+      }
+
+      var more = document.createElement('span'); more.className = 'pf-card-more'; more.textContent = 'See full details →';
+      card.appendChild(more);
+
+      card.addEventListener('click', function(){ openModal(p); });
+      grid.appendChild(card);
+    });
+
+    var exEl = document.getElementById('pfExcluded');
+    if(hasAge && excluded.length){
+      exEl.style.display = 'block';
+      exEl.textContent = excluded.length + (excluded.length === 1 ? ' plan isn’t' : ' plans aren’t') + ' shown because they’re not available at age ' + ageVal + ': ' + excluded.map(function(p){return p.name;}).join(', ') + '.';
+    } else {
+      exEl.style.display = 'none'; exEl.textContent = '';
+    }
+  }
+
+  document.getElementById('pfAge').addEventListener('input', function(){
+    clearTimeout(debounceTimer);
+    var self = this;
+    debounceTimer = setTimeout(function(){ pfTrack('pf_age_entered', { age: self.value }); render(); }, 250);
+  });
+
+  buildChips();
+  render();
+  pfTrack('pf_page_viewed', {});
+})();
+</script>
