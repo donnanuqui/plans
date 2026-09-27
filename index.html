@@ -3,8 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Plan Finder | Donna Nuqui, Sun Life Advisor</title>
-<meta name="description" content="Find the Sun Life plan that fits you. Enter your age and what matters most, and see personalized plan estimates instantly.">
+<title>Sun Life Plan Finder — Compare Life Insurance Plans (PH) | Donna Nuqui</title>
+<meta name="description" content="Compare 10 Sun Life plans in the Philippines — VUL, term, whole life, health & critical illness, guaranteed income and more. Enter your age for a personalized monthly estimate.">
+<link rel="canonical" href="https://plans.donnanuqui.com/">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://plans.donnanuqui.com/">
+<meta property="og:site_name" content="Donna Nuqui — Sun Life Advisor">
+<meta property="og:title" content="Sun Life Plan Finder — Compare Life Insurance Plans (PH)">
+<meta property="og:description" content="Compare 10 Sun Life plans in the Philippines — VUL, term, whole life, health & critical illness, guaranteed income and more. Enter your age for a personalized monthly estimate.">
+<meta property="og:locale" content="en_PH">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sun Life Plan Finder — Compare Life Insurance Plans (PH)">
+<meta name="twitter:description" content="Compare 10 Sun Life plans in the Philippines and get a personalized monthly estimate by age.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "InsuranceAgency",
+  "name": "Donna Nuqui — Sun Life Financial Advisor",
+  "url": "https://plans.donnanuqui.com/",
+  "areaServed": { "@type": "Country", "name": "Philippines" },
+  "sameAs": [
+    "https://me.donnanuqui.com/",
+    "https://www.facebook.com/financial.advisor.donna.n"
+  ],
+  "founder": { "@type": "Person", "name": "Donna Nuqui" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Sun Life Insurance Plans",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "item": { "@type": "Service", "name": "Sun MaxiLink Prime", "description": "Life insurance that also grows your money. VUL, Insurance + Investment.", "areaServed": "PH", "provider": { "@type": "InsuranceAgency", "name": "Donna Nuqui — Sun Life Financial Advisor" } } },
+    { "@type": "ListItem", "position": 2, "item": { "@type": "Service", "name": "Sun MaxiLink 100", "description": "More coverage for your budget, covered for life. VUL, Insurance + Investment.", "areaServed": "PH", "provider": { "@type": "InsuranceAgency", "name": "Donna Nuqui — Sun Life Financial Advisor" } } },
+    { "@type": "ListItem", "position": 3, "item": { "@type": "Service", "name": "Sun Fit and Well Advantage 10", "description": "The most comprehensive health protection. Comprehensive Health, 10-Pay.", "areaServed": "PH", "provider": { "@type": "InsuranceAgency", "name": "Donna Nuqui — Sun Life Financial Advisor" } } },
+    { "@type": "ListItem", "position": 4, "item": { "@type": "Service", "name": "Sun LifeAssure", "description": "The most affordable way to get protected. Term + Critical Illness.", "areaServed": "PH", "provider": { "@type": "InsuranceAgency", "name": "Donna Nuqui — Sun Life Financial Advisor" } } },
+    { "@type": "ListItem", "position": 5, "item": { "@type": "Service", "name": "Sun Secure Income 10", "description": "A reliable income for retirement or your kids. Guaranteed Income, 10-Pay.", "areaServed": "PH", "provider": { "@type": "InsuranceAgency", "name": "Donna Nuqui — Sun Life Financial Advisor" } } },
+    { "@type": "ListItem", "position": 6, "item": { "@type": "Service", "name": "Sun Life Premier Legacy", "description": "Preserve and pass on your wealth, your way. Legacy Planning, Whole Life.", "areaServed": "PH", "provider": { "@type": "InsuranceAgency", "name": "Donna Nuqui — Sun Life Financial Advisor" } } },
+    { "@type": "ListItem", "position": 7, "item": { "@type": "Service", "name": "Sun Smarter Life Classic", "description": "Guaranteed protection, no market risk. Whole Life, No Investment.", "areaServed": "PH", "provider": { "@type": "InsuranceAgency", "name": "Donna Nuqui — Sun Life Financial Advisor" } } },
+    { "@type": "ListItem", "position": 8, "item": { "@type": "Service", "name": "Sun Acceler8", "description": "Guaranteed cash back for your next big goal. Protection + Guaranteed Savings, 8-Pay.", "areaServed": "PH", "provider": { "@type": "InsuranceAgency", "name": "Donna Nuqui — Sun Life Financial Advisor" } } },
+    { "@type": "ListItem", "position": 9, "item": { "@type": "Service", "name": "Sun Life EasyLink Protect 10", "description": "Coverage even with an existing health condition. Guaranteed Acceptance.", "areaServed": "PH", "provider": { "@type": "InsuranceAgency", "name": "Donna Nuqui — Sun Life Financial Advisor" } } },
+    { "@type": "ListItem", "position": 10, "item": { "@type": "Service", "name": "Sun Life Save and Protect", "description": "Your money comes back if nothing happens. Protection + Money Back, 20 Years.", "areaServed": "PH", "provider": { "@type": "InsuranceAgency", "name": "Donna Nuqui — Sun Life Financial Advisor" } } }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" />
 <style>
@@ -109,6 +159,14 @@
   .pf-card:hover .pf-card-more{ color:var(--lc); }
 
   .pf-excluded{ font-size:.78rem; color:var(--muted); line-height:1.6; margin-top:22px; padding-top:16px; border-top:1px solid var(--line); }
+
+  /* Static, always-crawlable summary of every plan — real content search engines
+     can read without running JS, and a quick scan for visitors too. */
+  .pf-h2{ font-family:var(--serif); font-weight:600; font-size:1.3rem; margin:40px 0 8px; }
+  .pf-planlist-intro{ color:var(--muted); font-size:.86rem; margin-bottom:14px; line-height:1.55; }
+  .pf-planlist-ul{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .pf-planlist-ul li{ font-size:.86rem; line-height:1.6; padding:10px 12px; background:var(--card); border:1px solid var(--line); }
+  .pf-planlist-ul li strong{ color:var(--ink); }
 
   .pf-btn{ display:inline-block; text-decoration:none; text-transform:uppercase; letter-spacing:.1em; font-size:.78rem; font-weight:600; padding:15px 30px; transition:opacity .2s; text-align:center; border:none; cursor:pointer; font-family:var(--sans); min-height:44px; }
   .pf-btn-primary{ background:var(--ink); color:var(--bg); }
@@ -264,6 +322,23 @@
     <p class="pf-results-meta" id="pfResultsMeta"></p>
     <div class="pf-grid" id="pfGrid"></div>
     <p class="pf-excluded" id="pfExcluded" style="display:none"></p>
+
+    <section aria-labelledby="pfPlanListHeading">
+      <h2 id="pfPlanListHeading" class="pf-h2">All Sun Life Plans You Can Compare Here</h2>
+      <p class="pf-planlist-intro">A quick look at every plan covered by this tool. Enter your age above for a personalized monthly estimate on each one, or message Donna directly about any plan below.</p>
+      <ul class="pf-planlist-ul">
+        <li><strong>Sun MaxiLink Prime</strong> — VUL · Insurance + Investment. Life insurance that also grows your money.</li>
+        <li><strong>Sun MaxiLink 100</strong> — VUL · Insurance + Investment. More coverage for your budget, covered for life.</li>
+        <li><strong>Sun Fit and Well Advantage 10</strong> — Comprehensive Health · 10-Pay. The most comprehensive health protection.</li>
+        <li><strong>Sun LifeAssure</strong> — Term + Critical Illness. The most affordable way to get protected.</li>
+        <li><strong>Sun Secure Income 10</strong> — Guaranteed Income · 10-Pay. A reliable income — for retirement or your kids.</li>
+        <li><strong>Sun Life Premier Legacy</strong> — Legacy Planning · Whole Life. Preserve and pass on your wealth, your way.</li>
+        <li><strong>Sun Smarter Life Classic</strong> — Whole Life · No Investment. Guaranteed protection, no market risk.</li>
+        <li><strong>Sun Acceler8</strong> — Protection + Guaranteed Savings · 8-Pay. Guaranteed cash back for your next big goal.</li>
+        <li><strong>Sun Life EasyLink Protect 10</strong> — Guaranteed Acceptance. Coverage even with an existing health condition.</li>
+        <li><strong>Sun Life Save and Protect</strong> — Protection + Money Back · 20 Years. Your money comes back if nothing happens.</li>
+      </ul>
+    </section>
 
     <div class="pf-contact">
       <p class="pf-eyebrow" style="margin-bottom:10px">Prefer to talk now?</p>
