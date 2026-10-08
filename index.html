@@ -2240,6 +2240,44 @@
      Leads go to a Google Sheet through a Google Apps Script web app, sent with an
      image request (the same no-CORS approach the other tools use).
      Paste the deployed web app URL below. */
+  /* Where the visitor came from, worked out once when the page loads:
+     1) utm_source / utm_campaign in the link (best for your own posts),
+     2) fbclid (Facebook adds it to links clicked on Facebook) or gclid (Google Ads),
+     3) the referring website, 4) otherwise "Direct". */
+  var TRAFFIC_SOURCE = (function(){
+    var q = {}, label = '', camp = '';
+    try{
+      (location.search || '').replace(/^\?/, '').split('&').forEach(function(kv){
+        if(!kv) return; var i = kv.indexOf('=');
+        var k = decodeURIComponent(i < 0 ? kv : kv.slice(0, i)).toLowerCase();
+        var v = i < 0 ? '' : decodeURIComponent(kv.slice(i + 1).replace(/\+/g, ' '));
+        q[k] = v;
+      });
+    }catch(x){}
+    var nice = function(t){ t = String(t || '').toLowerCase();
+      if(/facebook|^fb$|messenger|m\.me/.test(t)) return /messenger|m\.me/.test(t) ? 'Messenger' : 'Facebook';
+      if(/instagram|^ig$/.test(t)) return 'Instagram';
+      if(/google/.test(t)) return 'Google';
+      if(/tiktok/.test(t)) return 'TikTok';
+      if(/bing/.test(t)) return 'Bing';
+      if(/yahoo/.test(t)) return 'Yahoo';
+      if(/viber/.test(t)) return 'Viber';
+      if(/me\.donnanuqui/.test(t)) return 'me.donnanuqui.com';
+      if(/donnanuqui/.test(t)) return 'donnanuqui.com';
+      return t;
+    };
+    if(q.utm_source){ label = nice(q.utm_source); camp = q.utm_campaign || q.utm_content || ''; }
+    else if(q.fbclid){ label = 'Facebook'; }
+    else if(q.gclid){ label = 'Google Ads'; }
+    else {
+      var ref = '';
+      try{ ref = document.referrer ? new URL(document.referrer).hostname : ''; }catch(x){}
+      if(ref && ref.indexOf('plans.donnanuqui.com') === -1){ label = nice(ref); }
+    }
+    if(!label) label = 'Direct';
+    return label + (camp ? ' · ' + camp : '');
+  })();
+
   var LEADS_URL = 'https://script.google.com/macros/s/AKfycbzVcrMEVF-Hj0M3qc2uzcP6_yYv7hJSTJ2ao3e04NVgVIRq7Ol-QDamBgCK-mr6EtMR7g/exec';
   var FB_PAGE = 'https://www.facebook.com/financial.advisor.donna.n';
   var propState = { plan:null, ctx:null, followed:false };
@@ -2375,7 +2413,7 @@
       forParent: ctx.forParent ? 'yes' : 'no',
       followedPage: 'not yet',
       estimate: (plan && age) ? (function(){ var es = estimate(plan, parseInt(age,10)); return es ? Math.round(es.value/12) + '/mo' : ''; })() : '',
-      source: 'plans.donnanuqui.com'
+      source: TRAFFIC_SOURCE
     };
     var q = []; for(var k in data){ q.push(encodeURIComponent(k) + '=' + encodeURIComponent(data[k])); }
     try{
