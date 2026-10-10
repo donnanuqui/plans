@@ -329,6 +329,10 @@
   .pf-alsotag{ font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line); padding:3px 8px; }
   .pf-wiz .pf-wizbar{ display:flex; gap:8px; position:fixed; left:0; right:0; bottom:0; z-index:90; padding:12px 14px calc(12px + env(safe-area-inset-bottom, 0px)); background:var(--bg); border-top:1px solid var(--line); box-shadow:0 -6px 20px rgba(26,25,22,.08); }
   .pf-wizbar .pf-btn{ flex:1 1 auto; padding:15px 14px; }
+  /* iOS Safari: when the browser toolbar slides away, the page can show through under the fixed bar for a moment.
+     Extend the bar's background below it so the gap is filled instead of showing content. */
+  .pf-wiz .pf-wizbar::after{ content:''; position:absolute; left:0; right:0; top:100%; height:160px; background:var(--bg); pointer-events:none; }
+  .pf-asksh::after{ content:''; position:absolute; left:0; right:0; top:100%; height:160px; background:var(--bg); pointer-events:none; }
   .pf-wizbar .pf-wb-back{ flex:0 0 auto; }
   .pf-wb-progress{ position:absolute; left:0; top:-1px; height:2px; background:var(--gold); transition:width .25s; }
   @media (prefers-reduced-motion: reduce){ .pf-wb-progress{ transition:none; } }
@@ -1711,59 +1715,97 @@
   var GOALS = [
     {id:'family', label:'Protect my family', sub:'If something happens to me', icon:'family', c:C_SAGE, plans:[
       {id:'lifeassure', line:'₱1M for your family if you pass away, plus ₱1M cash if you’re diagnosed with a critical illness.', sample:true},
+      {id:'safer-life', line:'Up to 2× your coverage for your family, at a lower cost than lifetime plans.'},
       {id:'smarter-life-classic', line:'Double your coverage as life cover, guaranteed until age 100. No market ups and downs.'},
       {id:'maxilink-100', line:'Double life cover until age 100, plus a fund that can grow over time.'},
-      {id:'safer-life', line:'Up to 2× your coverage for your family, at a lower cost than lifetime plans.'},
-      {id:'smarter-life-elite', line:'Double life cover until 100, plus guaranteed cash for you every 2 years.'}
+      {id:'maxilink-prime', line:'At least 2× your coverage for your family, plus a fund that grows. Done paying in 10 years.'},
+      {id:'smarter-life-elite', line:'Double life cover until 100, plus guaranteed cash for you every 2 years.'},
+      {id:'maxilink-bright', also:true, line:'At least 2× your coverage as life cover, and you’re done paying in 5 years.'},
+      {id:'flexilink', also:true, line:'Life cover for your family with light regular payments and a fund that can grow.'},
+      {id:'secure-income-10', also:true, line:'Double your coverage as life cover until 100, plus a guaranteed yearly payout.'},
+      {id:'acceler8', also:true, line:'Life cover that grows to 228% of your coverage, plus guaranteed cash every 2 years.'},
+      {id:'fit-and-well-adv-10', also:true, line:'Life cover until 100, plus cash if you get seriously ill, so your family isn’t left with the bills.'},
+      {id:'easylink-protect', also:true, line:'Life cover until 100 with no medical exam, even with a health condition.'},
+      {id:'save-and-protect', also:true, line:'Life cover from day 1, and your money comes back after 20 years if nothing happens.'},
+      {id:'maxilink-one', also:true, line:'One payment gives your family life cover plus a fund that keeps growing.'},
+      {id:'premier-legacy', also:true, line:'Big coverage that goes to your family right away, the way you decide.'}
     ]},
     {id:'health', label:'Big hospital bills', sub:'Serious illness, cancer', icon:'pulse', c:C_TERRA, plans:[
       {id:'fit-and-well-adv-10', line:'Up to ₱1.5M cash if diagnosed with cancer, and ₱400K back at 65 even if you never claim.', sample:true},
       {id:'lifeassure', line:'₱1M cash if diagnosed with any of 36 critical illnesses. Your HMO pays the hospital; this pays you.', sample:true},
       {id:'first-aid', line:'Cash for every day you’re in the hospital, so lost income and extra costs are covered.'},
-      {id:'ofw-health-protect', line:'Working abroad? Full health protection with yearly check-ups, built for OFWs.'}
+      {id:'ofw-health-protect', line:'Working abroad? Full health protection with yearly check-ups, built for OFWs.'},
+      {id:'senior-care', also:true, line:'Already 50 or older? Cash for 17 illnesses common at your age, like stroke or heart attack.'}
     ]},
     {id:'kids', label:'My kids’ schooling', sub:'Education fund', icon:'cap', c:C_BLUE, plans:[
       {id:'secure-income-10', line:'₱60K every year, guaranteed, so you can plan their tuition around it.', sample:true},
       {id:'dream-achiever', line:'Pay for 5 years, then get 4 guaranteed payouts for college that grow every year.'},
       {id:'acceler8', line:'Guaranteed cash every 2 years, and it gets bigger each time.'},
-      {id:'maxilink-bright', line:'Done paying in 5 years, with a fund you can draw from for their schooling.'}
+      {id:'maxilink-bright', line:'Done paying in 5 years, with a fund you can draw from for their schooling.'},
+      {id:'maxilink-prime', line:'A fund that can grow into their college money, while you’re protected.'},
+      {id:'maxilink-100', also:true, line:'A lighter amount that builds a fund for their schooling over time.'},
+      {id:'flexilink', also:true, line:'Start small and top up when you can, to build their education fund.'},
+      {id:'smarter-life-elite', also:true, line:'Guaranteed cash every 2 years you can set aside for school.'},
+      {id:'save-and-protect', also:true, line:'Your money comes back after 20 years, ready for a big school expense.'}
     ]},
     {id:'retire', label:'Income when I retire', sub:'Money that keeps coming', icon:'sun', c:C_GOLD, plans:[
       {id:'secure-income-10', line:'A guaranteed yearly payout that keeps coming until age 100.'},
       {id:'maxilink-prime', line:'Life cover of at least 2× your coverage, plus a fund you can grow for retirement.'},
-      {id:'fit-and-well-adv-10', line:'₱400K cash back from age 65, plus health protection along the way.', sample:true},
+      {id:'smarter-life-elite', line:'Guaranteed cash every 2 years for life, with no market risk.'},
       {id:'maxilink-one', line:'Turn a lump sum into a retirement fund with one payment.'},
-      {id:'smarter-life-elite', line:'Guaranteed cash every 2 years for life, with no market risk.'}
+      {id:'fit-and-well-adv-10', also:true, line:'₱400K cash back from age 65, plus health protection along the way.', sample:true},
+      {id:'maxilink-100', also:true, line:'A fund you can grow for retirement, with life cover until 100.'},
+      {id:'maxilink-bright', also:true, line:'Finish paying in 5 years and let your fund keep growing until you retire.'},
+      {id:'flexilink', also:true, line:'Build a retirement fund little by little, with top-ups when you can.'},
+      {id:'wealth-prosper-7', also:true, line:'Got a lump sum? A guaranteed 4.5% a year for 7 years, then all of it back.'}
     ]},
     {id:'goal', label:'Save for a big goal', sub:'House, business, travel', icon:'house', c:'#B89C6E', plans:[
       {id:'acceler8', line:'Guaranteed cash every 2 years, plus 102% of your coverage back at year 20. You only pay for 8 years.'},
       {id:'save-and-protect', line:'If nothing happens, 100% of your basic premiums come back after 20 years.'},
-      {id:'wealth-prosper-7', line:'Got a lump sum? Earn 4.5% a year, guaranteed, and get it all back in 7 years.'}
+      {id:'wealth-prosper-7', line:'Got a lump sum? Earn 4.5% a year, guaranteed, and get it all back in 7 years.'},
+      {id:'maxilink-bright', also:true, line:'Pay for 5 years and grow a fund you can withdraw from for big plans.'},
+      {id:'maxilink-prime', line:'A fund that can grow for your milestones, with withdrawals when you need them.'},
+      {id:'flexilink', also:true, line:'Grow a fund for your goal at your own pace, with top-ups anytime.'},
+      {id:'smarter-life-elite', also:true, line:'Guaranteed cash every 2 years you can put toward your goal.'}
     ]},
     {id:'grow', label:'Grow my money', sub:'While I’m protected', icon:'sprout', c:C_LSAGE, plans:[
       {id:'maxilink-prime', line:'Protection and investment in one plan, and you’re done paying in 10 years.'},
       {id:'maxilink-100', line:'A lighter monthly amount, double life cover until 100, and a fund that can grow.'},
       {id:'maxilink-bright', line:'Bigger payments, but you’re done in 5 years and your fund keeps growing.'},
       {id:'maxilink-one', line:'Got a lump sum? Pay once and all of it gets invested from day 1.'},
-      {id:'flexilink', line:'A starter VUL with regular payments and room to top up.'}
+      {id:'flexilink', line:'A starter VUL with regular payments and room to top up.'},
+      {id:'easylink-protect', also:true, line:'A fund that grows, with loyalty bonuses, and no medical exam to apply.'},
+      {id:'wealth-prosper-7', also:true, line:'Prefer guaranteed growth? 4.5% a year for 7 years, with no market risk.'}
     ]},
     {id:'condition', label:'I have a health condition', sub:'Or I hate medical exams', icon:'check', c:'#4F8C82', plans:[
       {id:'easylink-protect', line:'No medical exam. Guaranteed acceptance, with life cover until age 100.'},
-      {id:'save-and-protect', line:'No medical exam needed to apply, and your money comes back after 20 years.'}
+      {id:'save-and-protect', line:'No medical exam needed to apply, and your money comes back after 20 years.'},
+      {id:'maxilink-one', also:true, line:'Pay once, with guaranteed acceptance within the insurer’s limits.'},
+      {id:'wealth-prosper-7', also:true, line:'Guaranteed acceptance within the insurer’s limits, plus 4.5% a year for 7 years.'}
     ]},
     {id:'ofw', label:'I work abroad', sub:'OFW health and life cover', icon:'plane', c:C_BLUE, plans:[
       {id:'ofw-health-protect', line:'₱1M cash for a major illness, plus hospital, recovery and check-up benefits wherever you work.', sample:true, note:'Sample at ₱1M coverage, age 30'},
       {id:'maxilink-prime', line:'Grow your earnings abroad while your family back home is protected.'},
-      {id:'secure-income-10', line:'A guaranteed yearly payout, so your hard work abroad turns into income for life.'}
+      {id:'secure-income-10', line:'A guaranteed yearly payout, so your hard work abroad turns into income for life.'},
+      {id:'maxilink-100', also:true, line:'Lifetime cover for your family back home, plus a fund that can grow.'},
+      {id:'lifeassure', also:true, line:'₱1M for your family, plus ₱1M cash if you get a critical illness.', sample:true},
+      {id:'flexilink', also:true, line:'Start a fund with light regular payments while you work abroad.'}
     ]},
     {id:'parents', label:'Protect my parents', sub:'Insure Mama or Papa', icon:'elder', c:'#A8556B', parent:true, plans:[
       {id:'senior-care', line:'₱450K cash if Mama or Papa is diagnosed with one of 17 age-related illnesses, like stroke or heart attack.', sample:true, note:'Sample at ₱300K coverage, age 65'},
-      {id:'easylink-protect', line:'No medical exam, so a parent with an existing condition can still be covered for life.'}
+      {id:'easylink-protect', line:'No medical exam, so a parent with an existing condition can still be covered for life.'},
+      {id:'smarter-life-classic', also:true, line:'Lifetime cover until 100, so there’s money for the family when the time comes.'},
+      {id:'lifeassure', also:true, line:'Still under 60? ₱1M cash for a critical illness, plus ₱1M life cover.', sample:true},
+      {id:'fit-and-well-adv-10', also:true, line:'Still under 60? Cash for illness and hospital stays, and cover until 100.'},
+      {id:'first-aid', also:true, line:'Still under 55? Daily cash for every day in the hospital.'}
     ]},
     {id:'legacy', label:'Pass on wealth', sub:'For my heirs', icon:'gift', c:'#7A6A8E', plans:[
       {id:'premier-legacy', line:'Cash for your heirs right away, and you decide who gets what, and when.'},
       {id:'secure-income-10', line:'Make your child the insured and the payouts can reach your grandchildren.'},
-      {id:'maxilink-one', line:'One payment that grows into a fund for your loved ones.'}
+      {id:'maxilink-one', line:'One payment that grows into a fund for your loved ones.'},
+      {id:'smarter-life-classic', line:'Double your coverage for your heirs, guaranteed until 100.'},
+      {id:'smarter-life-elite', also:true, line:'Double life cover for your heirs, plus cash for you every 2 years.'},
+      {id:'maxilink-100', also:true, line:'Double life cover until 100, plus your fund value, for your loved ones.'}
     ]}
   ];
   var GOAL_BY_ID = {}; GOALS.forEach(function(g){ GOAL_BY_ID[g.id] = g; });
@@ -1908,9 +1950,10 @@
     goalIds.forEach(function(gid){
       GOAL_BY_ID[gid].plans.forEach(function(gp, idx){
         var m = byId[gp.id];
-        if(!m){ m = byId[gp.id] = { plan:PLAN_BY_ID[gp.id], goals:[], line:gp.line, sample:!!gp.sample, note:gp.note, score:0, pos:idx }; }
+        if(!m){ m = byId[gp.id] = { plan:PLAN_BY_ID[gp.id], goals:[], line:gp.line, sample:!!gp.sample, note:gp.note, score:0, core:0, pos:idx }; }
+        if(!gp.also) m.core += 1;
         m.goals.push(gid);
-        m.score += 1;
+        m.score += gp.also ? 0.5 : 1;
         if(idx < m.pos){ m.pos = idx; m.line = gp.line; m.sample = !!gp.sample; m.note = gp.note; }
       });
     });
@@ -2892,6 +2935,16 @@
       }
       return a.order - b.order;
     });
+    /* Donna's rule: whenever VULs show up, MaxiLink Prime comes first among them
+       (only ahead of VULs in the same budget group, so the budget filter still works). */
+    (function(){
+      var pi = -1; for(var i=0;i<shown.length;i++){ if(shown[i].plan.id === 'maxilink-prime'){ pi = i; break; } }
+      if(pi < 1) return;
+      var pr = rank(shown[pi]);
+      for(var j=0;j<pi;j++){
+        if(VUL_IDS[shown[j].plan.id] && rank(shown[j]) === pr){ var prime = shown.splice(pi, 1)[0]; shown.splice(j, 0, prime); return; }
+      }
+    })();
     var famNote = document.getElementById('pfFamNote');
     famNote.hidden = !(famFilter !== 'all' && !shown.length && famHidden);
     if(!famNote.hidden){ famNote.innerHTML = 'No ' + (famFilter === 'vul' ? 'VUL' : 'Traditional') + ' plan fits what you picked. <a href="#" id="pfFamReset">Show all plans</a>'; }
@@ -2901,6 +2954,7 @@
       var bits = [];
       var n = m.goals.length, t = sg.length;
       bits.push(t === 1 ? 'Matches what you picked' : (n === t ? (t === 2 ? 'Matches both your picks' : 'Matches all ' + t + ' of your picks') : 'Matches ' + n + ' of your ' + t + ' picks'));
+      if(!m.core) bits[0] = 'Also a good fit';
       if(hasAge) bits.push('open to age ' + ageVal);
       if(m.budget && m.budget.s === 'fits') bits.push('fits your budget');
       m.why = bits.join(' · ');
