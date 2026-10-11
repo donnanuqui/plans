@@ -2655,6 +2655,18 @@
       if(target !== wizStep) setStep(target, true);
     }
   });
+  /* Facebook links on phones: target="_blank" is unreliable there (especially inside the
+     Facebook/Messenger in-app browser), so open the page in the same tab. The lead beacon
+     and tracking have already fired by the time this runs. Desktop keeps the new tab. */
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href*="facebook.com/financial.advisor.donna.n"]') : null;
+    if(!a) return;
+    var isMobile = wizOn() || /Android|iPhone|iPad|iPod|Mobile|FBAN|FBAV|FB_IAB|Messenger/i.test(navigator.userAgent || '');
+    if(!isMobile) return;
+    e.preventDefault();
+    var url = a.href;
+    setTimeout(function(){ window.location.href = url; }, 200);
+  });
   document.getElementById('pfModalClose').addEventListener('click', closeModal);
   document.getElementById('pfModal').addEventListener('click', function(e){ if(e.target === this) closeModal(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
