@@ -192,7 +192,7 @@
     --gua:#8FC2B8;--gual:#203230; --inc:#A3AFD1;--incl:#262B3A; --onlane:#191815;
   }
   .pf-wrap, .pf-wrap *, .pf-wrap *::before, .pf-wrap *::after{ box-sizing:border-box; margin:0; padding:0; }
-  .pf-wrap{ background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.6; width:100%; max-width:100%; padding:124px 20px 64px; overflow-x:hidden; -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+  .pf-wrap{ background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.6; width:100%; max-width:100%; padding:124px 20px 64px; overflow-x:hidden; overflow-x:clip; -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   .pf-inner{ max-width:900px; margin:0 auto; }
 
   /* Site header — matches me.donnanuqui.com's live nav exactly (fixed, 6vw side padding) so this tool feels like part of the site */
@@ -297,7 +297,7 @@
   /* Mobile step-by-step mode: each step owns the screen, the action sits in a pinned bar. */
   .pf-count{ display:none; }
   .pf-wizbar{ display:none; }
-  .pf-wiz{ padding-bottom:110px; }
+  .pf-wrap.pf-wiz{ padding-bottom:calc(var(--pf-barh, 90px) + 40px) !important; }
   .pf-wiz[data-step="1"] .pf-s2, .pf-wiz[data-step="1"] .pf-s3,
   .pf-wiz[data-step="2"] .pf-s1, .pf-wiz[data-step="2"] .pf-s3,
   .pf-wiz[data-step="3"] .pf-s1, .pf-wiz[data-step="3"] .pf-s2{ display:none; }
@@ -3064,6 +3064,17 @@
     wrapEl.classList.toggle('pf-wiz', on);
     wrapEl.setAttribute('data-step', String(wizStep));
   }
+  /* Keep enough space under the content for the fixed bottom bar, whatever its real height
+     (bigger on phones with large font settings or gesture bars, e.g. some Samsung phones). */
+  function syncBarSpace(){
+    var bar = document.getElementById('pfWizBar');
+    if(!bar) return;
+    var h = bar.offsetHeight || 0;
+    document.documentElement.style.setProperty('--pf-barh', (h || 90) + 'px');
+  }
+  window.addEventListener('resize', syncBarSpace);
+  if(window.visualViewport) window.visualViewport.addEventListener('resize', syncBarSpace);
+  setTimeout(syncBarSpace, 0);
   function setStep(n, fromHistory){
     if(!fromHistory){
       try{
@@ -3074,6 +3085,7 @@
     wizStep = n;
     applyWiz();
     render();
+    syncBarSpace();
     window.scrollTo(0, 0);
     pfTrack('pf_wizard_step', { step: n });
   }
