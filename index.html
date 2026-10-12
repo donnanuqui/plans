@@ -481,6 +481,10 @@
   .pf-need-ci{ font-size:.86rem; color:var(--ink); margin:0 0 10px; }
   .pf-need-fine{ font-size:.76rem; color:var(--muted); margin:8px 0 0; line-height:1.45; }
   .pf-need-out .pf-btn{ width:100%; }
+  .pf-covchips{ display:flex; flex-wrap:wrap; gap:6px; }
+  .pf-covchips .pf-bchip{ flex:0 1 auto; min-width:0; padding:9px 12px; min-height:42px; font-size:.88rem; }
+  .pf-covchips .pf-bchip:disabled{ opacity:.4; cursor:not-allowed; text-decoration:line-through; }
+  .pf-cov-note{ font-size:.8rem; color:var(--muted); margin:6px 0 0; line-height:1.45; }
   .pf-form-cov{ font-size:.84rem; background:var(--goldl); border:1px solid var(--gold); padding:8px 12px; margin:10px 0 0; color:var(--ink); }
   .pf-askov{ position:fixed; inset:0; z-index:10050; background:rgba(22,21,15,.55); display:none; align-items:flex-end; justify-content:center; }
   .pf-askov.open{ display:flex; }
@@ -2509,6 +2513,7 @@
 
   function openProposal(plan, ctx){
     propState.plan = plan; propState.ctx = ctx || { age:lastAgeVal, hasAge:lastHasAge, forParent:false };
+    propState.cov = null; propState.covAuto = true;
     propState.followed = false;
     propStep2();
   }
@@ -2529,6 +2534,75 @@
     m.forEach(function(x){ if(!seen[x.plan.id]){ seen[x.plan.id] = 1; out.push({ p:x.plan, match:true }); } });
     PLANS.forEach(function(p){ if(!seen[p.id]){ seen[p.id] = 1; out.push({ p:p, match:false }); } });
     return out;
+  }
+  /* "Coverage you want" buttons in the proposal form, matched to the chosen plan. */
+  function covNum(str){ var m = String(str || '').replace(/,/g, '').match(/(\d+(?:\.\d+)?)/); return m ? parseFloat(m[1]) : 0; }
+  function covOptions(plan){
+    var M = 1000000, K = 1000;
+    if(plan && plan.id === 'first-aid'){
+      return { label:'Daily hospital benefit you want', opts:[{v:2000, t:'₱2,000/day'}, {v:5000, t:'₱5,000/day'}, {v:10000, t:'₱10,000/day'}] };
+    }
+    if(plan && plan.id === 'premier-legacy'){
+      return { label:'Coverage you want', opts:[{v:5*M, t:'₱5M'}, {v:10*M, t:'₱10M'}, {v:25*M, t:'₱25M'}, {v:50*M, t:'₱50M+'}] };
+    }
+    var single = plan && (plan.id === 'maxilink-one' || plan.id === 'wealth-prosper-7');
+    var base = [{v:500*K, t:'₱500K'}, {v:1*M, t:'₱1M'}, {v:2*M, t:'₱2M'}, {v:3*M, t:'₱3M'}, {v:5*M, t:'₱5M'}, {v:10*M, t:'₱10M+'}];
+    var min = (plan && !single) ? covNum(plan.minFA) : 0;
+    var opts = [];
+    if(min && !base.some(function(o){ return o.v === min; })){
+      opts.push({ v:min, t:'Minimum (' + fmtShort(min) + ')' });
+    }
+    base.forEach(function(o){ opts.push({ v:o.v, t:o.t + (o.v === min ? ' (minimum)' : ''), off: min && o.v < min }); });
+    return { label: single ? 'Amount you want to put in' : 'Coverage you want', opts:opts, single:single, min:min };
+  }
+  function renderCovPick(){
+    var box = document.getElementById('pfCovPick');
+    if(!box) return;
+    var planId = document.getElementById('pfLeadPlan').value;
+    var plan = planId ? PLAN_BY_ID[planId] : null;
+    var co = covOptions(plan);
+    var lbl = document.getElementById('pfCovLbl');
+    if(lbl) lbl.innerHTML = co.label + ' <span>(optional)</span>';
+    var valid = co.opts.filter(function(o){ return !o.off; });
+    /* Keep their choice if it still fits this plan; otherwise use the coverage check, else "Not sure yet". */
+    var cur = propState.cov;
+    if(cur && !valid.some(function(o){ return o.t === cur.t; })) cur = null;
+    if(!cur && propState.covAuto !== false && needState.amount > 0 && !co.single && !(plan && plan.id === 'first-aid')){
+      var best = null;
+      valid.forEach(function(o){ if(!best || Math.abs(o.v - needState.amount) < Math.abs(best.v - needState.amount)) best = o; });
+      cur = best;
+    }
+    propState.cov = cur;
+    var html = '<div class="pf-covchips">';
+    co.opts.forEach(function(o, i){
+      var on = cur && cur.t === o.t;
+      html += '<button type="button" class="pf-bchip' + (on ? ' active' : '') + '" data-cov="' + i + '"' + (o.off ? ' disabled title="This plan starts at ' + fmtShort(co.min) + '"' : '') + ' aria-pressed="' + (on ? 'true' : 'false') + '">' + o.t + '</button>';
+    });
+    html += '<button type="button" class="pf-bchip' + (!cur ? ' active' : '') + '" data-cov="none" aria-pressed="' + (!cur ? 'true' : 'false') + '">Not sure yet</button></div>';
+    var notes = [];
+    if(co.min && co.opts.some(function(o){ return o.off; })) notes.push('This plan starts at ' + fmtShort(co.min) + '.');
+    if(needState.amount > 0 && !co.single && !(plan && plan.id === 'first-aid')) notes.push('Your coverage check suggested about ' + fmtShort(needState.amount) + '.');
+    notes.push(co.single ? 'I’ll show your coverage and projected fund value for this amount in your proposal.' : 'I’ll compute your exact premium for this amount in your proposal.');
+    html += '<p class="pf-cov-note">' + notes.join(' ') + '</p>';
+    box.innerHTML = html;
+    var btns = box.querySelectorAll('[data-cov]');
+    for(var i=0;i<btns.length;i++){
+      btns[i].addEventListener('click', function(){
+        var k = this.getAttribute('data-cov');
+        propState.cov = k === 'none' ? null : co.opts[parseInt(k, 10)];
+        propState.covAuto = false;
+        pfTrack('pf_proposal_coverage', { coverage: propState.cov ? propState.cov.t : 'not_sure' });
+        renderCovPick();
+      });
+    }
+  }
+  function covForSheet(){
+    var c = propState.cov;
+    var planId = document.getElementById('pfLeadPlan').value;
+    var single = planId === 'maxilink-one' || planId === 'wealth-prosper-7';
+    var txt = c ? (single ? 'Put in ' : '') + c.t.replace(' (minimum)', '') : 'Not sure yet';
+    if(needState.amount > 0 && planId !== 'first-aid' && !single) txt += ' (check suggested ' + fmtShort(needState.amount) + ')';
+    return txt;
   }
   function renderPlanPick(open){
     var box = document.getElementById('pfPlanPick');
@@ -2553,6 +2627,7 @@
       html += '<button type="button" class="pf-mini pf-mini-none" data-plan=""><span class="pf-mini-body"><span class="pf-mini-top"><b>Not sure yet</b></span><span class="pf-mini-line">Help me choose the right plan.</span></span></button></div>';
     }
     box.innerHTML = html;
+    renderCovPick();
     var ch = document.getElementById('pfPlanChange');
     if(ch){ ch.addEventListener('click', function(){ renderPlanPick(true); }); }
     var opts = box.querySelectorAll('[data-plan]');
@@ -2580,7 +2655,7 @@
       + '<label for="pfLeadMobile">Mobile number</label><input id="pfLeadMobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" required placeholder="09XX XXX XXXX">'
       + '<label id="pfLeadPlanLbl">Plan you’re interested in</label><input type="hidden" id="pfLeadPlan" value="' + (propState.plan ? propState.plan.id : '') + '">'
       + '<div id="pfPlanPick" role="group" aria-labelledby="pfLeadPlanLbl"></div>'
-      + (needState.amount > 0 ? '<p class="pf-form-cov">Coverage you want: <b>about ' + fmtShort(needState.amount) + '</b> (from your coverage check). I’ll use this in your proposal.</p>' : '')
+      + '<label id="pfCovLbl">Coverage you want <span>(optional)</span></label><div id="pfCovPick" role="group" aria-labelledby="pfCovLbl"></div>'
       + '<label class="pf-consent"><input type="checkbox" id="pfLeadConsent" required> <span>I agree to let Donna Nuqui, a licensed financial advisor, contact me about my proposal. My details won’t be shared with anyone else.</span></label>'
       + '<p class="pf-form-err" id="pfLeadErr" role="alert"></p>'
       + '<button type="submit" class="pf-btn pf-btn-primary pf-cta-main" id="pfLeadSubmit"><img src="' + DONNA_IMG + '" alt="" width="28" height="28">Send me my proposal</button>'
@@ -2623,7 +2698,7 @@
       goals: selectedGoals.length ? goalsText() : '',
       forParent: ctx.forParent ? 'yes' : 'no',
       followedPage: 'not yet',
-      coverage: needState.amount > 0 ? fmtShort(needState.amount) : '',
+      coverage: covForSheet(),
       budget: budget ? (budget >= 10000 ? '₱10,000+' : fmtPeso(budget)) + '/mo' : '',
       estimate: (plan && age) ? (function(){ var es = estimate(plan, parseInt(age,10)); return es ? Math.round(es.value/12) + '/mo' : ''; })() : '',
       source: TRAFFIC_SOURCE
