@@ -378,6 +378,15 @@
   .pf-cta-main img{ width:28px; height:28px; border-radius:50%; object-fit:cover; border:2px solid var(--bg); }
   .pf-cta-promise{ font-size:.74rem; color:var(--muted); text-align:center; margin:0; }
   @media(max-width:640px){ .pf-modal-ctas{ margin:18px -20px -24px !important; padding-left:20px; padding-right:20px; } }
+  /* Floating bar: clear edge + fade so it's obvious there's more to scroll */
+  .pf-modal-ctas{ border-top:1px solid rgba(22,21,15,.18); box-shadow:0 -14px 28px -6px rgba(22,21,15,.22), 0 -2px 6px rgba(22,21,15,.08); }
+  .pf-modal-ctas::before{ content:''; position:absolute; left:0; right:0; bottom:calc(100% + 1px); height:48px; background:linear-gradient(to bottom, rgba(253,252,250,0), var(--bg)); pointer-events:none; transition:opacity .2s; }
+  .pf-modal-ctas::after{ content:'Scroll for more details \2193'; position:absolute; left:50%; bottom:calc(100% + 10px); transform:translateX(-50%); padding:6px 14px; border-radius:999px; background:var(--ink); color:var(--bg); font-size:.74rem; font-weight:600; letter-spacing:.02em; white-space:nowrap; box-shadow:0 4px 12px rgba(22,21,15,.25); pointer-events:none; transition:opacity .2s; }
+  .pf-at-end .pf-modal-ctas{ box-shadow:none; border-top-color:var(--line); }
+  .pf-at-end .pf-modal-ctas::before, .pf-at-end .pf-modal-ctas::after{ opacity:0; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .pf-modal-ctas{ border-top-color:rgba(255,255,255,.2); box-shadow:0 -14px 28px -6px rgba(0,0,0,.6); } :root:not([data-theme="light"]) .pf-modal-ctas::before{ background:linear-gradient(to bottom, rgba(25,24,21,0), var(--bg)); } }
+  :root[data-theme="dark"] .pf-modal-ctas{ border-top-color:rgba(255,255,255,.2); box-shadow:0 -14px 28px -6px rgba(0,0,0,.6); }
+  :root[data-theme="dark"] .pf-modal-ctas::before{ background:linear-gradient(to bottom, rgba(25,24,21,0), var(--bg)); }
   .pf-prop{ display:flex; flex-direction:column; gap:12px; }
   .pf-prop-steps{ display:flex; gap:8px; margin-bottom:6px; padding-right:40px; }
   .pf-prop-steps span{ flex:1; font-size:.68rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); padding-top:8px; border-top:3px solid var(--line); }
@@ -2350,6 +2359,17 @@
     return out + '</dl>';
   }
 
+  /* Hide the "scroll for more" cue once they reach the bottom of the plan details. */
+  function syncModalEnd(){
+    var modal = document.getElementById('pfModal'), inner = document.getElementById('pfModalInner');
+    if(!modal || !inner) return;
+    var end = modal.scrollHeight - modal.scrollTop - modal.clientHeight < 24;
+    inner.classList.toggle('pf-at-end', end);
+  }
+  (function(){
+    var modal = document.getElementById('pfModal');
+    if(modal){ modal.addEventListener('scroll', syncModalEnd, { passive:true }); window.addEventListener('resize', syncModalEnd); }
+  })();
   function openModal(plan, ctx){
     ctx = ctx || { age:lastAgeVal, hasAge:lastHasAge, forParent:false };
     var hasAge = ctx.hasAge, ageVal = ctx.age, forParent = ctx.forParent;
@@ -2442,7 +2462,9 @@
       openProposal(plan, ctx);
     });
     document.body.style.overflow = 'hidden';
-    inner.scrollTop = 0;
+    inner.scrollTop = 0; modal.scrollTop = 0;
+    syncModalEnd();
+    setTimeout(syncModalEnd, 60);
     pfTrack('pf_card_opened', { plan: plan.id, age: hasAge ? ageVal : null });
   }
 
