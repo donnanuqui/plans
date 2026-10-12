@@ -24,6 +24,19 @@
 <meta property="og:image:alt" content="Find the plan that fits your life. Free plan finder by Donna Nuqui.">
 <meta name="twitter:image" content="https://plans.donnanuqui.com/og-image.jpg">
 <meta name="author" content="Donna Nuqui">
+<!-- Google tag (GA4). Paste your Measurement ID below (same one used on donnanuqui.com). -->
+<script>
+  var PF_GA_ID = 'G-XXXXXXXXXX';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  if(/^G-[A-Z0-9]+$/.test(PF_GA_ID) && PF_GA_ID !== 'G-XXXXXXXXXX'){
+    var gs = document.createElement('script'); gs.async = true;
+    gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + PF_GA_ID;
+    document.head.appendChild(gs);
+    gtag('js', new Date());
+    gtag('config', PF_GA_ID);
+  }
+</script>
 <meta name="keywords" content="life insurance Philippines, VUL Philippines, VUL vs traditional insurance, how much life insurance do I need, health insurance Philippines, critical illness insurance, insurance for parents, OFW insurance, education plan, retirement plan, no medical exam insurance, financial advisor, Donna Nuqui">
 <script type="application/ld+json">
 {
@@ -380,6 +393,9 @@
   .pf-form input[type=text], .pf-form input[type=email], .pf-form input[type=number], .pf-form input[type=tel], .pf-form select{ width:100%; box-sizing:border-box; font-family:var(--sans); font-size:1rem; color:var(--ink); background:var(--card); border:1px solid var(--line); padding:13px 12px; border-radius:0; min-height:48px; }
   .pf-form input:focus, .pf-form select:focus{ outline:2px solid var(--gold); outline-offset:0; border-color:var(--gold); }
   .pf-form-row{ display:grid; grid-template-columns:1fr 1.4fr; gap:10px; }
+  .pf-form-row2{ grid-template-columns:1fr 1fr; }
+  .pf-form select{ -webkit-appearance:none; appearance:none; background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%); background-position:calc(100% - 18px) 50%,calc(100% - 12px) 50%; background-size:6px 6px; background-repeat:no-repeat; padding-right:32px; }
+  .pf-form select:invalid{ color:var(--muted); }
   .pf-form-row > div{ display:flex; flex-direction:column; gap:6px; min-width:0; }
   .pf-consent{ display:flex !important; gap:10px; align-items:flex-start; text-transform:none !important; letter-spacing:0 !important; font-weight:500 !important; font-size:.8rem !important; color:var(--muted) !important; margin-top:12px !important; line-height:1.5; }
   .pf-consent input{ width:20px; height:20px; flex:0 0 20px; margin:1px 0 0; accent-color:var(--ink); }
@@ -483,6 +499,15 @@
   .pf-askmsg b{ color:var(--ink); }
   .pf-asknum{ text-align:center; font-size:.82rem; color:var(--muted); margin:12px 0 0; }
   .pf-asknum a{ color:var(--ink); font-weight:700; }
+  .pf-empty{ grid-column:1/-1; flex:1 1 100%; background:var(--card); border:1px solid var(--line); border-left:5px solid var(--gold); padding:20px; display:flex; flex-direction:column; gap:10px; align-items:flex-start; }
+  .pf-empty-k{ font-family:var(--serif); font-size:1.35rem; font-weight:600; margin:0; color:var(--ink); }
+  .pf-empty-p{ font-size:.92rem; color:var(--muted); margin:0; line-height:1.5; }
+  .pf-iab{ position:relative; display:flex; flex-wrap:wrap; align-items:center; gap:10px; background:var(--goldl); border:1px solid var(--gold); padding:12px 40px 12px 14px; margin:0 0 18px; font-size:.86rem; line-height:1.45; color:var(--ink); }
+  .pf-iab[hidden]{ display:none; }
+  .pf-iab p{ margin:0; flex:1 1 220px; }
+  .pf-iab-btn{ background:var(--ink); color:var(--bg); text-decoration:none; font-weight:700; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; padding:10px 14px; }
+  .pf-iab-btn[hidden]{ display:none; }
+  .pf-iab-x{ position:absolute; top:6px; right:6px; background:none; border:0; font-size:1.3rem; line-height:1; color:var(--muted); cursor:pointer; padding:6px; }
   .pf-pair{ margin-top:16px; padding:16px; background:var(--soft); border:1px solid var(--line); display:flex; flex-direction:column; gap:8px; }
   .pf-pair-k{ font-family:var(--serif); font-size:1.2rem; font-weight:600; margin:0; }
   .pf-pair-why{ font-size:.84rem; color:var(--muted); line-height:1.5; margin:0; }
@@ -684,6 +709,11 @@
 </head>
 <body>
 <div class="pf-wrap">
+  <div class="pf-iab" id="pfIab" hidden>
+    <p id="pfIabMsg"></p>
+    <a class="pf-iab-btn" id="pfIabBtn" href="#" hidden>Open in browser</a>
+    <button type="button" class="pf-iab-x" id="pfIabX" aria-label="Dismiss">×</button>
+  </div>
   <div class="pf-topnav">
     <a class="pf-nav-logo" href="https://me.donnanuqui.com/">Donna Nuqui</a>
     <button class="pf-nav-toggle" id="pfNavToggle" aria-label="Menu">
@@ -718,7 +748,7 @@
 
     <div class="pf-field">
       <p class="pf-step"><b>1</b><label for="pfAge" style="margin:0">Your age</label></p>
-      <div class="pf-age-row"><input type="number" id="pfAge" inputmode="numeric" min="18" max="80" placeholder="e.g. 32"></div>
+      <div class="pf-age-row"><input type="number" id="pfAge" inputmode="numeric" min="0" max="100" placeholder="e.g. 32"></div>
       <p class="pf-age-hint" id="pfAgeHint">Pricing shown is an estimate, based on your age.</p>
     </div>
    </div>
@@ -733,7 +763,7 @@
       </div>
       <div class="pf-parent-age" id="pfParentAgeWrap" hidden>
         <label for="pfParentAge">Your parent’s age</label>
-        <div class="pf-age-row"><input type="number" id="pfParentAge" inputmode="numeric" min="18" max="80" placeholder="e.g. 65"></div>
+        <div class="pf-age-row"><input type="number" id="pfParentAge" inputmode="numeric" min="18" max="100" placeholder="e.g. 65"></div>
         <p class="pf-age-hint">Parent plans are matched to their age, not yours.</p>
       </div>
     </div>
@@ -1254,7 +1284,7 @@
       pay:'Pay 10 yrs',
       why:'You want protection and growth in one plan, and you want to be done paying in 10 years. Ito talaga ang pinaka-nirerecommend ko.',
       bullets:['Life cover of at least 2× your plan’s Face Amount','Built-in investment you can grow over time (not guaranteed)','Pay for 10 years, with the option to add top-ups','Partial withdrawals for emergencies'],
-      minFA:'₱350,000', ageMin:18, ageMax:65,
+      minFA:'₱350,000', ageMin:0, ageMax:65,
       bench:{25:17587.5, 31:17034.5, 35:20860, 45:30250.5, 50:37187.5, 55:46424, 60:64088.5, 62:67980.5, 65:73822},
       tiles:[
         {n:'2×', l:'your coverage, at least, paid to your family as a guaranteed cash benefit', i:'shield', c:C_SAGE, g:1},
@@ -1273,7 +1303,7 @@
       pay:'Regular pay',
       why:'You want insurance with investment, pero sulit ang bawat piso. The monthly is lighter, you get more coverage for your budget, and you’re covered up to age 100.',
       bullets:['Double life cover, up to age 100','Built-in investment you can grow over time (not guaranteed)','Lower regular payments, so you get more coverage for your budget'],
-      minFA:'₱350,000', ageMin:18, ageMax:70,
+      minFA:'₱350,000', ageMin:0, ageMax:70,
       bench:{25:13191.5, 31:13034, 35:15470, 45:18340, 50:26810, 55:39550, 60:41685, 62:52339, 65:68320},
       tiles:[
         {n:'2×', l:'your coverage, at least, as guaranteed life insurance until age 100', i:'shield', c:C_SAGE, g:1},
@@ -1292,7 +1322,7 @@
       pay:'Pay 10 yrs',
       why:'This is actually my best seller. It covers 114 critical illnesses, compared to just 36 in a typical add-on. And the best time to get it is now, habang healthy ka pa.',
       bullets:['Covers 114 conditions: 64 major illnesses, 34 minor illnesses and 16 specific cancers','Pays for minor illnesses too, not just major ones','Advantage variant adds cash for hospital stays, follow-up check-ups, home recovery and palliative care','Extra 50% of your coverage on first diagnosis of a covered cancer','5% of your coverage back every year for 8 years from age 65','Pay for 10, 15 or 20 years'],
-      minFA:'₱300,000', ageMin:18, ageMax:60,
+      minFA:'₱300,000', ageMin:0, ageMax:60,
       bench:{25:15198, 35:19152, 45:23988, 55:27660, 60:29820},
       sampleNote:'Sample numbers below are at ₱1,000,000 coverage. The story is the brochure’s own example.',
       sample:{cov:'₱1M'},
@@ -1343,7 +1373,7 @@
       pay:'Pay 10 yrs',
       why:'This is my favorite for parents. It pays a guaranteed amount every year, so you can plan your kids’ schooling around it. Walang hula-hula.',
       bullets:['Guaranteed 6% of your coverage every year, from the end of year 6 until age 100','200% life cover from day 1 until age 100','Centenarian bonus of 25% of your coverage at ages 80, 85, 90 and 95','Pay in 3, 5, 10 or 15 years','Policy loan and terminal illness advance available'],
-      minFA:'₱250,000', ageMin:18, ageMax:65,
+      minFA:'₱250,000', ageMin:0, ageMax:65,
       bench:{25:56362.5, 31:56365, 35:56830, 45:57880, 50:58945, 55:60142.5, 60:61867.5, 62:62855, 65:64335},
       sampleNote:'Sample numbers below are from the brochure: a 30-year-old man at ₱1,000,000 coverage, paying ₱226,380 a year for 10 years.',
       sample:{cov:'₱1M'},
@@ -1372,7 +1402,7 @@
       pay:'Pay 2, 5 or 10 yrs',
       why:'This is the plan I recommend for passing on wealth your way. Your family gets cash right away for estate taxes, and you decide how and when each beneficiary receives their share.',
       bullets:['Large life insurance coverage for your family and heirs','Cash your family can receive quickly, so your wealth stays intact','200% of Face Amount from day 1, up to age 100','Legacy Settlement Option: you decide who receives what, when, and how','Mental Incapacity Benefit: a trusted family member can access benefits if you can’t'],
-      minFA:null, ageMin:18, ageMax:75,
+      minFA:null, ageMin:7, ageMax:75,
       bench:{},
       chart:{
         title:'Brochure example: paid vs. passed on',
@@ -1400,7 +1430,7 @@
       pay:'Pay 5 or 10 yrs, or regular',
       why:'You want protection lang, no investment, and coverage for life. Simple, guaranteed, up to age 100. No need to watch the market.',
       bullets:['Life insurance your family receives if you pass away','No investment component, so your coverage does not depend on the market','Double the Face Amount as life cover, up to age 100','Guaranteed cash values you can borrow against in emergencies','Optional riders for accidents, disability, and critical illness'],
-      minFA:'₱200,000', ageMin:18, ageMax:80,
+      minFA:'₱200,000', ageMin:0, ageMax:80,
       bench:{25:15874, 31:17648, 35:19384, 45:23822, 50:26546, 55:29760, 60:33686, 65:38222},
       tiles:[
         {n:'200%', l:'of your Face Amount as life cover, up to age 100', i:'shield', c:C_SAGE, g:1},
@@ -1419,7 +1449,7 @@
       pay:'Pay 8 yrs',
       why:'You’re saving for something big, like a house, a business, or your retirement fund. You get guaranteed cash back along the way, and protected ka the whole time.',
       bullets:['Guaranteed cash back every 2 years, starting at the end of year 8','The cash back increases each time','Life cover that grows to 228% of your coverage by year 9','Guaranteed lump sum of 102% of your coverage at year 20','Special bonus after year 8, then dividends'],
-      minFA:'₱250,000', ageMin:18, ageMax:65,
+      minFA:'₱250,000', ageMin:0, ageMax:65,
       bench:{25:51825, 31:51870, 35:52475, 45:53825, 50:55120, 55:57375, 60:61177.5, 62:63492.5, 65:66967.5},
       tiles:[
         {n:'Every 2 yrs', l:'guaranteed cash from the end of year 8, bigger each time', i:'coin', c:C_GOLD, g:1},
@@ -1466,7 +1496,7 @@
       pay:'Pay 5 or 10 yrs', noExam:true,
       why:'You want to be sure. If nothing happens, babalik ang pera mo. You’re protected for 20 years, and your basic premiums come back to you at the end, guaranteed.',
       bullets:['Life insurance for your family','Guaranteed savings you can count on','No medical exam needed to apply','Get back at least 100% of your basic premiums after 20 years','Life cover from day 1'],
-      minFA:'₱460,000', ageMin:18, ageMax:50,
+      minFA:'₱460,000', ageMin:0, ageMax:50,
       bench:{25:23000, 31:23000, 35:23000, 45:23000, 50:28750},
       tiles:[
         {n:'100%', l:'of your basic premiums, guaranteed back after 20 years', i:'coin', c:C_GOLD, g:1},
@@ -1485,7 +1515,7 @@
       pay:'Pay 5 yrs',
       why:'You’d rather pay more each year and be done fast. Sa 5 years tapos ka na, and your fund keeps growing for your kids’ schooling or your future income.',
       bullets:['Life cover of at least 2× your coverage amount','Built-in investment you can grow over time (not guaranteed)','Pay for at least 5 years, with the option to add top-ups','Partial withdrawals for emergencies'],
-      minFA:'₱200,000', ageMin:18, ageMax:60,
+      minFA:'₱200,000', ageMin:0, ageMax:60,
       bench:{25:30900, 35:32502, 45:38264, 55:53628, 60:67760},
       tiles:[
         {n:'5', l:'years of paying (target), then you’re done', i:'cal', c:C_GREY},
@@ -1504,7 +1534,7 @@
       pay:'Pay once', noExam:true,
       why:'You have a lump sum, like a bonus, savings or an inheritance, and you want it to grow while your family is protected. Isang bayad lang, and walang upfront charges, so all of it goes to work for you.',
       bullets:['One-time payment, no yearly bills','No upfront charges, so your whole payment is invested','Guaranteed acceptance through the Guaranteed Insurability Offer, within the insurer’s limits','Partial withdrawals for emergencies'],
-      minFA:null, ageMin:18, ageMax:80,
+      minFA:null, ageMin:0, ageMax:80,
       bench:{},
       tiles:[
         {n:'1', l:'payment, and you’re done', i:'cal', c:C_GREY},
@@ -1522,7 +1552,7 @@
       pay:'Regular pay',
       why:'A simple way to start investing with protection while your budget is still growing. If you can stretch a little, MaxiLink 100 gives you double the life cover with the same regular-pay setup.',
       bullets:['Life cover equal to your coverage amount','Built-in investment you can grow over time (not guaranteed)','Regular payments, with top-ups anytime','Partial withdrawals for emergencies'],
-      minFA:'₱250,000', ageMin:18, ageMax:70,
+      minFA:'₱250,000', ageMin:0, ageMax:70,
       bench:{25:7535, 35:7770, 45:9185, 55:15272.5, 60:15937.5, 65:29275},
       tiles:[
         {n:'1×', l:'your coverage as life insurance for your family', i:'shield', c:C_SAGE},
@@ -1639,7 +1669,7 @@
       pay:'Regular, 5 or 10 yrs',
       why:'Gusto mo ng proteksyon for life, pero gusto mo rin may natatanggap habang buhay ka. This gives your family double your coverage until 100, and pays you guaranteed cash every 2 years starting at year 6, with no market risk.',
       bullets:['Life cover of 2× your coverage from day 1 until age 100','Guaranteed cash benefits for life, from the end of year 6 and every 2 years after','Borrow against your guaranteed cash value in emergencies','Part of your coverage paid early if diagnosed with a terminal illness','Pay regularly, or finish in 5 or 10 years'],
-      minFA:'₱200,000', ageMin:18, ageMax:80,
+      minFA:'₱200,000', ageMin:0, ageMax:80,
       bench:{25:39038, 45:42892, 55:45724, 60:47918, 65:50672},
       tiles:[
         {n:'2×', l:'your coverage as life insurance, until age 100', i:'shield', c:C_SAGE, g:1},
@@ -2545,8 +2575,9 @@
       + '<form class="pf-form" id="pfPropForm" novalidate>'
       + '<label for="pfLeadName">Your name</label><input id="pfLeadName" name="name" type="text" autocomplete="name" required placeholder="e.g. Maria Santos">'
       + '<label for="pfLeadEmail">Email</label><input id="pfLeadEmail" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="you@email.com">'
-      + '<div class="pf-form-row"><div><label for="pfLeadAge">' + (ctx.forParent ? 'Insured’s age' : 'Your age') + '</label><input id="pfLeadAge" name="age" type="number" inputmode="numeric" min="0" max="80" required value="' + esc(ageVal) + '"></div>'
-      + '<div><label for="pfLeadMobile">Mobile number</label><input id="pfLeadMobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" required placeholder="09XX XXX XXXX"></div></div>'
+      + '<div class="pf-form-row pf-form-row2"><div><label for="pfLeadAge">' + (ctx.forParent ? 'Insured’s age' : 'Your age') + '</label><input id="pfLeadAge" name="age" type="number" inputmode="numeric" min="0" max="100" required value="' + esc(ageVal) + '"></div>'
+      + '<div><label for="pfLeadGender">' + (ctx.forParent ? 'Insured’s gender' : 'Gender') + '</label><select id="pfLeadGender" name="gender" required><option value="" selected disabled>Select</option><option value="Male">Male</option><option value="Female">Female</option></select></div></div>'
+      + '<label for="pfLeadMobile">Mobile number</label><input id="pfLeadMobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" required placeholder="09XX XXX XXXX">'
       + '<label id="pfLeadPlanLbl">Plan you’re interested in</label><input type="hidden" id="pfLeadPlan" value="' + (propState.plan ? propState.plan.id : '') + '">'
       + '<div id="pfPlanPick" role="group" aria-labelledby="pfLeadPlanLbl"></div>'
       + (needState.amount > 0 ? '<p class="pf-form-cov">Coverage you want: <b>about ' + fmtShort(needState.amount) + '</b> (from your coverage check). I’ll use this in your proposal.</p>' : '')
@@ -2572,12 +2603,14 @@
     var email = document.getElementById('pfLeadEmail').value.trim();
     var age = document.getElementById('pfLeadAge').value.trim();
     var mobile = document.getElementById('pfLeadMobile').value.trim();
+    var gender = document.getElementById('pfLeadGender').value;
     var planId = document.getElementById('pfLeadPlan').value;
     var consent = document.getElementById('pfLeadConsent').checked;
     var err = document.getElementById('pfLeadErr');
     var problem = !name ? 'Please enter your name.'
       : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? 'Please enter a valid email so I can send your proposal.'
       : !age ? 'Please enter the age of the person to be insured.'
+      : !gender ? 'Please select a gender. Premiums differ for men and women.'
       : !/^(\+?63|0)?9\d{9}$/.test(mobile.replace(/[\s\-()]/g, '')) ? 'Please enter a valid mobile number, like 0917 123 4567.'
       : !consent ? 'Please tick the box so I can contact you about your proposal.' : '';
     if(problem){ err.textContent = problem; return; }
@@ -2585,12 +2618,13 @@
     var plan = planId ? PLAN_BY_ID[planId] : null;
     var ctx = propState.ctx || {};
     var data = {
-      name:name, email:email, age:age, mobile:mobile,
+      name:name, email:email, age:age, gender:gender, mobile:mobile,
       plan: plan ? plan.name : 'Not sure yet',
       goals: selectedGoals.length ? goalsText() : '',
       forParent: ctx.forParent ? 'yes' : 'no',
       followedPage: 'not yet',
       coverage: needState.amount > 0 ? fmtShort(needState.amount) : '',
+      budget: budget ? (budget >= 10000 ? '₱10,000+' : fmtPeso(budget)) + '/mo' : '',
       estimate: (plan && age) ? (function(){ var es = estimate(plan, parseInt(age,10)); return es ? Math.round(es.value/12) + '/mo' : ''; })() : '',
       source: TRAFFIC_SOURCE
     };
@@ -2599,6 +2633,7 @@
       if(LEADS_URL.indexOf('http') === 0){ var img = new Image(); img.src = LEADS_URL + '?' + q.join('&') + '&t=' + Date.now(); }
     }catch(x){}
     pfTrack('pf_lead_submitted', { plan: data.plan, followed: data.followedPage });
+    pfTrack('generate_lead', { plan: data.plan, gender: gender });
     propState.email = email;
     propDone(name, plan);
   }
@@ -2655,18 +2690,51 @@
       if(target !== wizStep) setStep(target, true);
     }
   });
-  /* Facebook links on phones: target="_blank" is unreliable there (especially inside the
-     Facebook/Messenger in-app browser), so open the page in the same tab. The lead beacon
-     and tracking have already fired by the time this runs. Desktop keeps the new tab. */
+  /* Facebook links on phones. Inside the Messenger / Facebook in-app browser, facebook.com pages
+     often show "content not available", so we hand the link to the Facebook app itself
+     (fb:// deep link) and fall back to the mobile site if the app doesn't open. Regular phone
+     browsers open the page in the same tab (target="_blank" is unreliable there). Desktop keeps the new tab. */
+  var PF_IN_APP = /FBAN|FBAV|FB_IAB|FB4A|FBIOS|Messenger|Orca-Android|Instagram/i.test(navigator.userAgent || '');
   document.addEventListener('click', function(e){
     var a = e.target && e.target.closest ? e.target.closest('a[href*="facebook.com/financial.advisor.donna.n"]') : null;
     if(!a) return;
-    var isMobile = wizOn() || /Android|iPhone|iPad|iPod|Mobile|FBAN|FBAV|FB_IAB|Messenger/i.test(navigator.userAgent || '');
+    var isMobile = PF_IN_APP || wizOn() || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
     if(!isMobile) return;
     e.preventDefault();
     var url = a.href;
+    if(PF_IN_APP){
+      var mUrl = url.replace('://www.facebook.com', '://m.facebook.com');
+      setTimeout(function(){ window.location.href = 'fb://facewebmodal/f?href=' + encodeURIComponent(url); }, 150);
+      setTimeout(function(){ if(!document.hidden){ window.location.href = mUrl; } }, 1600);
+      return;
+    }
     setTimeout(function(){ window.location.href = url; }, 200);
   });
+
+  /* Opened inside Messenger/Facebook? Offer to continue in the phone's own browser.
+     Android can jump straight to the default browser; iPhone needs the menu, so we show how. */
+  (function(){
+    if(!PF_IN_APP) return;
+    var bar = document.getElementById('pfIab');
+    if(!bar) return;
+    try{ if(sessionStorage.getItem('pfIabHide')) return; }catch(x){}
+    var isAndroid = /Android/i.test(navigator.userAgent || '');
+    var msg = document.getElementById('pfIabMsg');
+    var btn = document.getElementById('pfIabBtn');
+    if(isAndroid){
+      msg.textContent = 'Viewing inside Messenger? Open this page in your browser for the smoothest experience.';
+      btn.href = 'intent://' + location.host + location.pathname + location.search + '#Intent;scheme=https;S.browser_fallback_url=' + encodeURIComponent(location.href) + ';end';
+      btn.hidden = false;
+      btn.addEventListener('click', function(){ pfTrack('pf_iab_open_browser', { os:'android' }); });
+    } else {
+      msg.innerHTML = 'Viewing inside Messenger? For the smoothest experience, tap <b>•••</b> at the top, then <b>Open in browser</b>.';
+    }
+    bar.hidden = false;
+    pfTrack('pf_iab_banner', { os: isAndroid ? 'android' : 'ios' });
+    document.getElementById('pfIabX').addEventListener('click', function(){
+      bar.hidden = true; try{ sessionStorage.setItem('pfIabHide', '1'); }catch(x){}
+    });
+  })();
   document.getElementById('pfModalClose').addEventListener('click', closeModal);
   document.getElementById('pfModal').addEventListener('click', function(e){ if(e.target === this) closeModal(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
@@ -2908,12 +2976,17 @@
   function render(){
     var ageInput = document.getElementById('pfAge');
     var ageVal = parseInt(ageInput.value, 10);
-    var hasAge = !isNaN(ageVal) && ageVal >= 18 && ageVal <= 80;
+    var hasAge = !isNaN(ageVal) && ageVal >= 0 && ageVal <= 100;
     lastAgeVal = ageVal; lastHasAge = hasAge;
+    var maxEntry = 0; PLANS.forEach(function(p){ if(p.ageMax > maxEntry) maxEntry = p.ageMax; });
+    var tooOld = hasAge && ageVal > maxEntry;
 
     var hint = document.getElementById('pfAgeHint');
-    hint.textContent = hasAge ? 'Showing estimated pricing for age ' + ageVal + '.'
-      : (ageInput.value ? 'Enter an age between 18 and 80 to see pricing.' : 'Your age is all I need to estimate your monthly amount.');
+    hint.textContent = !hasAge
+      ? (ageInput.value ? 'Please enter an age from 0 to 100.' : 'Your age is all I need to estimate your monthly amount.')
+      : tooOld ? 'These plans accept new applicants up to age ' + maxEntry + '. Message me and I’ll check what’s possible.'
+      : ageVal < 18 ? 'Planning for a child? Showing plans open to age ' + ageVal + '. Estimates use adult rates, so the actual premium is usually lower.'
+      : 'Showing estimated pricing for age ' + ageVal + '.';
 
     var LIMIT = 3;
     var sg = selfGoals();
@@ -2977,10 +3050,14 @@
     title.hidden = parentsOnly; meta.hidden = parentsOnly;
     if(sg.length){
       var topN = Math.min(LIMIT, shown.length);
-      title.innerHTML = shown.length ? (shown.length === 1 ? '1 plan fits' : shown.length + ' plans fit') + ' <em>' + goalsText(sg) + '</em>' : 'No plan fits that at age ' + ageVal;
+      title.innerHTML = shown.length ? (shown.length === 1 ? '1 plan fits' : shown.length + ' plans fit') + ' <em>' + goalsText(sg) + '</em>'
+        : (tooOld ? 'No plan available at age ' + ageVal : 'No plan for that at age ' + ageVal);
       meta.textContent = shown.length
         ? 'Best match first. Tap any plan to see everything you get.'
-        : 'Try another goal, or message Donna and she’ll look at your options with you.';
+        : (tooOld ? 'These plans accept new applicants up to age ' + maxEntry + '.' : 'Try another goal, or message me and I’ll look at your options with you.');
+    } else if(hasAge && !shown.length){
+      title.innerHTML = 'No plan available at age ' + ageVal;
+      meta.textContent = 'These plans accept new applicants up to age ' + maxEntry + '.';
     } else {
       title.innerHTML = 'All <em>' + shown.length + '</em> plans' + (hasAge ? ' for age ' + ageVal : '');
       meta.textContent = 'Pick what’s on your mind above and I’ll narrow these down to your best matches.';
@@ -2996,6 +3073,18 @@
       var c = cardFor(m, sg.length > 0 && i === 0 && shown.length > 1, hasAge, ageVal);
       grid.appendChild(c);
     });
+    if(!shown.length && hasAge && !parentsOnly){
+      var empty = document.createElement('div'); empty.className = 'pf-empty';
+      var emsg = tooOld
+        ? 'Hi Donna! I’m ' + ageVal + '. Is there any plan I can still apply for?'
+        : 'Hi Donna! I’m ' + ageVal + ' and I’m looking for ' + (sg.length ? goalsText(sg) : 'a plan') + '. What are my options?';
+      empty.innerHTML = '<p class="pf-empty-k">' + (tooOld ? 'No plan for your age here yet' : 'Nothing fits that yet') + '</p>'
+        + '<p class="pf-empty-p">' + (tooOld
+          ? 'The plans in this finder accept new applicants up to age ' + maxEntry + '. Message me and I’ll check what’s still possible for you.'
+          : 'None of the plans for this goal accept age ' + ageVal + '. Try another goal, or message me and I’ll check your options.') + '</p>'
+        + '<a href="#" class="pf-btn pf-btn-primary" data-ask="' + esc(emsg) + '" data-ask-src="empty">Ask Donna</a>';
+      grid.appendChild(empty);
+    }
     grid.scrollLeft = 0;
     if(isWiz && shown.length > 1){
       meta.textContent = (sg.length && shown.length > LIMIT
@@ -3035,7 +3124,7 @@
     if(pOn){
       var pInput = document.getElementById('pfParentAge');
       var pAge = parseInt(pInput.value, 10);
-      var pHas = !isNaN(pAge) && pAge >= 18 && pAge <= 80;
+      var pHas = !isNaN(pAge) && pAge >= 18 && pAge <= 100;
       var pm = matchPlans(['parents'], false), pShown = [], pEx = [];
       pm.forEach(function(m){
         if(pHas && (pAge < m.plan.ageMin || pAge > m.plan.ageMax)){ pEx.push(m.plan); } else { pShown.push(m); }
