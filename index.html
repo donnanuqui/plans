@@ -409,6 +409,10 @@
   .pf-form select{ -webkit-appearance:none; appearance:none; background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%); background-position:calc(100% - 18px) 50%,calc(100% - 12px) 50%; background-size:6px 6px; background-repeat:no-repeat; padding-right:32px; }
   .pf-form select:invalid{ color:var(--muted); }
   .pf-form-row > div{ display:flex; flex-direction:column; gap:6px; min-width:0; }
+  /* Link from the pop-up to a plan's own detailed page */
+  .pf-detail-link{ display:inline-flex; align-items:center; align-self:flex-start; min-height:44px; margin:2px 0 6px; font-family:var(--sans); font-size:.95rem; font-weight:600; color:var(--ink); text-decoration:underline; text-decoration-color:var(--lc, var(--gold)); text-decoration-thickness:2px; text-underline-offset:4px; }
+  .pf-detail-link:hover{ color:var(--goldd); }
+  .pf-detail-link:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
   /* Birthday: three plain dropdowns (easier than a calendar on phones) */
   .pf-dob{ display:grid; grid-template-columns:1.4fr 1fr 1.2fr; gap:8px; }
   .pf-dob-age{ font-size:.82rem; color:var(--muted); margin:2px 0 0; min-height:1.2em; line-height:1.45; }
@@ -447,7 +451,7 @@
   @media(max-width:640px){ .pf-budget-chips{ grid-template-columns:repeat(3, minmax(0,1fr)); } }
   .pf-bchip{ flex:1 1 0; min-width:72px; font-family:var(--sans); font-size:.86rem; font-weight:600; color:var(--ink); background:var(--card); border:1px solid var(--line); padding:10px 8px; cursor:pointer; min-height:44px; }
   .pf-bchip:hover{ border-color:var(--gold); }
-  .pf-bchip.active{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
+  .pf-bchip.active, .pf-bchip[aria-pressed="true"]{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
   .pf-why{ font-size:.76rem; color:var(--muted); line-height:1.45; margin:-4px 0 10px; }
   .pf-why b{ color:var(--ink); font-weight:700; }
   .pf-bfit, .pf-bover{ margin:8px 0 2px; display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
@@ -498,6 +502,16 @@
   .pf-need-fine{ font-size:.76rem; color:var(--muted); margin:8px 0 0; line-height:1.45; }
   .pf-need-out .pf-btn{ width:100%; }
   .pf-covchips{ display:flex; flex-wrap:wrap; gap:6px; }
+  /* Coverage picker in the plan pop-up */
+  .pf-mcov{ display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+  .pf-mcov-lbl{ font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .pf-mcov-other{ display:flex; align-items:center; gap:10px; }
+  .pf-mcov-other label{ font-size:.86rem; color:var(--muted); white-space:nowrap; }
+  .pf-mcov-other input{ flex:1; min-width:0; max-width:220px; height:42px; font-family:var(--sans); font-size:1rem; font-weight:600; color:var(--ink); background:var(--card); border:1px solid var(--line); padding:0 12px; border-radius:0; -webkit-appearance:none; appearance:none; font-variant-numeric:tabular-nums; }
+  .pf-mcov-other input:focus{ outline:2px solid var(--gold); outline-offset:0; border-color:var(--gold); }
+  .pf-mcov-other input.on{ border-color:var(--ink); }
+  .pf-mcov-msg{ font-size:.82rem; color:#B3412E; }
+  .pf-mcov-msg:empty{ display:none; }
   .pf-covchips .pf-bchip{ flex:0 1 auto; min-width:0; padding:9px 12px; min-height:42px; font-size:.88rem; }
   .pf-covchips .pf-bchip:disabled{ opacity:.4; cursor:not-allowed; text-decoration:line-through; }
   .pf-cov-note{ font-size:.8rem; color:var(--muted); margin:6px 0 0; line-height:1.45; }
@@ -1029,7 +1043,7 @@
               <dt>What if it’s cancer?</dt><dd>You get an extra 50% of your coverage on first diagnosis of a covered cancer. On Advantage, the hospital, home recovery and palliative care benefits are also 50% higher.</dd>
               <dt>What do I get while I’m alive?</dt><dd>From age 65, 5% of your coverage every year for 8 years, even if you never claim (Plus and Advantage). You also get a special bonus when you finish paying, then yearly dividends you can withdraw or leave to grow (not guaranteed).</dd>
               <dt>What does my family get?</dt><dd>Your coverage amount, until age 100, minus anything already paid out for minor illnesses or cash back.</dd>
-              <dt>Real example</dt><dd>Parents insured their newborn for ₱1M, paying 15 years. He was hospitalized for dengue at 5, had kidney disease at 50, got ₱400K cash back from 65 to 72, and had kidney failure at 73. Total paid: ₱389,850. Total received: ₱1,023,750, plus dividends.</dd>
+              <dt>Real example</dt><dd>Parents insured their newborn for ₱1M, paying 15 years. He was hospitalized for dengue at 5, had kidney disease at 50, got ₱400K cash back from 65 to 72, and had kidney failure at 73. In total, the plan paid out ₱1,023,750, plus dividends.</dd>
               <dt>Anything else?</dt><dd>Access to a wellness program, with health info, fitness events and nutrition experts.</dd>
               <dt>What should I watch out for?</dt><dd>The illness has to be one of the covered conditions in the policy, and pre-existing conditions may be excluded. Dividends and the special bonus are not guaranteed.</dd>
             </dl>
@@ -1065,7 +1079,7 @@
               <dt>What if it’s cancer?</dt><dd>An extra 50% of your coverage on first diagnosis of a covered cancer, and 50% more on your hospital, recovery and palliative care benefits.</dd>
               <dt>What do I get while I’m alive?</dt><dd>From age 65, 5% of your coverage every year for 8 years. You also get a special bonus when you finish paying, then yearly dividends (not guaranteed).</dd>
               <dt>What does my family get?</dt><dd>Your coverage amount if you pass away before 65. After that, whatever illness benefit is left goes to your family.</dd>
-              <dt>Can I cover my kids too?</dt><dd>Yes, with a separate plan for them. A couple working in the Middle East insured their newborn for ₱1M over 15 years: they paid ₱427,350 and the plan paid ₱1,023,750 across his lifetime, plus bonus and dividends.</dd>
+              <dt>Can I cover my kids too?</dt><dd>Yes, with a separate plan for them. A couple working in the Middle East insured their newborn for ₱1M over 15 years: the plan paid out ₱1,023,750 across his lifetime, plus bonus and dividends.</dd>
               <dt>What should I watch out for?</dt><dd>Apply while you’re in the Philippines. The illness must be a covered condition, and pre-existing conditions may be excluded.</dd>
             </dl>
             <p class="pf-guide-for"><b>Best for:</b> OFWs and seafarers, Healthcare workers abroad, Want health cover that travels with you, Want to finish paying early.</p>
@@ -1289,9 +1303,13 @@
     return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
   }
 
-  /* Snapshot of Donna's benchmark table, taken 2026-09-25. Yearly premium,
-     base plan only, non-smoker, at each plan's minimum Face Amount. Update
-     this object whenever the internal dashboard's Benchmarks tab changes.
+  /* Single source of truth: the Sun Life Product Dashboard's Benchmarks tab
+     (snapshot 2026-10-14). Yearly premium, base plan only, non-smoker, at each
+     plan's minimum Face Amount. Only the main age columns are used: 25, 35, 45,
+     55, 60, 65. Any age in between is the straight-line average of the two
+     nearest ages (age 50 = average of 45 and 55). One exception: Save and
+     Protect keeps age 50, its oldest issue age, since it has no age 55.
+     Update this object whenever the dashboard's Benchmarks tab changes.
      Descriptive copy (tline/why/bullets), tiles, charts, forList and know
      mirror the approved wording and numbers already live on donnanuqui.com's
      Plans section and the Protection Match quiz. */
@@ -1305,9 +1323,9 @@
       why:'You want protection and growth in one plan, and you want to be done paying in 10 years. Ito talaga ang pinaka-nirerecommend ko.',
       bullets:['Life cover of at least 2× your plan’s Face Amount','Built-in investment you can grow over time (not guaranteed)','Pay for 10 years, with the option to add top-ups','Partial withdrawals for emergencies'],
       minFA:'₱350,000', ageMin:0, ageMax:65,
-      bench:{25:17587.5, 31:17034.5, 35:20860, 45:30250.5, 50:37187.5, 55:46424, 60:64088.5, 62:67980.5, 65:73822},
+      bench:{25:17587.5, 35:20860, 45:30250.5, 55:46424, 60:64088.5, 65:73822},
       tiles:[
-        {n:'2×', l:'your coverage, at least, paid to your family as a guaranteed cash benefit', i:'shield', c:C_SAGE, g:1},
+        {n:'2×', x:2, xl:'at least, paid to your family as a guaranteed cash benefit', l:'your coverage, at least, paid to your family as a guaranteed cash benefit', i:'shield', c:C_SAGE, g:1},
         {n:'10', l:'years of paying, at least', i:'cal', c:C_GREY},
         {n:'Top-ups', l:'add extra anytime to grow your fund faster', i:'sprout', c:C_LSAGE},
         {n:'Anytime', l:'withdraw part of your fund in emergencies', i:'coin', c:C_GOLD}
@@ -1324,9 +1342,9 @@
       why:'You want insurance with investment, pero sulit ang bawat piso. The monthly is lighter, you get more coverage for your budget, and you’re covered up to age 100.',
       bullets:['Double life cover, up to age 100','Built-in investment you can grow over time (not guaranteed)','Lower regular payments, so you get more coverage for your budget'],
       minFA:'₱350,000', ageMin:0, ageMax:70,
-      bench:{25:13191.5, 31:13034, 35:15470, 45:18340, 50:26810, 55:39550, 60:41685, 62:52339, 65:68320},
+      bench:{25:13191.5, 35:15470, 45:18340, 55:39550, 60:41685, 65:68320},
       tiles:[
-        {n:'2×', l:'your coverage, at least, as guaranteed life insurance until age 100', i:'shield', c:C_SAGE, g:1},
+        {n:'2×', x:2, xl:'at least, as guaranteed life insurance until age 100', l:'your coverage, at least, as guaranteed life insurance until age 100', i:'shield', c:C_SAGE, g:1},
         {n:'100', l:'age you’re covered until', i:'hourglass', c:C_BLUE},
         {n:'Regular', l:'payments: yearly, every 6 months or quarterly', i:'cal', c:C_GREY},
         {n:'Anytime', l:'withdraw from your fund in emergencies', i:'coin', c:C_GOLD}
@@ -1347,20 +1365,19 @@
       sampleNote:'Sample numbers below are at ₱1,000,000 coverage. The story is a sample case.',
       sample:{cov:'₱1M'},
       tiles:[
-        {n:'₱1M', l:'if diagnosed with a major illness (64 conditions)', i:'pulse', c:C_TERRA},
-        {n:'₱1.5M', l:'if it’s one of 16 covered cancers (extra 50% Benefit Booster)', i:'ribbon', c:C_BLUE},
-        {n:'₱200K', l:'for a minor illness (34 conditions), and you stay covered', i:'heart', c:C_SAGE},
-        {n:'₱400K', l:'cash back from age 65: 5% a year for 8 years', i:'coin', c:C_GOLD, g:1},
+        {n:'₱1M', x:1, l:'if diagnosed with a major illness (64 conditions)', i:'pulse', c:C_TERRA},
+        {n:'₱1.5M', x:1.5, l:'if it’s one of 16 covered cancers (extra 50% Benefit Booster)', i:'ribbon', c:C_BLUE},
+        {n:'₱200K', x:0.2, l:'for a minor illness (34 conditions), and you stay covered', i:'heart', c:C_SAGE},
+        {n:'₱400K', x:0.4, l:'cash back from age 65: 5% a year for 8 years', i:'coin', c:C_GOLD, g:1},
         {n:'Daily', l:'hospital cash, plus home recovery and palliative care', i:'cal', c:C_GREY},
         {n:'100', l:'age you’re covered until', i:'shield', c:C_LSAGE}
       ],
       chart:{
-        title:'Sample case: what one family paid vs. received',
+        title:'Sample case: what one family received',
         rows:[
-          {l:'Total paid', s:'₱25,990 a year for 15 years', v:389850, t:'₱390K', c:C_GREY},
           {l:'Total received', s:'dengue at 5, kidney illness at 50, cash back 65–72, illness at 73', v:1023750, t:'₱1.02M', c:C_SAGE}
         ],
-        note:'Sample case: ₱1M coverage, bought for a newborn on a 15-year payment plan. Dividends would be extra and are not guaranteed. Advantage 10 is paid in 10 years, so your yearly amount will differ.'
+        note:'Sample case: ₱1M coverage, bought for a newborn on a 15-year payment plan. Dividends would be extra and are not guaranteed. Advantage 10 is paid in 10 years.'
       },
       forList:['Working adults','Already have an HMO','Want big medical coverage','Want to finish paying early'],
       know:['Your HMO pays the hospital. This plan pays you, in cash, to use however you need.','The illness must be one of the covered conditions in the policy.']
@@ -1374,11 +1391,11 @@
       why:'You don’t need a big budget to start. This is the most affordable plan I offer, and dito nagsisimula ang marami kong clients. You can always upgrade later as your income grows.',
       bullets:['Lump-sum cash on diagnosis of any of 32 critical illnesses, or on any of 4 heart and organ surgeries','Your family receives the coverage amount if you pass away','Use the cash however you need: treatment, recovery, alternative medicine, or that bucket list','Add riders for accidents and disability','Coverage up to age 70'],
       minFA:'₱1,000,000', ageMin:18, ageMax:60,
-      bench:{25:7720, 31:7990, 35:8720, 45:16250, 50:21710, 55:31410, 60:36000},
+      bench:{25:7720, 35:8720, 45:16250, 55:31410, 60:36000},
       tiles:[
-        {n:'₱1M', l:'cash if diagnosed with a critical illness', i:'pulse', c:C_TERRA},
+        {n:'₱1M', x:1, l:'cash if diagnosed with a critical illness', i:'pulse', c:C_TERRA},
         {n:'36', l:'critical illnesses and surgeries covered', i:'heart', c:C_BLUE},
-        {n:'₱1M', l:'for your family if you pass away', i:'family', c:C_SAGE},
+        {n:'₱1M', x:1, l:'for your family if you pass away', i:'family', c:C_SAGE},
         {n:'Add-ons', l:'riders for accidents and disability', i:'accident', c:C_GOLD},
         {n:'70', l:'age you’re covered until, renewing every 5 years', i:'shield', c:C_LSAGE}
       ],
@@ -1394,19 +1411,18 @@
       why:'This is my favorite for parents. It pays a guaranteed amount every year, so you can plan your kids’ schooling around it. Walang hula-hula.',
       bullets:['Guaranteed 6% of your coverage every year, from the end of year 6 until age 100','200% life cover from day 1 until age 100','Centenarian bonus of 25% of your coverage at ages 80, 85, 90 and 95','Pay in 3, 5, 10 or 15 years','Policy loan and terminal illness advance available'],
       minFA:'₱250,000', ageMin:0, ageMax:65,
-      bench:{25:56362.5, 31:56365, 35:56830, 45:57880, 50:58945, 55:60142.5, 60:61867.5, 62:62855, 65:64335},
-      sampleNote:'Sample numbers below are for a 30-year-old man at ₱1,000,000 coverage, paying ₱226,380 a year for 10 years.',
+      bench:{25:56362.5, 35:56830, 45:57880, 55:60142.5, 60:61867.5, 65:64335},
+      sampleNote:'Sample numbers below are for a 30-year-old man at ₱1,000,000 coverage, paying for 10 years.',
       sample:{cov:'₱1M'},
       tiles:[
-        {n:'₱60K', l:'every year from age 36 to 100', i:'coin', c:C_GOLD, g:1},
-        {n:'₱2M', l:'life insurance from day 1 until 100', i:'shield', c:C_SAGE, g:1},
-        {n:'₱250K', l:'bonus at ages 80, 85, 90 and 95', i:'gift', c:C_TERRA, g:1},
-        {n:'₱1M', l:'maturity benefit at age 100', i:'hourglass', c:C_BLUE, g:1}
+        {n:'₱60K', x:0.06, l:'every year from age 36 to 100', i:'coin', c:C_GOLD, g:1},
+        {n:'₱2M', x:2, l:'life insurance from day 1 until 100', i:'shield', c:C_SAGE, g:1},
+        {n:'₱250K', x:0.25, l:'bonus at ages 80, 85, 90 and 95', i:'gift', c:C_TERRA, g:1},
+        {n:'₱1M', x:1, l:'maturity benefit at age 100', i:'hourglass', c:C_BLUE, g:1}
       ],
       chart:{
-        title:'Sample case: paid vs. received by age 100',
+        title:'Sample case: what you receive by age 100',
         rows:[
-          {l:'Total paid', s:'10 years, ages 30–39', v:2263800, t:'₱2.26M', c:C_GREY},
           {l:'Guaranteed received', s:'cash benefits, bonuses and cash value', v:5654810, t:'₱5.65M', c:C_SAGE},
           {l:'With dividends', s:'at 4.2%, not guaranteed', v:13195521, t:'₱13.2M', c:C_LSAGE}
         ],
@@ -1425,14 +1441,13 @@
       minFA:null, ageMin:7, ageMax:75,
       bench:{},
       chart:{
-        title:'Sample case: paid vs. passed on',
+        title:'Sample case: what’s passed on to the family',
         rows:[
-          {l:'Total paid', s:'10 years, from age 50', v:24220000, t:'₱24.2M', c:C_GREY},
           {l:'For the family at 85', s:'death benefit with dividends', v:75571569, t:'₱75.6M', c:C_SAGE}
         ],
         note:'Includes dividends illustrated at 4.5% a year, which are not guaranteed.'
       },
-      sampleNote:'Sample numbers below are for a 50-year-old man at ₱25,000,000 coverage, paying ₱2,422,000 a year for 10 years.',
+      sampleNote:'Sample numbers below are for a 50-year-old man at ₱25,000,000 coverage, paying for 10 years.',
       sample:{cov:'₱25M'},
       tiles:[
         {n:'200%', l:'of your Face Amount from day 1, for estate liquidity', i:'shield', c:C_SAGE, g:1},
@@ -1451,9 +1466,9 @@
       why:'You want protection lang, no investment, and coverage for life. Simple, guaranteed, up to age 100. No need to watch the market.',
       bullets:['Life insurance your family receives if you pass away','No investment component, so your coverage does not depend on the market','Double the Face Amount as life cover, up to age 100','Guaranteed cash values you can borrow against in emergencies','Optional riders for accidents, disability, and critical illness'],
       minFA:'₱200,000', ageMin:0, ageMax:80,
-      bench:{25:15874, 31:17648, 35:19384, 45:23822, 50:26546, 55:29760, 60:33686, 65:38222},
+      bench:{25:15874, 35:19384, 45:23822, 55:29760, 60:33686, 65:38222}, fa1m:82110,
       tiles:[
-        {n:'200%', l:'of your Face Amount as life cover, up to age 100', i:'shield', c:C_SAGE, g:1},
+        {n:'200%', x:2, xl:'as life cover for your family, up to age 100', l:'of your Face Amount as life cover, up to age 100', i:'shield', c:C_SAGE, g:1},
         {n:'100', l:'age you’re covered until', i:'hourglass', c:C_BLUE},
         {n:'5 or 10', l:'years of paying, then covered for life', i:'cal', c:C_GREY},
         {n:'Cash value', l:'you can borrow against in emergencies, guaranteed', i:'coin', c:C_GOLD, g:1}
@@ -1470,11 +1485,11 @@
       why:'You’re saving for something big, like a house, a business, or your retirement fund. You get guaranteed cash back along the way, and protected ka the whole time.',
       bullets:['Guaranteed cash back every 2 years, starting at the end of year 8','The cash back increases each time','Life cover that grows to 228% of your coverage by year 9','Guaranteed lump sum of 102% of your coverage at year 20','Special bonus after year 8, then dividends'],
       minFA:'₱250,000', ageMin:0, ageMax:65,
-      bench:{25:51825, 31:51870, 35:52475, 45:53825, 50:55120, 55:57375, 60:61177.5, 62:63492.5, 65:66967.5},
+      bench:{25:51825, 35:52475, 45:53825, 55:57375, 60:61177.5, 65:66967.5}, fa1m:208700,
       tiles:[
         {n:'Every 2 yrs', l:'guaranteed cash from the end of year 8, bigger each time', i:'coin', c:C_GOLD, g:1},
-        {n:'102%', l:'of your coverage back as a lump sum at year 20', i:'gift', c:C_SAGE, g:1},
-        {n:'228%', l:'of your coverage as life insurance from year 9', i:'shield', c:C_BLUE, g:1},
+        {n:'102%', x:1.02, xl:'back to you as a lump sum at year 20', l:'of your coverage back as a lump sum at year 20', i:'gift', c:C_SAGE, g:1},
+        {n:'228%', x:2.28, xl:'as life insurance from year 9', l:'of your coverage as life insurance from year 9', i:'shield', c:C_BLUE, g:1},
         {n:'8', l:'years of paying, benefits for 20', i:'cal', c:C_GREY}
       ],
       forList:['Want savings with protection','Milestones in 10 to 20 years','Want guaranteed cash','Prefer a shorter plan'],
@@ -1490,7 +1505,7 @@
       bullets:['Guaranteed acceptance, no medical exam','Life coverage up to age 100','Built-in investment with bonuses for staying on track','Pay for 5 or 10 years','Life insurance only: no health or critical illness benefits'],
       minFA:'₱375,000', ageMin:18, ageMax:70,
       bench:{25:30000, 35:30000, 45:30000, 55:30000, 60:30000, 65:30000},
-      sampleNote:'Sample numbers below are for Mary, 30, at ₱750,000 coverage, paying ₱60,000 a year for 10 years.',
+      sampleNote:'Sample numbers below are for Mary, 30, at ₱750,000 coverage, paying for 10 years.',
       sample:{cov:'₱750K'},
       tiles:[
         {n:'0', l:'medical exams needed to apply', i:'check', c:C_SAGE},
@@ -1501,7 +1516,6 @@
       chart:{
         title:'Sample case: Mary’s fund at 65',
         rows:[
-          {l:'Total paid', s:'₱60,000 a year for 10 years', v:600000, t:'₱600K', c:C_GREY},
           {l:'Fund at 65', s:'projected at 6%', v:3367693, t:'₱3.37M', c:C_SAGE}
         ],
         note:'Projected at 6% a year after charges. Not guaranteed: it can be higher or lower. Taking it all out at 65 ends the policy.'
@@ -1517,7 +1531,7 @@
       why:'You want to be sure. If nothing happens, babalik ang pera mo. You’re protected for 20 years, and your basic premiums come back to you at the end, guaranteed.',
       bullets:['Life insurance for your family','Guaranteed savings you can count on','No medical exam needed to apply','Get back at least 100% of your basic premiums after 20 years','Life cover from day 1'],
       minFA:'₱460,000', ageMin:0, ageMax:50,
-      bench:{25:23000, 31:23000, 35:23000, 45:23000, 50:28750},
+      bench:{25:23000, 35:23000, 45:23000, 50:28750},
       tiles:[
         {n:'100%', l:'of your basic premiums, guaranteed back after 20 years', i:'coin', c:C_GOLD, g:1},
         {n:'Day 1', l:'your life cover starts immediately', i:'shield', c:C_SAGE},
@@ -1539,7 +1553,7 @@
       bench:{25:30900, 35:32502, 45:38264, 55:53628, 60:67760},
       tiles:[
         {n:'5', l:'years of paying (target), then you’re done', i:'cal', c:C_GREY},
-        {n:'2×', l:'your coverage as life insurance for your family', i:'shield', c:C_SAGE, g:1},
+        {n:'2×', x:2, xl:'as life insurance for your family', l:'your coverage as life insurance for your family', i:'shield', c:C_SAGE, g:1},
         {n:'Top-ups', l:'add extra anytime to grow your fund faster', i:'sprout', c:C_LSAGE},
         {n:'Anytime', l:'withdraw part of your fund in emergencies', i:'coin', c:C_GOLD}
       ],
@@ -1573,9 +1587,9 @@
       why:'A simple way to start investing with protection while your budget is still growing. If you can stretch a little, MaxiLink 100 gives you double the life cover with the same regular-pay setup.',
       bullets:['Life cover equal to your coverage amount','Built-in investment you can grow over time (not guaranteed)','Regular payments, with top-ups anytime','Partial withdrawals for emergencies'],
       minFA:'₱250,000', ageMin:0, ageMax:70,
-      bench:{25:7535, 35:7770, 45:9185, 55:15272.5, 60:15937.5, 65:29275},
+      bench:{25:7535, 35:7770, 45:9185, 55:15272.5, 60:15937.5, 65:29275}, fa1m:21756,
       tiles:[
-        {n:'1×', l:'your coverage as life insurance for your family', i:'shield', c:C_SAGE},
+        {n:'1×', x:1, xl:'as life insurance for your family', l:'your coverage as life insurance for your family', i:'shield', c:C_SAGE},
         {n:'Regular', l:'payments you keep up while the plan runs', i:'cal', c:C_GREY},
         {n:'Top-ups', l:'add extra anytime to grow your fund faster', i:'sprout', c:C_LSAGE},
         {n:'Anytime', l:'withdraw part of your fund in emergencies', i:'coin', c:C_GOLD}
@@ -1613,7 +1627,7 @@
       minFA:'₱1,000,000', ageMin:18, ageMax:64,
       bench:{25:9300, 35:9500, 45:11310, 55:21650, 60:31150},
       tiles:[
-        {n:'2×', l:'your coverage as life insurance for your family', i:'family', c:C_SAGE},
+        {n:'2×', x:2, xl:'as life insurance for your family', l:'your coverage as life insurance for your family', i:'family', c:C_SAGE},
         {n:'75', l:'age it can renew until, every 5 years, with no health check', i:'hourglass', c:C_BLUE},
         {n:'Switch', l:'to a lifetime or investment plan before 65, same protection', i:'shield', c:C_GOLD},
         {n:'Monthly', l:'payments possible through auto-debit', i:'cal', c:C_GREY}
@@ -1630,21 +1644,20 @@
       why:'Para sa mga nagtatrabaho abroad. You work hard for your family back home, so this covers you if you get sick, wherever you are. You can even pay in 3, 6, 9 or 12 installments a year to match your contract. Ang kailangan lang: apply while you’re here in the Philippines.',
       bullets:['Covers 114 conditions: 64 major illnesses, 34 minor illnesses and 16 specific cancers','Cash for hospital stays, follow-up check-ups, home recovery and palliative care','Extra 50% of your coverage on first diagnosis of a covered cancer','A yearly check-up, flu or pneumonia shot, or teleconsults, from year 2','5% of your coverage back every year for 8 years from age 65','Pay in 10, 15 or 20 years, or in 3, 6, 9 or 12 installments a year'],
       minFA:'₱300,000', ageMin:18, ageMax:50,
-      bench:{25:17998, 35:21952, 45:26788},
-      sample:{yr:'58,050', mo:'4,838', term:'for 10 years', cov:'₱1M coverage at age 30'},
+      bench:{25:17998, 35:21952, 45:26788}, fa1m:66640,
+      sample:{cov:'₱1M coverage at age 30'},
       sampleNote:'Sample numbers below are for a 30-year-old at ₱1,000,000 coverage, paying for 10 years.',
       tiles:[
-        {n:'₱1M', l:'cash if diagnosed with a major illness', i:'pulse', c:C_TERRA},
-        {n:'+₱500K', l:'more if it’s a covered cancer', i:'ribbon', c:C_BLUE},
-        {n:'₱200K', l:'for a minor illness, and you can still claim later', i:'heart', c:C_SAGE},
+        {n:'₱1M', x:1, l:'cash if diagnosed with a major illness', i:'pulse', c:C_TERRA},
+        {n:'+₱500K', x:0.5, pre:'+', l:'more if it’s a covered cancer', i:'ribbon', c:C_BLUE},
+        {n:'₱200K', x:0.2, l:'for a minor illness, and you can still claim later', i:'heart', c:C_SAGE},
         {n:'Included', l:'yearly check-up, flu or pneumonia shot, or teleconsults from year 2', i:'check', c:'#4F8C82'},
-        {n:'₱400K', l:'cash back from age 65, 5% a year for 8 years', i:'coin', c:C_GOLD, g:1},
+        {n:'₱400K', x:0.4, l:'cash back from age 65, 5% a year for 8 years', i:'coin', c:C_GOLD, g:1},
         {n:'3 to 12', l:'installments a year, to match your work contract', i:'cal', c:C_GREY}
       ],
       chart:{
-        title:'Sample: what Eduardo paid vs. received',
+        title:'Sample: what Eduardo received',
         rows:[
-          {l:'Total paid', s:'10 years, from age 30', v:580500, t:'₱581K', c:C_GREY},
           {l:'Total received', s:'cancer at 55, cash back from 65, passed at 75', v:1014375, t:'₱1.01M', c:C_SAGE}
         ],
         note:'A restaurant manager in the UAE, insured at 30 for ₱1M. Received amounts exclude the special bonus and dividends, which are not guaranteed.'
@@ -1692,7 +1705,7 @@
       minFA:'₱200,000', ageMin:0, ageMax:80,
       bench:{25:39038, 45:42892, 55:45724, 60:47918, 65:50672},
       tiles:[
-        {n:'2×', l:'your coverage as life insurance, until age 100', i:'shield', c:C_SAGE, g:1},
+        {n:'2×', x:2, xl:'as life insurance, until age 100', l:'your coverage as life insurance, until age 100', i:'shield', c:C_SAGE, g:1},
         {n:'Every 2 yrs', l:'guaranteed cash for life, starting at year 6', i:'coin', c:C_GOLD, g:1},
         {n:'5 or 10', l:'years of paying, or pay regularly', i:'cal', c:C_GREY},
         {n:'Loan', l:'against your guaranteed cash value in emergencies', i:'check', c:C_BLUE}
@@ -1718,9 +1731,8 @@
       ],
       sampleNote:'Sample numbers below are for a 30-year-old paying ₱500,000 once.',
       chart:{
-        title:'Sample: ₱500K paid once',
+        title:'Sample: what ₱500K gives back',
         rows:[
-          {l:'You pay', s:'once, at the start', v:500000, t:'₱500K', c:C_GREY},
           {l:'You receive', s:'over 7 years', v:657500, t:'₱657.5K', c:C_SAGE}
         ],
         note:'₱22,500 a year for 7 years (₱157,500) plus your ₱500,000 back at year 7. All guaranteed.'
@@ -1739,17 +1751,16 @@
       minFA:'₱300,000', ageMin:50, ageMax:70,
       bench:{55:67989, 60:72855, 65:79107},
       tiles:[
-        {n:'₱450K', l:'cash if diagnosed with one of 17 illnesses like stroke, cancer or Alzheimer’s', i:'pulse', c:C_TERRA},
-        {n:'₱15K', l:'extra for knee replacement, glaucoma, cochlear implant or severe osteoporosis', i:'heart', c:C_SAGE},
-        {n:'₱450K', l:'for the family if they pass away, until age 100 (if no illness benefit was paid)', i:'family', c:C_BLUE},
+        {n:'₱450K', x:1.5, l:'cash if diagnosed with one of 17 illnesses like stroke, cancer or Alzheimer’s', i:'pulse', c:C_TERRA},
+        {n:'₱15K', x:0.05, l:'extra for knee replacement, glaucoma, cochlear implant or severe osteoporosis', i:'heart', c:C_SAGE},
+        {n:'₱450K', x:1.5, l:'for the family if they pass away, until age 100 (if no illness benefit was paid)', i:'family', c:C_BLUE},
         {n:'3', l:'years of paying, then done', i:'cal', c:C_GREY}
       ],
-      sample:{yr:'135,768', mo:'11,314', term:'for 3 years', cov:'₱300,000 coverage at age 65'},
+      sample:{cov:'₱300,000 coverage at age 65'},
       sampleNote:'Sample numbers below are for a 65-year-old at ₱300,000 coverage, paying for 3 years.',
       chart:{
-        title:'Sample: what one family paid vs. received',
+        title:'Sample: what one family received',
         rows:[
-          {l:'Total paid', s:'3 years, from age 65', v:407304, t:'₱407K', c:C_GREY},
           {l:'Total received', s:'surgery at 70, illness at 81', v:540737, t:'₱541K', c:C_SAGE}
         ],
         note:'Received = ₱15K surgery benefit + ₱450K illness benefit + ₱75,737 dividends. Dividends are illustrated at 3.5% and are not guaranteed.'
@@ -1928,6 +1939,36 @@
     return 'Estimated for the base plan · ' + (plan && plan.minFA ? plan.minFA + ' coverage' : 'minimum coverage') + ' · age ' + ageVal;
   }
   /* What waiting 5 years adds to the monthly premium, from the same benchmarks. */
+  /* ---------- Coverage ----------
+     Price for any coverage = premium at the plan's minimum coverage x (coverage / minimum).
+     Plans that get cheaper per peso at bigger coverage (fa1m = the dashboard's ₱1M-at-35 figure)
+     are scaled down toward that ₱1M figure, so big coverage isn't over-quoted.
+     If the visitor hasn't picked a coverage yet, the pop-up uses ₱1M (or the plan's minimum if higher). */
+  var COV_DEFAULT = 1000000;
+  var COV_STEPS = [500000, 1000000, 3000000, 5000000, 10000000];
+  var chosenCov = 0;
+  function planMinCov(plan){ return covNum(plan.minFA); }
+  function covAble(plan){ return plan.id !== 'first-aid' && planMinCov(plan) > 0 && Object.keys(plan.bench || {}).length > 0; }
+  function covFor(plan){ return Math.max(planMinCov(plan), chosenCov || COV_DEFAULT); }
+  function premAt(plan, age, cov){
+    var e = estimate(plan, age); if(!e) return null;
+    var m = planMinCov(plan); if(!m || !cov || cov <= m) return e.value;
+    var f = cov / m;
+    if(plan.fa1m && plan.bench[35]){
+      var r = plan.fa1m / (plan.bench[35] * 1000000 / m);
+      if(r < 1){ var t = m >= 1000000 ? 1 : Math.min(1, (cov - m) / (1000000 - m)); f = f * (1 - (1 - r) * t); }
+    }
+    return e.value * f;
+  }
+  function waitCostAt(plan, age, cov){
+    var later = age + 5;
+    if(later > plan.ageMax) return null;
+    var a = premAt(plan, age, cov), b = premAt(plan, later, cov);
+    if(!a || !b) return null;
+    var diff = (b - a) / 12;
+    if(diff < 20) return null;
+    return { later: later, diff: diff };
+  }
   function waitCost(plan, age){
     var later = age + 5;
     if(later > plan.ageMax) return null;
@@ -2086,14 +2127,16 @@
   function goalsText(list){
     return (list || selectedGoals).map(function(g){ return GOAL_BY_ID[g].label.toLowerCase(); }).join(', ');
   }
-  function tilesHtml(tiles){
+  function tilesHtml(tiles, cov){
     var out = '';
     for(var i=0;i<tiles.length;i++){
       var t = tiles[i];
+      /* x = share of the coverage, so the amount follows the coverage picked above */
+      var dyn = !!(cov && t.x);
       out += '<div class="pf-tile">'
         + '<div class="pf-tile-icon" style="background:' + hexToRgba(t.c, .14) + '">' + icon(t.i, t.c, 26) + '</div>'
-        + '<span class="pf-tile-num" style="color:' + t.c + '">' + t.n + '</span>'
-        + '<span class="pf-tile-lbl">' + t.l + '</span>'
+        + '<span class="pf-tile-num" style="color:' + t.c + '">' + (dyn ? (t.pre || '') + fmtShort(cov * t.x) : t.n) + '</span>'
+        + '<span class="pf-tile-lbl">' + (dyn && t.xl ? t.xl : t.l) + '</span>'
         + (t.g ? '<span class="pf-tile-g">Guaranteed</span>' : '') + '</div>';
     }
     return out;
@@ -2213,7 +2256,7 @@
       ['What if it’s cancer?','You get an extra 50% of your coverage on first diagnosis of a covered cancer. On Advantage, the hospital, home recovery and palliative care benefits are also 50% higher.'],
       [Q_ME,'From age 65, 5% of your coverage every year for 8 years, even if you never claim (Plus and Advantage). You also get a special bonus when you finish paying, then yearly dividends you can withdraw or leave to grow (not guaranteed).'],
       [Q_FAM,'Your coverage amount, until age 100, minus anything already paid out for minor illnesses or cash back.'],
-      ['Real example','Parents insured their newborn for ₱1M, paying 15 years. He was hospitalized for dengue at 5, had kidney disease at 50, got ₱400K cash back from 65 to 72, and had kidney failure at 73. Total paid: ₱389,850. Total received: ₱1,023,750, plus dividends.'],
+      ['Real example','Parents insured their newborn for ₱1M, paying 15 years. He was hospitalized for dengue at 5, had kidney disease at 50, got ₱400K cash back from 65 to 72, and had kidney failure at 73. In total, the plan paid out ₱1,023,750, plus dividends.'],
       ['Anything else?','Access to a wellness program, with health info, fitness events and nutrition experts.'],
       [Q_CATCH,'The illness has to be one of the covered conditions in the policy, and pre-existing conditions may be excluded. Dividends and the special bonus are not guaranteed.']
     ],
@@ -2236,7 +2279,7 @@
       ['What if it’s cancer?','An extra 50% of your coverage on first diagnosis of a covered cancer, and 50% more on your hospital, recovery and palliative care benefits.'],
       [Q_ME,'From age 65, 5% of your coverage every year for 8 years. You also get a special bonus when you finish paying, then yearly dividends (not guaranteed).'],
       [Q_FAM,'Your coverage amount if you pass away before 65. After that, whatever illness benefit is left goes to your family.'],
-      ['Can I cover my kids too?','Yes, with a separate plan for them. A couple working in the Middle East insured their newborn for ₱1M over 15 years: they paid ₱427,350 and the plan paid ₱1,023,750 across his lifetime, plus bonus and dividends.'],
+      ['Can I cover my kids too?','Yes, with a separate plan for them. A couple working in the Middle East insured their newborn for ₱1M over 15 years: the plan paid out ₱1,023,750 across his lifetime, plus bonus and dividends.'],
       [Q_CATCH,'Apply while you’re in the Philippines. The illness must be a covered condition, and pre-existing conditions may be excluded.']
     ],
     'dream-achiever':[
@@ -2377,11 +2420,77 @@
     var modal = document.getElementById('pfModal');
     if(modal){ modal.addEventListener('scroll', syncModalEnd, { passive:true }); window.addEventListener('resize', syncModalEnd); }
   })();
+  /* Pop-up price box: age + coverage. Redrawn on its own when the coverage changes. */
+  function priceBoxHtml(plan, ctx, cov){
+    var hasAge = ctx.hasAge, ageVal = ctx.age, forParent = ctx.forParent;
+    var ageLbl = forParent ? 'Parent age ' : 'Age ';
+    var est = hasAge ? estimate(plan, ageVal) : null;
+    if(est){
+      var yr = cov ? premAt(plan, ageVal, cov) : est.value;
+      var w = cov ? waitCostAt(plan, ageVal, cov) : waitCost(plan, ageVal);
+      return '<div class="pf-price-personal"><span class="pf-pp-lbl">' + ageLbl + ageVal + ' · ' + (cov ? 'at ' + fmtPeso(cov) + ' coverage' + (cov === planMinCov(plan) ? ' (minimum)' : '') : (plan.minFA ? 'at ' + plan.minFA + ' coverage' : 'at minimum coverage')) + '</span>'
+        + '<div class="pf-pp-num">' + fmtPeso(yr/12) + ' <small>/ month</small>' + (perDay(yr) ? '<span class="pf-pp-day">' + perDay(yr) + '</span>' : '') + '</div>'
+        + '<p class="pf-pp-sub">' + fmtPeso(yr) + ' a year · estimated for the base plan</p>'
+        + (w ? '<p class="pf-pp-wait">If you wait until ' + w.later + ', the same plan costs about <b>' + fmtPeso(w.diff) + ' more a month</b>. Premiums go up with age, so starting earlier locks in a lower price.</p>' : '')
+        + '</div>';
+    }
+    if(hasAge){
+      return '<div class="pf-price-personal"><span class="pf-pp-lbl">' + ageLbl + ageVal + '</span>'
+        + '<div class="pf-pp-num" style="font-size:1.3rem">Custom pricing</div>'
+        + '<p class="pf-pp-sub">' + minCovText(plan) + '. Message Donna for an exact quote.</p></div>';
+    }
+    return '<div class="pf-price-personal pf-pp-empty"><span class="pf-pp-lbl">' + (forParent ? 'Enter your parent’s age above' : 'Enter your age above') + '</span>'
+      + '<div class="pf-pp-num" style="font-size:1.3rem">See your estimated premium</div>'
+      + '<p class="pf-pp-sub">It only takes your age to get a starting number for this plan' + (cov ? ' at ' + fmtPeso(cov) + ' coverage' : '') + '. ' + minCovText(plan) + '.</p></div>';
+  }
+  function basisText(cov){ return 'Amounts below are for ' + fmtPeso(cov) + ' coverage. Change the coverage above to see yours.'; }
+  function faText(plan, cov){ return 'Your estimate above is at ' + fmtPeso(cov) + ' coverage. ' + minCovText(plan) + '. Riders cost extra.'; }
+  function covPickerHtml(plan, cov){
+    var m = planMinCov(plan), opts = [m].concat(COV_STEPS.filter(function(x){ return x > m; }));
+    var typed = opts.indexOf(cov) === -1;
+    var h = '<div class="pf-mcov"><p class="pf-mcov-lbl" id="pfMcovLbl">Coverage</p><div class="pf-covchips" role="group" aria-labelledby="pfMcovLbl">';
+    opts.forEach(function(x){ h += '<button type="button" class="pf-bchip" data-mcov="' + x + '" aria-pressed="' + (x === cov ? 'true' : 'false') + '">' + fmtShort(x) + (x === m ? ' (min)' : '') + '</button>'; });
+    h += '</div><div class="pf-mcov-other"><label for="pfMcovIn">Or type an amount</label><input type="text" id="pfMcovIn" inputmode="numeric" autocomplete="off" placeholder="e.g. 600,000" value="' + (typed ? cov.toLocaleString('en-PH') : '') + '"' + (typed ? ' class="on"' : '') + '></div>'
+      + '<p class="pf-mcov-msg" id="pfMcovMsg" aria-live="polite"></p></div>';
+    return h;
+  }
+  function refreshCov(plan, ctx){
+    var cov = covFor(plan);
+    var bs = document.querySelectorAll('[data-mcov]');
+    for(var i = 0; i < bs.length; i++) bs[i].setAttribute('aria-pressed', parseInt(bs[i].getAttribute('data-mcov'), 10) === cov ? 'true' : 'false');
+    var pb = document.getElementById('pfPriceBox'); if(pb) pb.innerHTML = priceBoxHtml(plan, ctx, cov);
+    var tb = document.getElementById('pfTilesBox'); if(tb && document.getElementById('pfBasis')) tb.innerHTML = tilesHtml(plan.tiles, cov);
+    var ba = document.getElementById('pfBasis'); if(ba) ba.textContent = basisText(cov);
+    var fa = document.getElementById('pfModalFa'); if(fa) fa.textContent = faText(plan, cov);
+  }
+  var covTrackTimer = null;
+  function bindCovPicker(plan, ctx){
+    var inp = document.getElementById('pfMcovIn'), msg = document.getElementById('pfMcovMsg'), m = planMinCov(plan);
+    var bs = document.querySelectorAll('[data-mcov]');
+    for(var i = 0; i < bs.length; i++) bs[i].addEventListener('click', function(){
+      chosenCov = parseInt(this.getAttribute('data-mcov'), 10);
+      inp.value = ''; inp.classList.remove('on'); msg.textContent = '';
+      refreshCov(plan, ctx);
+      pfTrack('pf_coverage_selected', { plan: plan.id, coverage: chosenCov, typed:false });
+    });
+    inp.addEventListener('input', function(){
+      var d = inp.value.replace(/[^0-9]/g, '').slice(0, 9);
+      inp.value = d ? parseInt(d, 10).toLocaleString('en-PH') : '';
+      var val = d ? parseInt(d, 10) : 0;
+      if(!val){ msg.textContent = ''; inp.classList.remove('on'); chosenCov = 0; refreshCov(plan, ctx); return; }
+      if(val < m){ msg.textContent = 'The minimum coverage for this plan is ' + fmtPeso(m) + '.'; inp.classList.remove('on'); return; }
+      msg.textContent = ''; inp.classList.add('on'); chosenCov = val;
+      refreshCov(plan, ctx);
+      clearTimeout(covTrackTimer);
+      covTrackTimer = setTimeout(function(){ pfTrack('pf_coverage_selected', { plan: plan.id, coverage: val, typed:true }); }, 1200);
+    });
+  }
   function openModal(plan, ctx){
     ctx = ctx || { age:lastAgeVal, hasAge:lastHasAge, forParent:false };
     var hasAge = ctx.hasAge, ageVal = ctx.age, forParent = ctx.forParent;
     var ageLbl = forParent ? 'Parent age ' : 'Age ';
-    var est = hasAge ? estimate(plan, ageVal) : null;
+    var cov = covAble(plan) ? covFor(plan) : 0;
+    var tilesDyn = !!(cov && plan.tiles && plan.tiles.some(function(t){ return t.x; }));
     var v = CAT_BY_ID[plan.cat].v;
     var modal = document.getElementById('pfModal');
     var inner = document.getElementById('pfModalInner');
@@ -2398,33 +2507,23 @@
       + '<p class="pf-modal-type">' + plan.type + '</p>'
       + '<p class="pf-modal-tline">' + plan.tline + '</p>'
       + '<p class="pf-modal-intro">' + plan.why + '</p>'
+      + (DETAIL_PAGES[plan.id] ? '<a class="pf-detail-link" id="pfDetailLink" href="' + detailHref(plan, ctx) + '">Read the full explanation of this plan<span aria-hidden="true"> →</span></a>' : '')
       + '<p class="pf-modal-cover"><span>How long you’re covered</span>' + plan.cover + '</p>';
 
     /* Numbers first: your personalized estimate, one number, front and center. */
     html += '<p class="pf-h" style="margin-top:0">Your estimated premium</p>';
-    if(est){
-      html += '<div class="pf-price-personal"><span class="pf-pp-lbl">' + ageLbl + ageVal + ' · ' + (plan.minFA ? 'at ' + plan.minFA + ' coverage' : 'at minimum coverage') + '</span>'
-        + '<div class="pf-pp-num">' + fmtPeso(est.value/12) + ' <small>/ month</small>' + (perDay(est.value) ? '<span class="pf-pp-day">' + perDay(est.value) + '</span>' : '') + '</div>'
-        + '<p class="pf-pp-sub">' + fmtPeso(est.value) + ' a year · estimated for the base plan</p>'
-        + (function(){ var w = waitCost(plan, ageVal); return w ? '<p class="pf-pp-wait">If you wait until ' + w.later + ', the same plan costs about <b>' + fmtPeso(w.diff) + ' more a month</b>. Premiums go up with age, so starting earlier locks in a lower price.</p>' : ''; })()
-        + '</div>';
-    } else if(hasAge){
-      html += '<div class="pf-price-personal"><span class="pf-pp-lbl">' + ageLbl + ageVal + '</span>'
-        + '<div class="pf-pp-num" style="font-size:1.3rem">Custom pricing</div>'
-        + '<p class="pf-pp-sub">' + minCovText(plan) + '. Message Donna for an exact quote.</p></div>';
-    } else {
-      html += '<div class="pf-price-personal pf-pp-empty"><span class="pf-pp-lbl">' + (forParent ? 'Enter your parent’s age above' : 'Enter your age above') + '</span>'
-        + '<div class="pf-pp-num" style="font-size:1.3rem">See your estimated premium</div>'
-        + '<p class="pf-pp-sub">It only takes your age to get a starting number for this plan. ' + minCovText(plan) + '.</p></div>';
-    }
+    if(cov) html += covPickerHtml(plan, cov);
+    html += '<div id="pfPriceBox">' + priceBoxHtml(plan, ctx, cov) + '</div>';
 
     /* What you get — icon/number tiles when we have them, icon checklist cards otherwise. */
     html += '<p class="pf-h">What you get</p>';
-    if(plan.sample){
+    if(tilesDyn){
+      html += '<div class="pf-basis-tag" id="pfBasis">' + basisText(cov) + '</div>';
+    } else if(plan.sample){
       html += '<div class="pf-basis-tag">' + (plan.sampleNote || ('Sample numbers below are at ₱1,000,000 coverage — a different coverage amount than your estimated premium above (' + plan.minFA + ').')) + '</div>';
     }
     if(plan.tiles){
-      html += '<div class="pf-tiles">' + tilesHtml(plan.tiles) + '</div>';
+      html += '<div class="pf-tiles" id="pfTilesBox">' + tilesHtml(plan.tiles, tilesDyn ? cov : 0) + '</div>';
     } else {
       var askQuoteMsg = 'Hi Donna! Can you send me the exact numbers or a sample quotation for ' + plan.name + '?';
       var askQuoteUrl = 'https://m.me/financial.advisor.donna.n?text=' + encodeURIComponent(askQuoteMsg);
@@ -2434,6 +2533,7 @@
 
     if(plan.chart){
       html += '<p class="pf-h">' + plan.chart.title + '</p>'
+        + (tilesDyn && plan.sampleNote ? '<div class="pf-basis-tag">' + plan.sampleNote + '</div>' : '')
         + '<div class="pf-chart">' + chartHtml(plan.chart) + '</div>'
         + '<p class="pf-chart-note">' + plan.chart.note + '</p>';
     }
@@ -2442,7 +2542,8 @@
     html += '<p class="pf-h">Best for</p><div class="pf-for">' + forHtml(plan.forList) + '</div>';
     html += '<p class="pf-h">Good to know</p><ul class="pf-know">' + knowHtml(plan.know) + '</ul>';
 
-    if(plan.minFA){ html += '<p class="pf-modal-fa">Your estimated premium above is at minimum coverage amount: ' + plan.minFA + '</p>'; }
+    if(cov){ html += '<p class="pf-modal-fa" id="pfModalFa">' + faText(plan, cov) + '</p>'; }
+    else if(plan.minFA){ html += '<p class="pf-modal-fa">Your estimated premium above is at minimum coverage amount: ' + plan.minFA + '</p>'; }
 
     var goalBit = selectedGoals.length ? (' I’m thinking about: ' + goalsText() + '.') : '';
     var msg = forParent
@@ -2466,8 +2567,13 @@
     body.innerHTML = html;
     document.getElementById('pfModalCta').addEventListener('click', function(){
       pfTrack('pf_cta_click', { cta:'proposal_start', plan: plan.id });
-      openProposal(plan, ctx);
+      var c2 = {}; for(var k in ctx) c2[k] = ctx[k];
+      c2.cov = covAble(plan) ? covFor(plan) : 0;
+      openProposal(plan, c2);
     });
+    if(cov) bindCovPicker(plan, ctx);
+    var dl = document.getElementById('pfDetailLink');
+    if(dl){ dl.addEventListener('click', function(){ rememberForReturn(plan, ctx); pfTrack('pf_cta_click', { cta:'detail_page', plan: plan.id }); }); }
     document.body.style.overflow = 'hidden';
     inner.scrollTop = 0; modal.scrollTop = 0;
     syncModalEnd();
@@ -2591,16 +2697,23 @@
 
   function openProposal(plan, ctx){
     propState.plan = plan; propState.ctx = ctx || { age:lastAgeVal, hasAge:lastHasAge, forParent:false };
-    propState.cov = null; propState.covAuto = true;
+    var pc = propState.ctx && propState.ctx.cov;
+    propState.cov = pc ? { v:pc, t:fmtShort(pc) } : null; propState.covAuto = !pc;
     propState.followed = false;
     propStep2();
   }
 
 
   /* The chosen plan shows as a mini card; "Change plan" opens a list to pick another. */
-  function planMini(p, age, tag){
+  function planMini(p, age, tag, cov){
     var v = CAT_BY_ID[p.cat].v;
     var est = age ? estimate(p, age) : null;
+    if(est && cov && covAble(p) && cov > planMinCov(p)){
+      return '<span class="pf-mini-bar" style="background:var(--' + v + ')"></span>'
+        + '<span class="pf-mini-body"><span class="pf-mini-top"><b>' + esc(p.name) + '</b>' + (tag ? '<em>' + tag + '</em>' : '') + '</span>'
+        + '<span class="pf-mini-line">' + esc(p.tline) + '</span>'
+        + '<span class="pf-mini-price">about ' + fmtPeso(premAt(p, age, cov)/12) + ' / month · at ' + fmtShort(cov) + ' coverage</span></span>';
+    }
     return '<span class="pf-mini-bar" style="background:var(--' + v + ')"></span>'
       + '<span class="pf-mini-body"><span class="pf-mini-top"><b>' + esc(p.name) + '</b>' + (tag ? '<em>' + tag + '</em>' : '') + '</span>'
       + '<span class="pf-mini-line">' + esc(p.tline) + '</span>'
@@ -2624,7 +2737,7 @@
       return { label:'Coverage you want', opts:[{v:5*M, t:'₱5M'}, {v:10*M, t:'₱10M'}, {v:25*M, t:'₱25M'}, {v:50*M, t:'₱50M+'}] };
     }
     var single = plan && (plan.id === 'maxilink-one' || plan.id === 'wealth-prosper-7');
-    var base = [{v:500*K, t:'₱500K'}, {v:1*M, t:'₱1M'}, {v:2*M, t:'₱2M'}, {v:3*M, t:'₱3M'}, {v:5*M, t:'₱5M'}, {v:10*M, t:'₱10M+'}];
+    var base = [{v:500*K, t:'₱500K'}, {v:1*M, t:'₱1M'}, {v:3*M, t:'₱3M'}, {v:5*M, t:'₱5M'}, {v:10*M, t:'₱10M+'}];
     var min = (plan && !single) ? covNum(plan.minFA) : 0;
     var opts = [];
     if(min && !base.some(function(o){ return o.v === min; })){
@@ -2641,10 +2754,14 @@
     var co = covOptions(plan);
     var lbl = document.getElementById('pfCovLbl');
     if(lbl) lbl.innerHTML = co.label + ' <span>(optional)</span>';
-    var valid = co.opts.filter(function(o){ return !o.off; });
-    /* Keep their choice if it still fits this plan; otherwise use the coverage check, else "Not sure yet". */
+    /* Keep their choice if it still fits this plan (a typed amount like ₱600K gets its own button);
+       otherwise use the coverage check, else "Not sure yet". */
     var cur = propState.cov;
-    if(cur && !valid.some(function(o){ return o.t === cur.t; })) cur = null;
+    if(cur && !co.single && !(plan && plan.id === 'first-aid') && cur.v >= (co.min || 0) && !co.opts.some(function(o){ return o.v === cur.v; })){
+      co.opts.push({ v:cur.v, t:fmtShort(cur.v) }); co.opts.sort(function(a, b){ return a.v - b.v; });
+    }
+    var valid = co.opts.filter(function(o){ return !o.off; });
+    if(cur){ var mt = null; valid.forEach(function(o){ if(o.v === cur.v) mt = o; }); cur = mt; }
     if(!cur && propState.covAuto !== false && needState.amount > 0 && !co.single && !(plan && plan.id === 'first-aid')){
       var best = null;
       valid.forEach(function(o){ if(!best || Math.abs(o.v - needState.amount) < Math.abs(best.v - needState.amount)) best = o; });
@@ -2670,7 +2787,7 @@
         propState.cov = k === 'none' ? null : co.opts[parseInt(k, 10)];
         propState.covAuto = false;
         pfTrack('pf_proposal_coverage', { coverage: propState.cov ? propState.cov.t : 'not_sure' });
-        renderCovPick();
+        renderPlanPick(!!document.querySelector('#pfPlanPick .pf-mini-list'));
       });
     }
   }
@@ -2694,7 +2811,7 @@
     var html = '';
     if(!open){
       html += cur
-        ? '<div class="pf-mini pf-mini-sel">' + planMini(cur, age, locked ? '' : 'Selected') + '</div>'
+        ? '<div class="pf-mini pf-mini-sel">' + planMini(cur, age, locked ? '' : 'Selected', propState.cov ? propState.cov.v : 0) + '</div>'
         : '<div class="pf-mini pf-mini-sel pf-mini-none"><span class="pf-mini-body"><span class="pf-mini-top"><b>Not sure yet</b></span><span class="pf-mini-line">I’ll recommend the best plan for you in your proposal.</span></span></div>';
       if(!locked) html += '<button type="button" class="pf-mini-change" id="pfPlanChange">Change plan</button>';
     } else {
@@ -2790,7 +2907,11 @@
       followedPage: 'not yet',
       coverage: covForSheet(),
       budget: budget ? (budget >= 10000 ? '₱10,000+' : fmtPeso(budget)) + '/mo' : '',
-      estimate: (plan && age) ? (function(){ var es = estimate(plan, parseInt(age,10)); return es ? Math.round(es.value/12) + '/mo' : ''; })() : '',
+      estimate: (plan && age) ? (function(){
+        var a = parseInt(age,10), c = (propState.cov && covAble(plan)) ? Math.max(propState.cov.v, planMinCov(plan)) : 0;
+        var y = c ? premAt(plan, a, c) : (estimate(plan, a) || {}).value;
+        return y ? Math.round(y/12) + '/mo' + (c ? ' at ' + fmtShort(c) : '') : '';
+      })() : '',
       source: TRAFFIC_SOURCE
     };
     var q = []; for(var k in data){ q.push(encodeURIComponent(k) + '=' + encodeURIComponent(data[k])); }
@@ -2833,6 +2954,72 @@
      entry, so Back closes the panel or returns to the previous step instead of
      leaving the page. */
   var modalPushed = false;
+
+  /* Plans with their own detailed page. The pop-up shows a link to it, and when the
+     visitor taps Back on that page, the same pop-up opens again with their age, goals
+     and budget still filled in. Add a line here for each new product page. */
+  var DETAIL_PAGES = {
+    'fit-and-well-adv-10': '/sfw/'
+  };
+  function detailHref(plan, ctx){
+    var url = DETAIL_PAGES[plan.id] + '?src=plan_finder';
+    if(ctx && ctx.hasAge && !ctx.forParent) url += '&age=' + encodeURIComponent(ctx.age);
+    return url;
+  }
+  /* Saves what the visitor had picked, and marks this history entry so Back reopens the pop-up. */
+  function rememberForReturn(plan, ctx){
+    var snap = {
+      plan: plan.id,
+      ctx: ctx || null,
+      age: document.getElementById('pfAge').value,
+      parentAge: (document.getElementById('pfParentAge') || {}).value || '',
+      goals: selectedGoals.slice(),
+      budget: budget,
+      cov: chosenCov,
+      step: wizStep
+    };
+    try{ sessionStorage.setItem('pfReturn', JSON.stringify(snap)); }catch(x){}
+    try{
+      var st = history.state || {}, ns = {};
+      for(var k in st){ ns[k] = st[k]; }
+      ns.reopen = plan.id;
+      history.replaceState(ns, '');
+    }catch(x){}
+  }
+  /* Runs once on page load. Brings back the pop-up after Back from a detail page.
+     (If the browser kept the page in memory, the pop-up is simply still open.) */
+  function restoreFromDetail(){
+    var st = null;
+    try{ st = history.state; }catch(x){}
+    if(!st || !st.reopen || !PLAN_BY_ID[st.reopen]) return;
+    var plan = PLAN_BY_ID[st.reopen], snap = null;
+    try{ snap = JSON.parse(sessionStorage.getItem('pfReturn') || 'null'); }catch(x){}
+    if(snap && snap.plan === plan.id){
+      document.getElementById('pfAge').value = snap.age || '';
+      var pa = document.getElementById('pfParentAge'); if(pa) pa.value = snap.parentAge || '';
+      selectedGoals.length = 0;
+      (snap.goals || []).forEach(function(g){ selectedGoals.push(g); });
+      var gb = document.querySelectorAll('#pfGoals .pf-goal');
+      for(var i = 0; i < gb.length; i++){
+        var on = selectedGoals.indexOf(gb[i].dataset.goal) !== -1;
+        gb[i].classList.toggle('active', on); gb[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+      }
+      budget = snap.budget || 0;
+      var bb = document.querySelectorAll('#pfBudget .pf-bchip');
+      for(var j = 0; j < bb.length; j++){
+        var bon = !!budget && BUDGETS[j] && BUDGETS[j].v === budget;
+        bb[j].classList.toggle('active', bon); bb[j].setAttribute('aria-pressed', bon ? 'true' : 'false');
+      }
+      if(snap.step) wizStep = snap.step;
+      chosenCov = snap.cov || 0;
+    }
+    applyWiz();
+    render();
+    modalPushed = true; /* this history entry already belongs to the pop-up, so Back closes it */
+    openModal(plan, snap && snap.ctx ? snap.ctx : undefined);
+    pfTrack('pf_detail_return', { plan: plan.id });
+  }
+
   function pushModalState(){
     if(modalPushed) return;
     try{ history.pushState({ pf:'modal', step: wizStep }, ''); modalPushed = true; }catch(x){}
@@ -2991,7 +3178,7 @@
   var needState = { income:0, deps:null, have:0, amount:0 };
   var MSGR = 'https://m.me/financial.advisor.donna.n?text=';
   function fmtShort(n){
-    if(n >= 1000000){ var m = Math.round(n / 100000) / 10; return '₱' + (m % 1 === 0 ? m.toFixed(0) : m.toFixed(1)) + 'M'; }
+    if(n >= 1000000){ var m = Math.round(n / 10000) / 100; return '₱' + String(m) + 'M'; }
     return '₱' + Math.round(n / 1000) + 'K';
   }
   function needYears(d){ return Math.min(10, 3 + 2 * d); }
@@ -3428,6 +3615,7 @@
   buildBudget();
   applyWiz();
   render();
+  restoreFromDetail();
   pfTrack('pf_page_viewed', {});
 })();
 </script>
