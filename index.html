@@ -2962,11 +2962,18 @@
   var DETAIL_PAGES = {
     'fit-and-well-adv-10': '/sfw/',
     'secure-income-10': '/ssi/',
-    'maxilink-prime': '/smp/'
+    'maxilink-prime': '/smp/',
+    'acceler8': '/sa8/',
+    'easylink-protect': '/elp/',
+    'lifeassure': '/sla/',
+    'save-and-protect': '/sap/',
+    'senior-care': '/ssc/',
+    'ofw-health-protect': '/ofw/'
   };
   function detailHref(plan, ctx){
     var url = DETAIL_PAGES[plan.id] + '?src=plan_finder';
-    if(ctx && ctx.hasAge && !ctx.forParent) url += '&age=' + encodeURIComponent(ctx.age);
+    /* the age in the pop-up: the visitor's, or their parent's on parent plans like Senior Care */
+    if(ctx && ctx.hasAge) url += '&age=' + encodeURIComponent(ctx.age);
     return url;
   }
   /* Saves what the visitor had picked, and marks this history entry so Back reopens the pop-up. */
