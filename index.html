@@ -1943,13 +1943,13 @@
      Price for any coverage = premium at the plan's minimum coverage x (coverage / minimum).
      Plans that get cheaper per peso at bigger coverage (fa1m = the dashboard's ₱1M-at-35 figure)
      are scaled down toward that ₱1M figure, so big coverage isn't over-quoted.
-     If the visitor hasn't picked a coverage yet, the pop-up uses ₱1M (or the plan's minimum if higher). */
-  var COV_DEFAULT = 1000000;
+     Every time a pop-up opens it starts at the plan's minimum coverage, the same price shown on its card.
+     (Coming back from a plan's detail page reopens it with the coverage they had picked.) */
   var COV_STEPS = [500000, 1000000, 3000000, 5000000, 10000000];
   var chosenCov = 0;
   function planMinCov(plan){ return covNum(plan.minFA); }
   function covAble(plan){ return plan.id !== 'first-aid' && planMinCov(plan) > 0 && Object.keys(plan.bench || {}).length > 0; }
-  function covFor(plan){ return Math.max(planMinCov(plan), chosenCov || COV_DEFAULT); }
+  function covFor(plan){ return Math.max(planMinCov(plan), chosenCov || 0); }
   function premAt(plan, age, cov){
     var e = estimate(plan, age); if(!e) return null;
     var m = planMinCov(plan); if(!m || !cov || cov <= m) return e.value;
@@ -2485,7 +2485,8 @@
       covTrackTimer = setTimeout(function(){ pfTrack('pf_coverage_selected', { plan: plan.id, coverage: val, typed:true }); }, 1200);
     });
   }
-  function openModal(plan, ctx){
+  function openModal(plan, ctx, keepCov){
+    if(!keepCov) chosenCov = 0;   /* a fresh open starts at the minimum coverage */
     ctx = ctx || { age:lastAgeVal, hasAge:lastHasAge, forParent:false };
     var hasAge = ctx.hasAge, ageVal = ctx.age, forParent = ctx.forParent;
     var ageLbl = forParent ? 'Parent age ' : 'Age ';
@@ -3016,7 +3017,7 @@
     applyWiz();
     render();
     modalPushed = true; /* this history entry already belongs to the pop-up, so Back closes it */
-    openModal(plan, snap && snap.ctx ? snap.ctx : undefined);
+    openModal(plan, snap && snap.ctx ? snap.ctx : undefined, true);
     pfTrack('pf_detail_return', { plan: plan.id });
   }
 
