@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en-PH" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="only light">
+<meta name="supported-color-schemes" content="light">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>SUN Senior Care | Donna Nuqui</title>
+<meta name="description" content="Cash for Mama or Papa if they’re diagnosed with an illness common at their age, like stroke or heart attack. For ages 50 to 70. See the estimate by age.">
+<link rel="canonical" href="https://plans.donnanuqui.com/ssc">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://plans.donnanuqui.com/ssc">
+<meta property="og:site_name" content="Donna Nuqui — Financial Advisor">
+<meta property="og:title" content="SUN Senior Care: protection made for your parents’ age">
+<meta property="og:description" content="Cash for Mama or Papa if they’re diagnosed with an illness common at their age, like stroke or heart attack. For ages 50 to 70. See the estimate by age.">
+<meta property="og:locale" content="en_PH">
+<meta property="og:image" content="https://plans.donnanuqui.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="Donna Nuqui">
+<script>
+  var PF_GA_ID = 'G-1TXKES216M';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  if(/^G-[A-Z0-9]+$/.test(PF_GA_ID)){
+    var gs = document.createElement('script'); gs.async = true;
+    gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + PF_GA_ID;
+    document.head.appendChild(gs);
+    gtag('js', new Date());
+    /* Which post or link brought them here: ?src=fb-hmo (our own tag) or standard utm_* params */
+    var PF_SRC = '(direct)';
+    try{
+      var q = new URLSearchParams(location.search);
+      PF_SRC = q.get('src') || q.get('utm_content') || q.get('utm_campaign') || (document.referrer ? new URL(document.referrer).hostname : '(direct)');
+    }catch(e){}
+    gtag('set', { page_type:'product', product_id:'ssc', post_src: PF_SRC });
+    gtag('config', PF_GA_ID, { content_group:'product_ssc', post_src: PF_SRC });
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=DM+Sans:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: same shell as plans.donnanuqui.com (fixed site nav, 900px column); hero estimator first, then proof, then next step. */
+  :root{ color-scheme:only light; }
+  html,body{ margin:0; background:#FDFCFA; }
+  .pf-wrap{
+    --bg:#FDFCFA;--card:#FFFFFF;--ink:#16150F;--muted:#4F4C45;--line:#E9E3D8;--soft:#F4F1EA;
+    --gold:#B89C6E;--goldd:#8B6F3F;--goldl:#F2EAD9;
+    --hlt:#6E5C8A;--hltl:#ECE7F1;
+    --serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+    background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.6;
+    width:100%; max-width:100%; padding-top:124px; padding-bottom:64px;
+    padding-left:max(20px, env(safe-area-inset-left, 0px)); padding-right:max(20px, env(safe-area-inset-right, 0px));
+    overflow-x:clip; -webkit-text-size-adjust:100%; text-size-adjust:100%;
+  }
+  /* Reset children only: resetting .pf-wrap itself wiped its top and side padding */
+  .pf-wrap{ box-sizing:border-box; margin:0; }
+  .pf-wrap *, .pf-wrap *::before, .pf-wrap *::after{ box-sizing:border-box; margin:0; padding:0; }
+  .pf-inner{ max-width:900px; margin:0 auto; display:flex; flex-direction:column; gap:56px; }
+
+  /* Site header: copied from plans.donnanuqui.com so navigation is seamless */
+  .pf-topnav{ position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:calc(1.25rem + env(safe-area-inset-top, 0px)) 6vw 1.25rem; background:var(--bg); border-bottom:1px solid var(--line); }
+  .pf-nav-logo{ font-family:var(--serif); font-size:1.1rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); text-decoration:none; }
+  .pf-nav-links{ display:flex; gap:2.5rem; list-style:none; }
+  .pf-nav-links a{ font-size:1.08rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+  .pf-nav-links a:hover{ color:var(--ink); }
+  .pf-nav-links a[aria-current="page"]{ color:var(--ink); font-weight:600; }
+  .pf-nav-toggle{ display:none; background:none; border:none; cursor:pointer; padding:.5rem; flex-direction:column; gap:5px; z-index:101; }
+  .pf-nav-toggle span{ display:block; width:24px; height:2px; background:var(--ink); transition:all .3s; }
+  .pf-nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .pf-nav-toggle.open span:nth-child(2){ opacity:0; }
+  .pf-nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  @media(max-width:768px){
+    .pf-wrap{ padding-top:116px; padding-left:max(20px, env(safe-area-inset-left, 0px)); padding-right:max(20px, env(safe-area-inset-right, 0px)); }
+    .pf-nav-toggle{ display:flex; }
+    .pf-nav-links{ position:fixed; top:0; right:0; bottom:0; width:100%; max-width:320px; background:var(--bg); flex-direction:column; justify-content:center; align-items:center; gap:2rem; transform:translateX(100%); transition:transform .3s ease; padding:2rem; box-shadow:-4px 0 24px rgba(0,0,0,.1); z-index:99; }
+    .pf-nav-links.open{ transform:translateX(0); }
+    .pf-nav-links a{ font-size:1.25rem; letter-spacing:.15em; }
+    .pf-nav-links li{ list-style:none; }
+  }
+
+  .pf-eyebrow{ font-size:.74rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--goldd); }
+  .sf-crumb{ font-size:.82rem; color:var(--muted); }
+  .sf-crumb a{ color:var(--goldd); text-decoration:none; }
+  .sf-crumb a:hover{ text-decoration:underline; }
+  h1,h2,h3{ font-family:var(--serif); font-weight:500; line-height:1.1; text-wrap:balance; }
+  h1{ font-size:clamp(2.3rem,6vw,3.4rem); }
+  h2{ font-size:clamp(1.7rem,4vw,2.2rem); }
+  h1 em, h2 em{ font-style:italic; color:var(--hlt); }
+  .sf-lede{ color:var(--muted); max-width:60ch; font-size:1.05rem; }
+  .sf-sec{ display:flex; flex-direction:column; gap:18px; }
+  .sf-head{ display:flex; flex-direction:column; gap:8px; }
+  .sf-ico{ flex:none; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; }
+
+  /* Hero + estimator */
+  .sf-hero{ display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:32px; align-items:start; }
+  .sf-hero-copy{ display:flex; flex-direction:column; gap:14px; min-width:0; }
+  .sf-badges{ display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+  .sf-badge{ font-size:.74rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:5px 10px; background:var(--hltl); color:#4E3F68; }
+  .sf-badge.g{ background:var(--goldl); color:var(--goldd); }
+  .sf-est{ background:var(--card); border:1px solid var(--line); border-top:4px solid var(--hlt); padding:24px 22px; display:flex; flex-direction:column; gap:16px; min-width:0; }
+  .sf-est label{ font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .sf-age{ display:flex; align-items:center; gap:10px; }
+  .sf-age button{ width:48px; height:52px; font:inherit; font-size:1.4rem; background:var(--soft); border:1px solid var(--line); color:var(--ink); cursor:pointer; }
+  .sf-age button:hover{ border-color:var(--gold); }
+  .sf-age input{ flex:1; min-width:0; height:52px; font-family:var(--serif); font-size:1.7rem; font-weight:600; text-align:center; color:var(--ink); background:var(--card); border:1px solid var(--line); -moz-appearance:textfield; }
+  /* Coverage inside the estimator */
+  .sf-cov-est{ gap:6px; }
+  .sf-cov-est button{ padding:8px 11px; min-height:40px; }
+  .sf-other{ display:flex; align-items:center; gap:10px; }
+  .sf-other span{ font-size:.86rem; color:var(--muted); white-space:nowrap; }
+  .sf-other input{ flex:1; min-width:0; height:44px; font-family:var(--sans); font-size:1rem; font-weight:600; color:var(--ink); background:var(--card); border:1px solid var(--line); padding:0 12px; border-radius:0; -webkit-appearance:none; appearance:none; font-variant-numeric:tabular-nums; }
+  .sf-other input:focus{ outline:2px solid var(--gold); outline-offset:0; border-color:var(--gold); }
+  .sf-other input.on{ border-color:var(--ink); }
+  .sf-other-msg{ font-size:.82rem; color:#8A3A2C; min-height:0; }
+  .sf-at{ font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--goldd); }
+  .sf-age input::-webkit-outer-spin-button, .sf-age input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  .sf-age input:focus, .sf-age button:focus-visible, .sf-btn:focus-visible, .pf-wrap a:focus-visible, summary:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+  .sf-price{ display:flex; flex-direction:column; gap:2px; }
+  .sf-price .big{ font-family:var(--serif); font-size:3rem; font-weight:600; line-height:1; color:var(--ink); font-variant-numeric:tabular-nums; }
+  .sf-price .big small{ font-family:var(--sans); font-size:1rem; font-weight:500; color:var(--muted); }
+  .sf-price .yr{ font-size:.9rem; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .sf-facts{ list-style:none; display:flex; flex-direction:column; gap:8px; border-top:1px solid var(--line); padding-top:14px; font-size:.93rem; }
+  .sf-facts li{ display:flex; gap:10px; align-items:baseline; }
+  .sf-facts b{ font-variant-numeric:tabular-nums; }
+  .sf-dot{ width:8px; height:8px; border-radius:50%; background:var(--gold); flex:none; transform:translateY(-1px); }
+  .sf-wait{ font-size:.88rem; background:var(--goldl); color:#6B4F22; padding:10px 12px; }
+  .sf-note{ font-size:.76rem; color:var(--muted); line-height:1.5; }
+  .sf-err{ font-size:.88rem; color:#8A3A2C; background:#F8E6DF; padding:10px 12px; }
+
+  /* Tiles */
+  .sf-tiles{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+  .sf-tile{ background:var(--card); border:1px solid var(--line); padding:18px 16px; display:flex; flex-direction:column; gap:10px; min-width:0; }
+  .sf-tile .n{ font-family:var(--serif); font-size:2rem; font-weight:600; line-height:1; font-variant-numeric:tabular-nums; }
+  .sf-tile .l{ font-size:.86rem; color:var(--muted); line-height:1.45; }
+  .sf-cov{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-size:.86rem; color:var(--muted); }
+  .sf-cov button{ font:inherit; font-size:.84rem; font-weight:600; padding:7px 13px; background:var(--card); border:1px solid var(--line); color:var(--ink); cursor:pointer; }
+  .sf-cov button[aria-pressed="true"]{ background:var(--ink); border-color:var(--ink); color:var(--bg); }
+
+  /* Timeline */
+  .sf-tl{ list-style:none; display:flex; flex-direction:column; border-left:2px solid var(--line); margin-left:10px; }
+  .sf-tl li{ position:relative; padding:0 0 22px 26px; }
+  .sf-tl li:last-child{ padding-bottom:0; }
+  .sf-tl li::before{ content:""; position:absolute; left:-8px; top:6px; width:14px; height:14px; border-radius:50%; background:var(--card); border:2px solid var(--gold); }
+  .sf-tl li.hl::before{ background:var(--hlt); border-color:var(--hlt); }
+  .sf-tl .age{ font-family:var(--serif); font-size:1.3rem; font-weight:600; line-height:1.2; }
+  .sf-tl .what{ color:var(--muted); font-size:.94rem; max-width:58ch; }
+
+  /* Compare */
+  .sf-cmp{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .sf-cmp > div{ padding:22px 20px; display:flex; flex-direction:column; gap:10px; min-width:0; }
+  .sf-cmp .a{ background:var(--card); border:1px solid var(--line); }
+  .sf-cmp .b{ background:var(--hltl); border:1px solid #D5CCE2; }
+  .sf-cmp h3{ font-size:1.35rem; display:flex; gap:10px; align-items:center; }
+  .sf-cmp ul{ list-style:none; display:flex; flex-direction:column; gap:7px; font-size:.93rem; }
+  .sf-cmp li{ padding-left:16px; position:relative; }
+  .sf-cmp li::before{ content:""; position:absolute; left:0; top:.65em; width:6px; height:6px; background:currentColor; opacity:.5; border-radius:50%; }
+
+  /* Story */
+  .sf-story{ background:var(--card); border:1px solid var(--line); padding:24px 22px; display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:24px; }
+  .sf-story ol{ list-style:none; display:flex; flex-direction:column; gap:10px; font-size:.95rem; }
+  .sf-story ol li{ display:flex; gap:12px; align-items:baseline; }
+  .sf-story .at{ font-weight:700; min-width:58px; color:var(--goldd); font-variant-numeric:tabular-nums; }
+  .sf-sum{ display:flex; flex-direction:column; gap:12px; justify-content:center; border-left:1px solid var(--line); padding-left:24px; }
+  .sf-sum .k{ font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .sf-sum .v{ font-family:var(--serif); font-size:2rem; font-weight:600; line-height:1.05; font-variant-numeric:tabular-nums; }
+  .sf-sum .v.up{ color:var(--hlt); }
+
+  /* Fit list */
+  .sf-fit{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .sf-fit > div{ background:var(--card); border:1px solid var(--line); padding:20px; display:flex; flex-direction:column; gap:10px; min-width:0; }
+  .sf-fit h3{ font-size:1.25rem; }
+  .sf-fit ul{ list-style:none; display:flex; flex-direction:column; gap:8px; font-size:.93rem; }
+  .sf-fit li{ display:flex; gap:10px; align-items:flex-start; }
+  .sf-fit li svg{ flex:none; margin-top:3px; }
+
+  /* FAQ */
+  .sf-faq details{ border-bottom:1px solid var(--line); }
+  .sf-faq summary{ cursor:pointer; list-style:none; padding:16px 30px 16px 0; position:relative; font-family:var(--serif); font-size:1.2rem; font-weight:600; }
+  .sf-faq summary::-webkit-details-marker{ display:none; }
+  .sf-faq summary::after{ content:"+"; position:absolute; right:4px; top:12px; font-family:var(--sans); font-size:1.4rem; color:var(--goldd); }
+  .sf-faq details[open] summary::after{ content:"–"; }
+  .sf-faq p{ padding:0 0 16px; color:var(--muted); max-width:66ch; }
+
+  /* CTA */
+  .sf-cta{ background:var(--ink); color:var(--bg); padding:32px 26px; display:flex; flex-direction:column; gap:14px; align-items:flex-start; }
+  .sf-cta h2{ color:var(--bg); }
+  .sf-cta h2 em{ color:#E9C9A0; }
+  .sf-cta p{ color:#D9D3C6; max-width:56ch; }
+  .sf-btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top:4px; }
+  .sf-btn{ display:inline-flex; align-items:center; gap:8px; min-height:48px; padding:12px 20px; font-size:.92rem; font-weight:700; letter-spacing:.03em; text-decoration:none; }
+  .sf-btn.p{ background:var(--gold); color:#16150F; }
+  .sf-btn.p:hover{ background:#CDAE7A; }
+  .sf-btn.s{ border:1px solid #6B665C; color:var(--bg); }
+  .sf-btn.s:hover{ border-color:var(--gold); }
+  .pf-contact{ border-top:1px solid var(--line); padding-top:24px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:4px; }
+  .pf-contact .row{ display:flex; flex-wrap:wrap; justify-content:center; gap:4px 28px; }
+  .pf-contact a{ color:var(--ink); text-decoration:none; font-size:.9rem; font-weight:500; min-height:44px; display:inline-flex; align-items:center; }
+  .pf-contact a:hover{ color:var(--goldd); }
+  .pf-disclaimer{ font-size:.76rem; color:var(--muted); line-height:1.55; max-width:80ch; margin:0 auto; text-align:center; }
+
+  @media(max-width:760px){
+    .sf-hero, .sf-story, .sf-cmp, .sf-fit{ grid-template-columns:minmax(0,1fr); }
+    .sf-tiles{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .sf-sum{ border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:18px; flex-direction:row; flex-wrap:wrap; gap:18px 28px; }
+  }
+  /* Phone readability: nothing under ~14px, body copy at 16px */
+  @media(max-width:600px){
+    .pf-inner{ gap:48px; }
+    .sf-lede{ font-size:1.05rem; }
+    .sf-note, .pf-disclaimer{ font-size:.875rem; }
+    .sf-crumb, .sf-badge{ font-size:.85rem; }
+    .pf-eyebrow{ font-size:.8rem; }
+    .sf-est label{ font-size:.8rem; }
+    .sf-sum .k{ font-size:.8rem; }
+    .sf-price .yr, .sf-wait{ font-size:.95rem; }
+    .sf-facts, .sf-tl .what, .sf-cmp ul, .sf-story ol, .sf-fit ul, .sf-faq p{ font-size:1rem; }
+    .sf-tiles{ grid-template-columns:minmax(0,1fr); }
+    .sf-tile{ flex-direction:row; align-items:center; gap:14px; }
+    .sf-tile .n{ font-size:1.7rem; min-width:7.2rem; }
+    .sf-tile .l{ font-size:.95rem; }
+    .sf-cov{ font-size:.95rem; }
+    .sf-cov button{ font-size:.92rem; padding:9px 14px; }
+    .sf-btn{ width:100%; justify-content:center; font-size:1rem; }
+    .pf-contact a{ font-size:1rem; }
+  }
+  /* Buttons that open the proposal form */
+  button.sf-btn{ border:0; font-family:var(--sans); cursor:pointer; }
+  .sf-est-cta{ min-height:48px; width:100%; font-family:var(--sans); font-size:.92rem; font-weight:700; letter-spacing:.03em; background:var(--ink); color:var(--bg); border:0; cursor:pointer; }
+  .sf-est-cta:hover{ background:#2B2920; }
+  .sf-est-cta:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+  /* ---- Proposal form (shared across product pages) ---- */
+  .pp-modal{ position:fixed; inset:0; z-index:200; display:none; background:rgba(22,21,15,.55); overflow-y:auto; -webkit-overflow-scrolling:touch; padding:calc(24px + env(safe-area-inset-top,0px)) max(16px, env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(16px, env(safe-area-inset-left,0px)); }
+  .pp-modal.open{ display:block; }
+  .pp-panel{ position:relative; max-width:560px; margin:0 auto; background:var(--bg); border-top:4px solid var(--hlt); padding:28px 26px 24px; box-shadow:0 20px 60px rgba(0,0,0,.25); }
+  .pp-x{ position:absolute; top:10px; right:10px; width:44px; height:44px; border:0; background:none; font-size:1.6rem; line-height:1; color:var(--ink); cursor:pointer; }
+  .pp-steps{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px; padding-right:36px; }
+  .pp-steps span{ font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); border-top:3px solid var(--line); padding-top:8px; }
+  .pp-steps span.on{ border-top-color:var(--gold); color:var(--ink); }
+  .pp-h{ font-family:var(--serif); font-size:1.75rem; font-weight:600; line-height:1.15; margin-bottom:6px; }
+  .pp-p{ color:var(--muted); font-size:.95rem; margin-bottom:6px; }
+  .pp-form{ display:flex; flex-direction:column; gap:6px; }
+  .pp-form label, .pp-lbl{ font-size:.74rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); margin-top:10px; }
+  .pp-form label span, .pp-lbl span{ text-transform:none; letter-spacing:0; font-weight:500; color:var(--muted); }
+  .pp-form input[type=text], .pp-form input[type=email], .pp-form input[type=tel], .pp-form select{ width:100%; font-family:var(--sans); font-size:1rem; color:var(--ink); background:var(--card); border:1px solid var(--line); padding:12px 14px; min-height:50px; border-radius:0; -webkit-appearance:none; appearance:none; }
+  .pp-form select{ background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%); background-position:calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size:5px 5px; background-repeat:no-repeat; padding-right:32px; }
+  .pp-form select:invalid{ color:var(--muted); }
+  .pp-form input:focus, .pp-form select:focus{ outline:2px solid var(--gold); outline-offset:0; border-color:var(--gold); }
+  .pp-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .pp-row > div{ display:flex; flex-direction:column; gap:6px; min-width:0; }
+  .pp-dob{ display:grid; grid-template-columns:1.4fr 1fr 1.2fr; gap:8px; }
+  .pp-dob-age{ font-size:.82rem; color:var(--muted); min-height:1.2em; line-height:1.45; }
+  .pp-dob-age b{ color:var(--ink); }
+  .pp-plan{ display:flex; background:var(--card); border:2px solid var(--ink); margin-top:4px; }
+  .pp-plan i{ width:5px; background:var(--hlt); flex:none; }
+  .pp-plan div{ padding:12px 14px; display:flex; flex-direction:column; gap:2px; }
+  .pp-plan b{ font-size:1rem; }
+  .pp-plan small{ font-size:.86rem; color:var(--muted); }
+  .pp-plan em{ font-style:normal; font-size:.86rem; font-weight:600; color:var(--goldd); }
+  .pp-chips{ display:flex; flex-wrap:wrap; gap:6px; }
+  .pp-chips button{ font-family:var(--sans); font-size:.86rem; font-weight:600; padding:10px 13px; min-height:44px; background:var(--card); border:1px solid var(--line); color:var(--ink); cursor:pointer; }
+  .pp-chips button[aria-pressed="true"]{ background:var(--ink); border-color:var(--ink); color:var(--bg); }
+  .pp-note{ font-size:.8rem; color:var(--muted); line-height:1.45; }
+  .pp-consent{ display:flex !important; gap:10px; align-items:flex-start; text-transform:none !important; letter-spacing:0 !important; font-weight:500 !important; font-size:.84rem !important; color:var(--muted) !important; margin-top:14px !important; }
+  .pp-consent input{ width:20px; height:20px; flex:0 0 20px; margin-top:1px; accent-color:var(--ink); }
+  .pp-err{ color:#B3412E; font-size:.86rem; font-weight:600; min-height:1em; margin-top:4px; }
+  .pp-submit{ min-height:54px; margin-top:6px; font-family:var(--sans); font-size:.9rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:var(--ink); color:var(--bg); border:0; cursor:pointer; }
+  .pp-submit:hover{ background:#2B2920; }
+  .pp-link{ align-self:center; background:none; border:0; font-family:var(--sans); font-size:.9rem; color:var(--muted); text-decoration:underline; cursor:pointer; min-height:44px; }
+  .pp-done{ display:flex; flex-direction:column; gap:12px; align-items:center; text-align:center; }
+  .pp-done .pp-p{ max-width:42ch; }
+  .pp-done a{ display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 20px; font-size:.9rem; font-weight:700; text-decoration:none; }
+  .pp-fb{ background:#1877F2; color:#fff; }
+  .pp-out{ border:1px solid var(--ink); color:var(--ink); }
+  .pp-modal button:focus-visible, .pp-modal a:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+  @media(max-width:600px){
+    .pp-modal{ padding:0; background:var(--bg); }
+    .pp-panel{ max-width:none; min-height:100%; box-shadow:none; padding:calc(22px + env(safe-area-inset-top,0px)) max(18px, env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(18px, env(safe-area-inset-left,0px)); }
+    .pp-x{ top:calc(10px + env(safe-area-inset-top,0px)); }
+  }
+  @media (prefers-reduced-motion: reduce){ .pf-wrap *{ transition:none !important; } }
+</style>
+</head>
+<body>
+<div class="pf-wrap">
+  <div class="pf-topnav">
+    <a class="pf-nav-logo" href="https://me.donnanuqui.com/">Donna Nuqui</a>
+    <button class="pf-nav-toggle" id="pfNavToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="pf-nav-links" id="pfNavLinks">
+      <li><a href="https://me.donnanuqui.com/#about">Meet Donna</a></li>
+      <li><a href="https://me.donnanuqui.com/#services">Services</a></li>
+      <li><a href="https://me.donnanuqui.com/#tools">Tools</a></li>
+      <li><a href="https://plans.donnanuqui.com" aria-current="page">Plans</a></li>
+      <li><a href="https://me.donnanuqui.com/#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="pf-inner">
+    <!-- Hero -->
+    <section class="sf-hero" aria-labelledby="sfTitle">
+      <div class="sf-hero-copy">
+        <p class="sf-crumb"><a href="https://plans.donnanuqui.com">All plans</a> &rsaquo; For parents</p>
+        <p class="pf-eyebrow">SUN Senior Care</p>
+        <h1 id="sfTitle">Yes, you can still protect <em>Mama and Papa.</em></h1>
+        <p class="sf-lede">Cash if your parent is diagnosed with an illness common at their age, like stroke, heart attack or Alzheimer’s, so the bills don’t fall on you or eat up their retirement savings. Made for ages 50 to 70, and you only pay for a few years.</p>
+        <div class="sf-badges"><span class="sf-badge">For ages 50 to 70</span><span class="sf-badge g">17 age-related illnesses</span><span class="sf-badge g">Pay for 3, 5 or 10 years</span></div>
+      </div>
+
+      <form class="sf-est" id="sfEst" novalidate>
+        <label for="sfAgeInput">Your parent’s age</label>
+        <div class="sf-age">
+          <button type="button" id="sfMinus" aria-label="One year younger">−</button>
+          <input type="number" id="sfAgeInput" inputmode="numeric" min="50" max="70" value="65" aria-describedby="sfAgeHelp">
+          <button type="button" id="sfPlus" aria-label="One year older">+</button>
+        </div>
+        <label id="sfCovEstLbl">Coverage</label>
+        <div class="sf-cov sf-cov-est" role="group" aria-labelledby="sfCovEstLbl">
+          <button type="button" data-cov="300000" aria-pressed="true">₱300K (min)</button>
+          <button type="button" data-cov="500000" aria-pressed="false">₱500K</button>
+          <button type="button" data-cov="1000000" aria-pressed="false">₱1M</button>
+          <button type="button" data-cov="3000000" aria-pressed="false">₱3M</button>
+          <button type="button" data-cov="5000000" aria-pressed="false">₱5M</button>
+          <button type="button" data-cov="10000000" aria-pressed="false">₱10M</button>
+        </div>
+        <div class="sf-other"><span>Or type an amount</span><input type="text" id="sfCovOther" inputmode="numeric" autocomplete="off" placeholder="e.g. 600,000" aria-label="Coverage amount in pesos" aria-describedby="sfOtherMsg"></div>
+        <p class="sf-other-msg" id="sfOtherMsg" aria-live="polite"></p>
+        <div id="sfOut" aria-live="polite"></div>
+        <button type="button" class="sf-est-cta" data-proposal="estimator">Get my exact numbers, free</button>
+        <p class="sf-note" id="sfAgeHelp">Estimate for the base plan at the coverage you pick (minimum ₱300,000), paying for 5 years. Riders cost extra. The exact premium comes with your proposal.</p>
+      </form>
+    </section>
+    <!-- What you get -->
+    <section class="sf-sec" aria-labelledby="sfGetTitle">
+      <div class="sf-head">
+        <p class="pf-eyebrow">What you’d get</p>
+        <h2 id="sfGetTitle">Cash when they need it, <em>so the bills don’t fall on you.</em></h2>
+      </div>
+      <div class="sf-cov" role="group" aria-label="Coverage amount">
+        <span>Show for coverage of</span>
+          <button type="button" data-cov="300000" aria-pressed="true">₱300K (minimum)</button>
+          <button type="button" data-cov="500000" aria-pressed="false">₱500K</button>
+          <button type="button" data-cov="1000000" aria-pressed="false">₱1M</button>
+          <button type="button" data-cov="3000000" aria-pressed="false">₱3M</button>
+          <button type="button" data-cov="5000000" aria-pressed="false">₱5M</button>
+          <button type="button" data-cov="10000000" aria-pressed="false">₱10M</button>
+      </div>
+      <div class="sf-tiles">
+        <div class="sf-tile"><span class="sf-ico" style="width:52px;height:52px;background:#ECE7F1"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5A4A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 13.572l-7.5 7.428l-2.896 -2.868m-6.117 -8.104a5 5 0 0 1 9.013 -3.022a5 5 0 1 1 7.5 6.572"/><path d="M3 13h2l2 3l2 -6l1 3h3"/></svg></span><div class="n" data-pct="150"></div><div class="l">cash if diagnosed with one of 17 illnesses like stroke, cancer or Alzheimer’s</div></div>
+        <div class="sf-tile"><span class="sf-ico" style="width:52px;height:52px;background:#E3EADF"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#46703F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/></svg></span><div class="n" data-pct="5"></div><div class="l">extra for knee replacement, glaucoma surgery, cochlear implant or severe osteoporosis</div></div>
+        <div class="sf-tile"><span class="sf-ico" style="width:52px;height:52px;background:#E1E8EF"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#34506A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M5 22v-5l-1 -1v-4a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4l-1 1v5"/><path d="M15 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M15 22v-4h-2l2 -6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1l2 6h-2v4"/></svg></span><div class="n" data-pct="150"></div><div class="l">for the family, until age 100, if no illness benefit was paid</div></div>
+        <div class="sf-tile"><span class="sf-ico" style="width:52px;height:52px;background:#EEEBE4"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4F4C45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/><path d="M10 16l2 2l4 -4"/></svg></span><div class="n">3, 5 or 10</div><div class="l">years of paying, then done</div></div>
+      </div>
+      <p class="sf-note">Plus dividends that can be taken as cash, left to grow or used to pay premiums (not guaranteed), and access to a wellness program.</p>
+    </section>
+    <!-- Timeline -->
+    <section class="sf-sec" aria-labelledby="sfTlTitle">
+      <div class="sf-head">
+        <p class="pf-eyebrow">Their timeline</p>
+        <h2 id="sfTlTitle"><span id="sfTlLead">Starting at 65,</span> <em>here’s how the plan runs.</em></h2>
+      </div>
+      <ol class="sf-tl" id="sfTl"></ol>
+    </section>
+    <!-- Compare -->
+    <section class="sf-sec" aria-labelledby="sfCmpTitle">
+      <div class="sf-head">
+        <p class="pf-eyebrow">Why it matters</p>
+        <h2 id="sfCmpTitle">Their savings stay theirs. <em>Yours stay yours.</em></h2>
+      </div>
+      <div class="sf-cmp">
+        <div class="b"><h3><span class="sf-ico" style="width:40px;height:40px;background:#FFFFFF"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4E3F68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M9 12l2 2l4 -4"/></svg></span> With Senior Care</h3><ul><li>Cash on diagnosis, paid to them</li><li>Covers illnesses common after 50</li><li>Paid for in just a few years</li></ul></div>
+        <div class="a"><h3><span class="sf-ico" style="width:40px;height:40px;background:#F2EAD9"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></svg></span> Without a plan</h3><ul><li>Bills come out of their retirement savings</li><li>Or out of their children’s pockets</li><li>Harder to get covered as they get older</li></ul></div>
+      </div>
+      <p class="sf-note">Ito ang sagot ko kapag tinatanong kung pwede pang i-insure ang parents. Yes, and the earlier, the better.</p>
+    </section>
+    <!-- Story -->
+    <section class="sf-sec" aria-labelledby="sfStoryTitle">
+      <div class="sf-head">
+        <p class="pf-eyebrow">Sample illustration for age 65</p>
+        <h2 id="sfStoryTitle">Insured at 65. <em>Covered when it counted.</em></h2>
+      </div>
+      <div class="sf-story">
+        <ol>
+          <li><span class="at">Age 65</span><span>Her children get her ₱300,000 coverage and pay for 3 years.</span></li>
+          <li><span class="at">Age 70</span><span>Knee replacement. The surgery benefit pays ₱15,000.</span></li>
+          <li><span class="at">Age 81</span><span>Diagnosed with a covered illness. The plan pays ₱450,000 in cash.</span></li>
+        </ol>
+        <div class="sf-sum">
+          <div><div class="k">Total received</div><div class="v up">₱540,737</div></div>
+          <div class="sf-note">Includes ₱75,737 in dividends illustrated at 3.5% a year, which are not guaranteed.</div>
+        </div>
+      </div>
+    </section>
+    <!-- Fit -->
+    <section class="sf-sec" aria-labelledby="sfFitTitle">
+      <div class="sf-head">
+        <p class="pf-eyebrow">Is it for you?</p>
+        <h2 id="sfFitTitle">Good fit, <em>and good to know.</em></h2>
+      </div>
+      <div class="sf-fit">
+        <div><h3>A good fit if</h3><ul>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#46703F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/></svg><span>Your parents are in their 50s to 70s</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#46703F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/></svg><span>You want to protect your own savings from their medical bills</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#46703F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/></svg><span>They’re retired and want their savings to last</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#46703F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/></svg><span>You want cash for illnesses common at their age</span></li></ul></div>
+        <div><h3>Good to know</h3><ul>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></svg><span>For ages 50 to 70</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></svg><span>The illness benefit pays once, and then the policy ends</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></svg><span>Pre-existing conditions may be excluded. If your parent already has a condition, EasyLink Protect (no medical exam) may be the easier fit</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></svg><span>Severe osteoporosis is covered until age 85</span></li></ul></div>
+      </div>
+    </section>
+    <!-- FAQ -->
+    <section class="sf-sec sf-faq" aria-labelledby="sfFaqTitle">
+      <div class="sf-head">
+        <p class="pf-eyebrow">Questions</p>
+        <h2 id="sfFaqTitle">What people <em>usually ask.</em></h2>
+      </div>
+      <div>
+        <details><summary>What illnesses are covered?</summary><p>Any of 17 illnesses common at an older age, like heart attack, stroke, cancer, Alzheimer’s, Parkinson’s or kidney failure. The plan pays cash equal to 150% of the coverage.</p></details>
+        <details><summary>What about surgeries?</summary><p>A one-time extra 5% of the coverage for knee replacement, glaucoma surgery, a cochlear implant or severe osteoporosis (until age 85).</p></details>
+        <details><summary>How do we pay?</summary><p>In 3, 5 or 10 years, yearly, every 6 months, every 3 months or monthly. The estimate on this page is for 5 years.</p></details>
+        <details><summary>What does the family get?</summary><p>If no illness benefit has been paid, the family receives 150% of the coverage, until age 100.</p></details>
+        <details><summary>Anything else?</summary><p>Dividends that can be taken as cash, left to grow or used to pay premiums (not guaranteed), a cash value they can borrow against, and access to a wellness program.</p></details>
+        <details><summary>Can I pay for my parent’s plan?</summary><p>Yes. Many of my clients get this for their parents. Your parent is the insured, and you can be the one paying.</p></details>
+        <details><summary>How do I get my exact numbers?</summary><p>Tap “Get my free proposal” and leave your details, or message me. I’ll send your exact premium and benefits for their age, coverage and payment term.</p></details>
+      </div>
+    </section>
+    <!-- CTA -->
+    <section class="sf-cta" aria-labelledby="sfCtaTitle">
+      <p class="pf-eyebrow" style="color:#E9C9A0">Next step</p>
+      <h2 id="sfCtaTitle">Want their exact numbers? <em id="sfCtaAge">It’s free.</em></h2>
+      <p>Get a proposal for your parent’s age and the coverage you want. No obligation, and you can ask me anything along the way.</p>
+      <div class="sf-btns">
+        <button type="button" class="sf-btn p" data-proposal="cta">Get my free proposal</button>
+        <a class="sf-btn s" id="sfMsg" href="https://m.me/financial.advisor.donna.n" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" /> <path d="M8 13l3 -2l2 2l3 -2" /> </svg> Message me to know more</a>
+      </div>
+    </section>
+
+    <div class="pf-contact">
+      <p class="pf-eyebrow">Prefer to talk now?</p>
+      <div class="row">
+        <a href="tel:+639623858115">0962 385 8115</a>
+        <a href="mailto:donnadel.g.nuqui@sunlife.com.ph">donnadel.g.nuqui@sunlife.com.ph</a>
+        <a href="https://plans.donnanuqui.com">Compare all plans</a>
+      </div>
+    </div>
+    <p class="pf-disclaimer">Prices shown are estimated premiums for the base plan only, non-smoker, paying for 5 years, worked out from the premium at the minimum coverage of ₱300,000 and scaled to the coverage you pick. Riders and add-ons cost extra and are not included. Ages between benchmark points are estimated. These are estimates only and the actual premium may vary. The age-65 example is a sample illustration. Dividends are not guaranteed. Educational summary only, not a formal quote. Benefits, limits, issue ages and eligibility are subject to underwriting and the actual policy contract.</p>
+  </div>
+
+  <!-- Proposal form pop-up (filled in by the script below) -->
+  <div class="pp-modal" id="ppModal" role="dialog" aria-modal="true" aria-labelledby="ppTitle">
+    <div class="pp-panel">
+      <button type="button" class="pp-x" id="ppClose" aria-label="Close">×</button>
+      <div id="ppBody"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var t = document.getElementById('pfNavToggle'), l = document.getElementById('pfNavLinks');
+  if(t && l){
+    t.addEventListener('click', function(){ t.classList.toggle('open'); l.classList.toggle('open'); });
+    var links = l.querySelectorAll('a');
+    for(var i=0;i<links.length;i++){ links[i].addEventListener('click', function(){ t.classList.remove('open'); l.classList.remove('open'); }); }
+  }
+})();
+(function(){
+  /* Single source of truth: the Sun Life Product Dashboard's Benchmarks tab (snapshot 2026-10-14),
+     same figures as the Plan Finder. Yearly premium, base plan, minimum coverage, non-smoker.
+     Only the main age columns are used; any age in between is the straight-line average of the
+     two nearest ages (age 50 = average of 45 and 55). */
+  var BENCH = {"min_fa": 300000, "age_min": 50, "age_max": 70, "yearly": {"55": 67989, "60": 72855, "65": 79107}};
+  var MIN_AGE = BENCH.age_min || 0, MAX_AGE = BENCH.age_max;
+  var input = document.getElementById('sfAgeInput'), out = document.getElementById('sfOut');
+  var cov = BENCH.min_fa;
+  /* Shared with the proposal form: the age and coverage the visitor is looking at, and the estimator. */
+  window.SF_STATE = { age:null, monthly:null, cov:cov };
+  /* Premium for any coverage: the premium at the minimum coverage, times how many times bigger
+     the coverage is (₱600K = 2 × ₱300K, so 2 × the premium). Matches the dashboard's ₱1M-at-35 figure exactly. */
+  function premium(a, c){
+    c = c || BENCH.min_fa; var f = c / BENCH.min_fa;
+    /* Plans that get cheaper per peso at bigger coverage: scaled toward the dashboard's ₱1M-at-35 figure (same as the Plan Finder). */
+    if(BENCH.fa1m_disc && BENCH.yearly['35'] && c > BENCH.min_fa){
+      var r = BENCH.fa1m_disc / (BENCH.yearly['35'] * 1000000 / BENCH.min_fa);
+      if(r < 1){ var t = BENCH.min_fa >= 1000000 ? 1 : Math.min(1, (c - BENCH.min_fa) / (1000000 - BENCH.min_fa)); f = f * (1 - (1 - r) * t); }
+    }
+    return estimate(a) * f;
+  }
+  window.sfEstimate = function(a, c){ return (a === null || a > MAX_AGE) ? null : premium(a, c || cov); };
+  window.sfMinFA = BENCH.min_fa;
+
+  function peso(n){ return '₱' + Math.round(n).toLocaleString('en-PH'); }
+  function estimate(age){
+    var y = BENCH.yearly, keys = Object.keys(y).map(Number).sort(function(a,b){ return a-b; });
+    if(y[age] !== undefined) return y[age];
+    var first = keys[0], last = keys[keys.length-1];
+    if(age < first) return y[first];
+    for(var i=0;i<keys.length-1;i++){
+      var a = keys[i], b = keys[i+1];
+      if(age > a && age < b) return y[a] + (y[b]-y[a]) * (age-a)/(b-a);
+    }
+    var prev = keys[keys.length-2], slope = (y[last]-y[prev])/(last-prev);
+    return y[last] + Math.max(0, slope) * (age-last);
+  }
+  function readAge(){
+    var v = String(input.value).trim();
+    if(v === '' || !/^\d+$/.test(v)) return null;
+    return parseInt(v, 10);
+  }
+  function li(dot, txt){ return '<li><span class="sf-dot"></span><span>' + txt + '</span></li>'; }
+
+  function renderTimeline(age){
+    var items = [];
+    items.push(['Age ' + age + ' · Today', 'Covered for 17 illnesses common at their age, with ' + peso(cov*1.5) + ' cash on diagnosis.', true]);
+    items.push(['Age ' + (age + 5) + ' · Done paying', 'Paid for in 5 years (or 3 or 10, your choice). The protection stays.', false]);
+    items.push(['If they need a covered surgery', peso(cov*0.05) + ' extra, for knee replacement, glaucoma surgery, a cochlear implant or severe osteoporosis.', false]);
+    items.push(['If diagnosed with a covered illness', peso(cov*1.5) + ' cash, so treatment and care don’t come out of your pocket.', true]);
+    items.push(['Up to age 100 · Covered', 'If no illness benefit was paid, the family receives ' + peso(cov*1.5) + '.', false]);
+    document.getElementById('sfTl').innerHTML = items.map(function(it){
+      return '<li' + (it[2] ? ' class="hl"' : '') + '><div class="age">' + it[0] + '</div><p class="what">' + it[1] + '</p></li>';
+    }).join('');
+    document.getElementById('sfTlLead').textContent = 'Starting at ' + age + ',';
+  }
+
+  function render(){
+    var age = readAge();
+    if(age === null){ window.SF_STATE.age = null; out.innerHTML = '<p class="sf-err">Enter their age in years, from ' + MIN_AGE + ' to ' + MAX_AGE + '.</p>'; return; }
+    if(age < MIN_AGE){ window.SF_STATE.age = age; out.innerHTML = '<p class="sf-err">This plan is for ages 50 to 70. For younger family members, see the other plans.</p>'; return; }
+    if(age > MAX_AGE){
+      window.SF_STATE.age = age;
+      out.innerHTML = '<p class="sf-err">This plan is available up to age 70. <a href="https://plans.donnanuqui.com" style="color:inherit;font-weight:700">See plans for your age</a></p>';
+      return;
+    }
+    var yr = premium(age, cov), mo = yr / 12;
+    var html = '<div class="sf-price"><span class="sf-at">At ' + peso(cov) + ' coverage' + (cov === BENCH.min_fa ? ' (minimum)' : '') + '</span><span class="big">' + peso(mo) + ' <small>/ month</small></span>' +
+      '<span class="yr">about ' + peso(yr) + ' a year · about ' + peso(yr/365) + ' a day</span></div>';
+    html += '<ul class="sf-facts">' +
+      li(1, '<b>' + peso(cov*1.5) + '</b> cash if diagnosed with one of 17 illnesses') +
+      li(1, '<b>' + peso(cov*0.05) + '</b> extra for 4 covered surgeries') +
+      li(1, 'Paid for in 5 years, covered to <b>100</b>') + '</ul>';
+    if(age + 5 <= MAX_AGE){
+      var diff = (premium(age+5, cov) - yr) / 12;
+      if(diff >= 20) html += '<p class="sf-wait">Waiting until ' + (age+5) + ' adds about <b>' + peso(diff) + '</b> a month, every month for 5 years.</p>';
+    }
+    var firstB = Math.min.apply(null, Object.keys(BENCH.yearly).map(Number));
+    if(age < firstB) html += '<p class="sf-note">Under ' + firstB + ', we show the age-' + firstB + ' estimate. Younger is usually a little lower; the proposal will have the exact figure.</p>';
+    out.innerHTML = html;
+    window.SF_STATE.age = age; window.SF_STATE.monthly = mo;
+    renderTimeline(age);
+    var msg = 'Hi Donna! I saw SUN Senior Care on your site. My parent is ' + age + ' and I’d like to know more.';
+    document.getElementById('sfMsg').href = 'https://m.me/financial.advisor.donna.n?text=' + encodeURIComponent(msg);
+    document.getElementById('sfCtaAge').textContent = 'At ' + age + ', it’s free to ask.';
+  }
+
+  function step(d){ var a = readAge(); if(a === null) a = 35; a = Math.min(MAX_AGE, Math.max(MIN_AGE, a + d)); input.value = a; render(); }
+  document.getElementById('sfMinus').addEventListener('click', function(){ step(-1); });
+  document.getElementById('sfPlus').addEventListener('click', function(){ step(1); });
+  input.addEventListener('input', render);
+  document.getElementById('sfEst').addEventListener('submit', function(e){ e.preventDefault(); render(); });
+
+  function renderTiles(){
+    var ns = document.querySelectorAll('.sf-tile .n');
+    /* ₱1M and up shows as ₱3M, ₱7.5M, so big coverage fits the tiles on phones. */
+    for(var i=0;i<ns.length;i++){
+      if(!ns[i].hasAttribute('data-pct')) continue;
+      var amt = cov * parseInt(ns[i].getAttribute('data-pct'),10) / 100;
+      var pre = ns[i].getAttribute('data-pre') || '';
+      /* a prefixed amount (like +₱150K) is shortened so it stays on one line on phones */
+      ns[i].textContent = pre + (amt >= 1000000 ? '₱' + (Math.round(amt / 100000) / 10) + 'M' : (pre ? '₱' + Math.round(amt / 1000) + 'K' : peso(amt)));
+    }
+  }
+  /* Coverage: the buttons (in the estimator and in "What you'd get") and the typed amount all set the same value. */
+  var covBtns = document.querySelectorAll('[data-cov]');
+  var other = document.getElementById('sfCovOther'), otherMsg = document.getElementById('sfOtherMsg');
+  function setCov(v, fromTyped){
+    cov = v; window.SF_STATE.cov = v;
+    for(var k=0;k<covBtns.length;k++) covBtns[k].setAttribute('aria-pressed', parseInt(covBtns[k].getAttribute('data-cov'), 10) === v ? 'true' : 'false');
+    if(!fromTyped){ other.value = ''; other.classList.remove('on'); otherMsg.textContent = ''; }
+    renderTiles(); render();
+  }
+  for(var j=0;j<covBtns.length;j++){
+    covBtns[j].addEventListener('click', function(){ setCov(parseInt(this.getAttribute('data-cov'), 10), false); });
+  }
+  var otherTimer = null;
+  other.addEventListener('input', function(){
+    var digits = other.value.replace(/[^0-9]/g, '').slice(0, 9);
+    other.value = digits ? parseInt(digits, 10).toLocaleString('en-PH') : '';
+    var v = digits ? parseInt(digits, 10) : 0;
+    if(!v){ otherMsg.textContent = ''; other.classList.remove('on'); setCov(BENCH.min_fa, false); return; }
+    if(v < BENCH.min_fa){ otherMsg.textContent = 'The minimum coverage is ' + peso(BENCH.min_fa) + '.'; other.classList.remove('on'); return; }
+    otherMsg.textContent = ''; other.classList.add('on');
+    setCov(v, true);
+    clearTimeout(otherTimer);
+    otherTimer = setTimeout(function(){ if(typeof window.sfTrack === 'function') window.sfTrack('coverage_select', { coverage: v, typed: true, age: window.SF_STATE.age }); }, 1200);
+  });
+
+  /* Carry age over from the Plan Finder or a post link: ?age=32 */
+  try{
+    var m = /[?&]age=(\d{1,2})\b/.exec(location.search);
+    if(m){ input.value = Math.min(99, parseInt(m[1],10)); }
+  }catch(e){}
+  renderTiles(); render();
+})();
+</script>
+<script>
+/* Analytics: every meaningful action is sent to GA4 with the post source, age and age band attached. */
+(function(){
+  function send(name, params){ try{ if(typeof gtag === 'function') gtag('event', name, params || {}); }catch(e){} }
+  window.sfTrack = send;
+  var input = document.getElementById('sfAgeInput'), started = false;
+  function curAge(){ var v = parseInt(input.value, 10); return isNaN(v) ? null : v; }
+  function band(a){ if(a === null) return 'unknown'; if(a < 18) return 'under 18'; if(a <= 30) return '18-30'; if(a <= 45) return '31-45'; if(a <= 60) return '46-60'; return '61+'; }
+  var fromLink = /[?&]age=\d/.test(location.search);
+  function ctx(extra){ var entered = started || fromLink, a = entered ? curAge() : null;
+    var o = { age:a, age_band: entered ? band(a) : 'not_entered' }; for(var k in extra) o[k] = extra[k]; return o; }
+
+  /* Estimator: first touch, then each settled age (after the visitor pauses) */
+  var lastSent = null, timer = null;
+  function onAgeChange(){
+    if(!started){ started = true; send('estimator_start', ctx({})); }
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      var a = curAge();
+      if(a === null || a === lastSent) return;
+      lastSent = a;
+      if(a > 70 || a < 50) send('age_out_of_range', ctx({}));
+      else{
+        var big = document.querySelector('.sf-price .big');
+        var mo = big ? parseInt(big.textContent.replace(/[^0-9]/g, ''), 10) : null;
+        send('estimate_view', ctx({ est_monthly: mo }));
+      }
+    }, 1200);
+  }
+  input.addEventListener('input', onAgeChange);
+  document.getElementById('sfMinus').addEventListener('click', onAgeChange);
+  document.getElementById('sfPlus').addEventListener('click', onAgeChange);
+
+  /* Coverage switch */
+  var cb = document.querySelectorAll('[data-cov]');
+  for(var i=0;i<cb.length;i++) cb[i].addEventListener('click', function(){ send('coverage_select', ctx({ coverage: parseInt(this.getAttribute('data-cov'), 10) })); });
+
+  /* FAQ opens */
+  var ds = document.querySelectorAll('.sf-faq details');
+  for(var j=0;j<ds.length;j++) ds[j].addEventListener('toggle', function(){ if(this.open) send('faq_open', ctx({ question: this.querySelector('summary').textContent.trim() })); });
+
+  /* Every link click, labelled by what it is. Messenger and proposal also count as leads. */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a') : null; if(!a) return;
+    var h = a.getAttribute('href') || '', cta = 'other';
+    if(/m\.me\//.test(h)) cta = 'messenger';
+    else if(/proposal/.test(h)) cta = 'proposal';
+    else if(/^tel:/.test(h)) cta = 'phone';
+    else if(/^mailto:/.test(h)) cta = 'email';
+    else if(a.closest('.pf-nav-links') || a.classList.contains('pf-nav-logo')) cta = 'nav_' + a.textContent.trim().toLowerCase().replace(/\s+/g, '_');
+    else if(a.closest('.sf-crumb')) cta = 'breadcrumb_all_plans';
+    else if(/plans\.donnanuqui\.com/.test(h)) cta = a.closest('.sf-err') ? 'over_age_see_plans' : 'compare_all_plans';
+    var lab = a.closest('section') ? a.closest('section').getAttribute('aria-labelledby') : null;
+    var where = lab ? (NAMES[lab] || lab) : (a.closest('.pf-contact') ? 'footer_contact' : 'header');
+    send('cta_click', ctx({ cta: cta, location: where, link_url: h.split('?')[0] }));
+    if(cta === 'messenger' || cta === 'proposal' || cta === 'phone' || cta === 'email') send('generate_lead', ctx({ method: cta }));
+  });
+
+  /* Which sections they actually reach */
+  var NAMES = { sfTitle:'estimator', sfGetTitle:'what_you_get', sfTlTitle:'timeline', sfCmpTitle:'why_matters', sfStoryTitle:'sample_age65', sfFitTitle:'is_it_for_you', sfFaqTitle:'faq', sfCtaTitle:'next_step' };
+  if('IntersectionObserver' in window){
+    var seen = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        var id = en.target.getAttribute('aria-labelledby'), n = NAMES[id] || id;
+        if(seen[n]) return; seen[n] = true;
+        send('section_view', ctx({ section: n }));
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.4 });
+    var secs = document.querySelectorAll('section[aria-labelledby]');
+    for(var k=0;k<secs.length;k++) io.observe(secs[k]);
+  }
+
+  /* Scroll depth: 25 / 50 / 75 / 100 */
+  var marks = [25, 50, 75, 100], hit = {};
+  window.addEventListener('scroll', function(){
+    var d = document.documentElement, max = d.scrollHeight - window.innerHeight;
+    var pct = max > 0 ? Math.round((window.scrollY || d.scrollTop) / max * 100) : 100;
+    marks.forEach(function(m){ if(pct >= m && !hit[m]){ hit[m] = true; send('scroll_depth', ctx({ percent: m })); } });
+  }, { passive: true });
+
+  /* Time actually spent on the page (only while it's visible) */
+  var secsOn = 0, milestones = [15, 30, 60, 120, 300], done = {};
+  setInterval(function(){
+    if(document.visibilityState !== 'visible') return;
+    secsOn++;
+    milestones.forEach(function(m){ if(secsOn >= m && !done[m]){ done[m] = true; send('time_on_page', ctx({ seconds: m })); } });
+  }, 1000);
+})();
+</script>
+<script>
+/* ---- Proposal form (shared across product pages) ----
+   Same fields and the same Google Sheet as the Plan Finder's form. To reuse on another
+   product page, copy this block, the .pp-* styles and the #ppModal markup, then change PROPOSAL. */
+(function(){
+  var PROPOSAL = {
+    page: 'ssc',                                   /* goes to the Sheet's "page" column */
+    planId: 'senior-care',
+    planName: 'SUN Senior Care',
+    tline: 'Health and life protection made for your parents’ age.',
+    minFA: 300000, ageMin: 50, ageMax: 70, forParent: true,
+    coverage: [300000, 500000, 1000000, 3000000, 5000000, 10000000]   /* same six amounts as the page */
+  };
+  var LEADS_URL = 'https://script.google.com/macros/s/AKfycbzVcrMEVF-Hj0M3qc2uzcP6_yYv7hJSTJ2ao3e04NVgVIRq7Ol-QDamBgCK-mr6EtMR7g/exec';
+  var FB_PAGE = 'https://www.facebook.com/financial.advisor.donna.n';
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var modal = document.getElementById('ppModal'), body = document.getElementById('ppBody');
+  var state = { cov:null, email:'' }, pushed = false;
+  function track(n, p){ if(typeof window.sfTrack === 'function') window.sfTrack(n, p || {}); }
+  function esc(t){ return String(t == null ? '' : t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function peso(n){ return '₱' + Math.round(n).toLocaleString('en-PH'); }
+
+  /* Where the visitor came from: utm_source, our own ?src= tag, Facebook/Google click ids, then the referring site. */
+  var SOURCE = (function(){
+    var q = {};
+    try{ (location.search || '').replace(/^\?/, '').split('&').forEach(function(kv){ if(!kv) return; var i = kv.indexOf('='); q[decodeURIComponent(i < 0 ? kv : kv.slice(0, i)).toLowerCase()] = i < 0 ? '' : decodeURIComponent(kv.slice(i + 1).replace(/\+/g, ' ')); }); }catch(x){}
+    var nice = function(t){ t = String(t || '').toLowerCase();
+      if(/plan_finder/.test(t)) return 'Plan Finder';
+      if(/messenger|m\.me/.test(t)) return 'Messenger';
+      if(/facebook|^fb/.test(t)) return 'Facebook';
+      if(/instagram|^ig$/.test(t)) return 'Instagram';
+      if(/google/.test(t)) return 'Google';
+      if(/tiktok/.test(t)) return 'TikTok';
+      if(/viber/.test(t)) return 'Viber';
+      if(/me\.donnanuqui/.test(t)) return 'me.donnanuqui.com';
+      if(/plans\.donnanuqui/.test(t)) return 'Plan Finder';
+      if(/donnanuqui/.test(t)) return 'donnanuqui.com';
+      return t; };
+    var label = '', camp = '';
+    if(q.utm_source){ label = nice(q.utm_source); camp = q.utm_campaign || q.utm_content || ''; }
+    else if(q.src){ label = nice(q.src); }
+    else if(q.fbclid){ label = 'Facebook'; }
+    else if(q.gclid){ label = 'Google Ads'; }
+    else { try{ if(document.referrer){ var h = new URL(document.referrer).hostname; if(h !== location.hostname || /plans\./.test(h)) label = nice(h); } }catch(x){} }
+    return (label || 'Direct') + (camp ? ' · ' + camp : '');
+  })();
+
+  /* ---------- Birthday ---------- */
+  function dobSelects(){
+    var y = new Date().getFullYear(), i, m, d, yr;
+    m = '<select id="ppDobM" aria-label="Birth month" required><option value="" selected disabled>Month</option>';
+    for(i = 0; i < 12; i++) m += '<option value="' + (i + 1) + '">' + MONTHS[i] + '</option>';
+    d = '<select id="ppDobD" aria-label="Birth day" required><option value="" selected disabled>Day</option>';
+    for(i = 1; i <= 31; i++) d += '<option value="' + i + '">' + i + '</option>';
+    yr = '<select id="ppDobY" aria-label="Birth year" required><option value="" selected disabled>Year</option>';
+    for(i = y; i >= y - 100; i--) yr += '<option value="' + i + '">' + i + '</option>';
+    return m + '</select>' + d + '</select>' + yr + '</select>';
+  }
+  function readDob(){
+    var me = document.getElementById('ppDobM'), de = document.getElementById('ppDobD'), ye = document.getElementById('ppDobY');
+    if(!me || !me.value || !de.value || !ye.value) return null;
+    var m = parseInt(me.value, 10), d = parseInt(de.value, 10), y = parseInt(ye.value, 10), dt = new Date(y, m - 1, d), now = new Date();
+    if(dt.getFullYear() !== y || dt.getMonth() !== m - 1 || dt.getDate() !== d || dt > now) return { ok:false };
+    var age = now.getFullYear() - y;
+    if(now.getMonth() < m - 1 || (now.getMonth() === m - 1 && now.getDate() < d)) age--;
+    var pad = function(n){ return (n < 10 ? '0' : '') + n; };
+    return { ok:true, age:age, iso: y + '-' + pad(m) + '-' + pad(d) };
+  }
+  function currentAge(){ var r = readDob(); if(r && r.ok) return r.age; return window.SF_STATE ? window.SF_STATE.age : null; }
+  function planCard(){
+    var a = currentAge(), c = state.cov || PROPOSAL.minFA, yr = (a !== null && window.sfEstimate) ? window.sfEstimate(a, c) : null;
+    return '<div class="pp-plan"><i></i><div><b>' + esc(PROPOSAL.planName) + '</b><small>' + esc(PROPOSAL.tline) + '</small>'
+      + '<em>' + (yr ? 'about ' + peso(yr / 12) + ' / month · at ' + peso(c) + ' coverage' : 'Minimum coverage ' + peso(PROPOSAL.minFA)) + '</em></div></div>';
+  }
+  function renderAgeLine(){
+    var box = document.getElementById('ppDobAge'); if(!box) return;
+    var r = readDob();
+    if(!r){ box.textContent = PROPOSAL.forParent ? 'So the proposal uses their exact age.' : 'So your proposal uses your exact age.'; }
+    else if(!r.ok){ box.textContent = 'That date doesn’t look right. Please check the month and day.'; }
+    else{
+      var html = (PROPOSAL.forParent ? 'They’re <b>' : 'You’re <b>') + r.age + '</b>.';
+      if(r.age < PROPOSAL.ageMin || r.age > PROPOSAL.ageMax) html += ' This plan accepts ages ' + PROPOSAL.ageMin + ' to ' + PROPOSAL.ageMax + ', so I’ll suggest a plan that fits in the proposal.';
+      box.innerHTML = html;
+    }
+    document.getElementById('ppPlan').innerHTML = planCard();
+  }
+
+  /* ---------- Coverage ---------- */
+  function short(v){ return v >= 1000000 ? '₱' + (Math.round(v / 100000) / 10) + 'M' : (v % 1000 === 0 ? '₱' + (v / 1000) + 'K' : peso(v)); }
+  function covLabel(v){ return v === PROPOSAL.minFA ? 'Minimum (' + short(v) + ')' : short(v) + (v === PROPOSAL.coverage[PROPOSAL.coverage.length - 1] ? '+' : ''); }
+  function renderCov(){
+    var box = document.getElementById('ppCov'), html = '';
+    var list = PROPOSAL.coverage.slice();
+    if(state.cov && list.indexOf(state.cov) === -1){ list.push(state.cov); list.sort(function(a, b){ return a - b; }); }
+    list.forEach(function(v){ html += '<button type="button" data-v="' + v + '" aria-pressed="' + (state.cov === v ? 'true' : 'false') + '">' + covLabel(v) + '</button>'; });
+    html += '<button type="button" data-v="" aria-pressed="' + (state.cov === null ? 'true' : 'false') + '">Not sure yet</button>';
+    box.innerHTML = html;
+    var bs = box.querySelectorAll('button');
+    for(var i = 0; i < bs.length; i++) bs[i].addEventListener('click', function(){
+      var v = this.getAttribute('data-v'); state.cov = v ? parseInt(v, 10) : null;
+      track('proposal_coverage', { coverage: state.cov || 'not_sure' }); renderCov();
+      var pl = document.getElementById('ppPlan'); if(pl) pl.innerHTML = planCard();
+    });
+  }
+
+  /* ---------- Open / close (Back button closes it on phones) ---------- */
+  function show(html){ body.innerHTML = html; modal.classList.add('open'); document.body.style.overflow = 'hidden'; modal.scrollTop = 0; }
+  function hide(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
+  function close(){ var was = modal.classList.contains('open'); hide(); if(was && pushed){ pushed = false; try{ history.back(); }catch(x){} } }
+  window.addEventListener('popstate', function(){ if(modal.classList.contains('open')){ pushed = false; hide(); } });
+  document.getElementById('ppClose').addEventListener('click', close);
+  modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) close(); });
+
+  function open(where){
+    var c = window.SF_STATE ? window.SF_STATE.cov : null;
+    state.cov = (c && c !== PROPOSAL.minFA) ? c : null;
+    show('<div class="pp-steps"><span class="on">1 · Your details</span><span>2 · Done</span></div>'
+      + '<h2 class="pp-h" id="ppTitle">Where should I send your proposal?</h2>'
+      + '<p class="pp-p">Your exact numbers within 24 hours. Free, no obligation.</p>'
+      + '<form class="pp-form" id="ppForm" novalidate>'
+      + '<label for="ppName">Your name</label><input id="ppName" type="text" autocomplete="name" placeholder="e.g. Maria Santos">'
+      + '<label for="ppEmail">Email</label><input id="ppEmail" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com">'
+      + '<p class="pp-lbl" id="ppDobLbl">' + (PROPOSAL.forParent ? 'Your parent’s birthday' : 'Your birthday') + '</p><div class="pp-dob" role="group" aria-labelledby="ppDobLbl">' + dobSelects() + '</div>'
+      + '<p class="pp-dob-age" id="ppDobAge" aria-live="polite"></p>'
+      + '<div class="pp-row"><div><label for="ppGender">' + (PROPOSAL.forParent ? 'Their gender' : 'Gender') + '</label><select id="ppGender" required><option value="" selected disabled>Select</option><option value="Male">Male</option><option value="Female">Female</option></select></div>'
+      + '<div><label for="ppMobile">Mobile number</label><input id="ppMobile" type="tel" autocomplete="tel" inputmode="tel" placeholder="09XX XXX XXXX"></div></div>'
+      + '<p class="pp-lbl">Your proposal is for</p><div id="ppPlan"></div>'
+      + '<p class="pp-lbl" id="ppCovLbl">Coverage you want <span>(optional)</span></p><div class="pp-chips" id="ppCov" role="group" aria-labelledby="ppCovLbl"></div>'
+      + '<p class="pp-note">I’ll compute your exact premium for this amount in your proposal.</p>'
+      + '<label class="pp-consent"><input type="checkbox" id="ppConsent"> <span>I agree to let Donna Nuqui, a licensed financial advisor, contact me about my proposal. My details won’t be shared with anyone else.</span></label>'
+      + '<p class="pp-err" id="ppErr" role="alert"></p>'
+      + '<button type="submit" class="pp-submit">Send me my proposal</button>'
+      + '<button type="button" class="pp-link" id="ppCancel">Cancel</button>'
+      + '</form>');
+    if(!pushed){ try{ history.pushState({ pp:'proposal' }, ''); pushed = true; }catch(x){} }
+    renderAgeLine(); renderCov();
+    var f = document.getElementById('ppForm');
+    f.addEventListener('submit', submit);
+    f.addEventListener('change', function(e){ document.getElementById('ppErr').textContent = ''; if(/^ppDob/.test(e.target.id)) renderAgeLine(); });
+    f.addEventListener('input', function(){ document.getElementById('ppErr').textContent = ''; });
+    document.getElementById('ppCancel').addEventListener('click', close);
+    track('proposal_open', { location: where });
+    setTimeout(function(){ var n = document.getElementById('ppName'); if(n) n.focus(); }, 50);
+  }
+
+  function submit(e){
+    e.preventDefault();
+    var name = document.getElementById('ppName').value.trim();
+    var email = document.getElementById('ppEmail').value.trim();
+    var dob = readDob();
+    var gender = document.getElementById('ppGender').value;
+    var mobile = document.getElementById('ppMobile').value.trim();
+    var consent = document.getElementById('ppConsent').checked;
+    var problem = !name ? 'Please enter your name.'
+      : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? 'Please enter a valid email so I can send your proposal.'
+      : !dob ? 'Please pick your birthday: month, day and year.'
+      : !dob.ok ? 'That birthday doesn’t look right. Please check the month and day.'
+      : dob.age > 100 ? 'Please check the birth year.'
+      : !gender ? 'Please select a gender. Premiums differ for men and women.'
+      : !/^(\+?63|0)?9\d{9}$/.test(mobile.replace(/[\s\-()]/g, '')) ? 'Please enter a valid mobile number, like 0917 123 4567.'
+      : !consent ? 'Please tick the box so I can contact you about your proposal.' : '';
+    if(problem){ document.getElementById('ppErr').textContent = problem; return; }
+    var yr = window.sfEstimate ? window.sfEstimate(dob.age, state.cov || PROPOSAL.minFA) : null;
+    var data = {
+      name:name, email:email, birthday:dob.iso, age:String(dob.age), gender:gender, mobile:mobile,
+      page: PROPOSAL.page, plan: PROPOSAL.planName, goals:'', forParent: PROPOSAL.forParent ? 'yes' : 'no', followedPage:'not yet',
+      coverage: state.cov ? covLabel(state.cov) : 'Not sure yet', budget:'',
+      estimate: yr ? Math.round(yr / 12) + '/mo at ' + short(state.cov || PROPOSAL.minFA) : '', source: SOURCE
+    };
+    var q = []; for(var k in data) q.push(encodeURIComponent(k) + '=' + encodeURIComponent(data[k]));
+    try{ var img = new Image(); img.src = LEADS_URL + '?' + q.join('&') + '&t=' + Date.now(); }catch(x){}
+    state.email = email;
+    track('proposal_submitted', { plan: PROPOSAL.planId, coverage: data.coverage });
+    track('generate_lead', { method:'proposal', plan: PROPOSAL.planId, gender: gender });
+    done(name);
+  }
+
+  function done(name){
+    var first = name.split(' ')[0];
+    var msg = 'Hi Donna! I’m ' + name + '. I just requested a free proposal for ' + PROPOSAL.planName + ' on your site.';
+    show('<div class="pp-steps"><span class="on">1 · Your details</span><span class="on">2 · Done</span></div>'
+      + '<div class="pp-done"><h2 class="pp-h" id="ppTitle">Salamat, ' + esc(first) + '! I got your request.</h2>'
+      + '<p class="pp-p">I’ll prepare your proposal for <b>' + esc(PROPOSAL.planName) + '</b> and send it to your email within 24 hours. Check your spam folder too, just in case.</p>'
+      + '<p class="pp-p">While you wait, follow my page for simple money tips for Filipino families every week.</p>'
+      + '<a class="pp-fb" id="ppFb" href="' + FB_PAGE + '" target="_blank" rel="noopener">Like my Facebook page</a>'
+      + '<a class="pp-out" href="https://m.me/financial.advisor.donna.n?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener">Want it faster? Message me</a>'
+      + '<button type="button" class="pp-link" id="ppBack">Back to the page</button></div>');
+    document.getElementById('ppBack').addEventListener('click', close);
+    document.getElementById('ppFb').addEventListener('click', function(){
+      try{ var img = new Image(); img.src = LEADS_URL + '?action=follow&email=' + encodeURIComponent(state.email) + '&t=' + Date.now(); }catch(x){}
+    });
+  }
+
+  var opens = document.querySelectorAll('[data-proposal]');
+  for(var i = 0; i < opens.length; i++) opens[i].addEventListener('click', function(){ track('cta_click', { cta:'proposal', location: this.getAttribute('data-proposal') }); open(this.getAttribute('data-proposal')); });
+
+  /* "All plans" goes back to the Plan Finder pop-up they came from, when they came from there. */
+  var crumb = document.querySelector('.sf-crumb a');
+  if(crumb && /[?&]src=plan_finder\b/.test(location.search)){
+    var ref = ''; try{ ref = document.referrer ? new URL(document.referrer).hostname : ''; }catch(x){}
+    if(ref === location.hostname && history.length > 1){
+      crumb.addEventListener('click', function(e){ e.preventDefault(); history.back(); });
+    }
+  }
+})();
+</script>
+</body>
+</html>
