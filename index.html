@@ -29,16 +29,20 @@
 <meta name="author" content="Donna Nuqui">
 <!-- Google tag (GA4). Paste your Measurement ID below (same one used on donnanuqui.com). -->
 <script>
-  var PF_GA_ID = 'G-1TXKES216M';
+  (function () {
+    var q = location.search;
+    var c = '; domain=.donnanuqui.com; path=/; max-age=';
+    if (q.indexOf('me=on') > -1)  document.cookie = 'dn_internal=1' + c + 63072000;
+    if (q.indexOf('me=off') > -1) document.cookie = 'dn_internal=' + c + 0;
+  })();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1TXKES216M"></script>
+<script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  if(/^G-[A-Z0-9]+$/.test(PF_GA_ID) && PF_GA_ID !== 'G-XXXXXXXXXX'){
-    var gs = document.createElement('script'); gs.async = true;
-    gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + PF_GA_ID;
-    document.head.appendChild(gs);
-    gtag('js', new Date());
-    gtag('config', PF_GA_ID);
-  }
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  var isMe = document.cookie.indexOf('dn_internal=1') > -1;
+  gtag('config', 'G-1TXKES216M', isMe ? { traffic_type: 'internal' } : {});
 </script>
 <meta name="keywords" content="life insurance Philippines, VUL Philippines, VUL vs traditional insurance, how much life insurance do I need, health insurance Philippines, critical illness insurance, insurance for parents, OFW insurance, education plan, retirement plan, no medical exam insurance, financial advisor, Donna Nuqui">
 <script type="application/ld+json">
