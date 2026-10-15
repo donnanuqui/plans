@@ -2630,6 +2630,25 @@
   })();
 
   var LEADS_URL = 'https://script.google.com/macros/s/AKfycbzVcrMEVF-Hj0M3qc2uzcP6_yYv7hJSTJ2ao3e04NVgVIRq7Ol-QDamBgCK-mr6EtMR7g/exec';
+
+  /* Send a lead/follow hit to the Google Sheet. Uses fetch (keepalive, no cookies)
+     so it works on Android browsers that drop or block image pixels, or that send
+     Google sign-in cookies which make the Apps Script fail. Falls back to an image
+     kept in memory so it can't be garbage-collected before it sends. */
+  var _pfHits = [];
+  function pfSend(url){
+    try{
+      if(window.fetch){
+        fetch(url, { method:'GET', mode:'no-cors', credentials:'omit', keepalive:true, cache:'no-store', redirect:'follow' })
+          .catch(function(){ pfSendImg(url); });
+        return;
+      }
+    }catch(x){}
+    pfSendImg(url);
+  }
+  function pfSendImg(url){
+    try{ var i = new Image(); _pfHits.push(i); i.onload = i.onerror = function(){ var n = _pfHits.indexOf(i); if(n > -1) _pfHits.splice(n,1); }; i.src = url; }catch(x){}
+  }
   var FB_PAGE = 'https://www.facebook.com/financial.advisor.donna.n';
   var propState = { plan:null, ctx:null, followed:false };
 
@@ -2921,7 +2940,7 @@
     };
     var q = []; for(var k in data){ q.push(encodeURIComponent(k) + '=' + encodeURIComponent(data[k])); }
     try{
-      if(LEADS_URL.indexOf('http') === 0){ var img = new Image(); img.src = LEADS_URL + '?' + q.join('&') + '&t=' + Date.now(); }
+      if(LEADS_URL.indexOf('http') === 0){ pfSend(LEADS_URL + '?' + q.join('&') + '&t=' + Date.now()); }
     }catch(x){}
     pfTrack('pf_lead_submitted', { plan: data.plan, followed: data.followedPage });
     pfTrack('generate_lead', { plan: data.plan, gender: gender });
@@ -2947,8 +2966,7 @@
       pfTrack('pf_cta_click', { cta:'proposal_fb_like' });
       try{
         if(LEADS_URL.indexOf('http') === 0 && propState.email){
-          var img = new Image();
-          img.src = LEADS_URL + '?action=follow&email=' + encodeURIComponent(propState.email) + '&t=' + Date.now();
+          pfSend(LEADS_URL + '?action=follow&email=' + encodeURIComponent(propState.email) + '&t=' + Date.now());
         }
       }catch(x){}
     });
