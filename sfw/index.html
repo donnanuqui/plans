@@ -393,7 +393,6 @@
           <li><span class="at">Age 73</span><span>Kidney failure. The major illness benefit pays out.</span></li>
         </ol>
         <div class="sf-sum">
-          <div><div class="k">Total paid</div><div class="v">₱389,850</div></div>
           <div><div class="k">Total received</div><div class="v up">₱1,023,750</div></div>
           <div class="sf-note">Plus dividends, which are not guaranteed.</div>
         </div>
@@ -413,7 +412,7 @@
           <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#46703F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /> <path d="M9 12l2 2l4 -4" /> </svg><span>Want large health coverage that stays with you</span></li>
           <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#46703F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /> <path d="M9 12l2 2l4 -4" /> </svg><span>Want to finish paying while you’re still working</span></li></ul></div>
         <div><h3>Good to know</h3><ul>
-          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M12 9h.01" /> <path d="M11 12h1v4h1" /> </svg><span>Available from birth up to age 60</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M12 9h.01" /> <path d="M11 12h1v4h1" /> </svg><span>Available from 30 days old up to age 60</span></li>
           <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M12 9h.01" /> <path d="M11 12h1v4h1" /> </svg><span>The illness must be one of the covered conditions, and pre-existing conditions may be excluded</span></li>
           <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M12 9h.01" /> <path d="M11 12h1v4h1" /> </svg><span>Dividends and the special bonus are not guaranteed</span></li>
           <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M12 9h.01" /> <path d="M11 12h1v4h1" /> </svg><span>The younger and healthier you apply, the lower your premium</span></li></ul></div>
@@ -708,25 +707,6 @@
     coverage: [300000, 500000, 1000000, 3000000, 5000000, 10000000]   /* same six amounts as the page */
   };
   var LEADS_URL = 'https://script.google.com/macros/s/AKfycbzVcrMEVF-Hj0M3qc2uzcP6_yYv7hJSTJ2ao3e04NVgVIRq7Ol-QDamBgCK-mr6EtMR7g/exec';
-
-  /* Send a lead/follow hit to the Google Sheet. Uses fetch (keepalive, no cookies)
-     so it works on Android browsers that drop or block image pixels, or that send
-     Google sign-in cookies which make the Apps Script fail. Falls back to an image
-     kept in memory so it can't be garbage-collected before it sends. */
-  var _pfHits = [];
-  function pfSend(url){
-    try{
-      if(window.fetch){
-        fetch(url, { method:'GET', mode:'no-cors', credentials:'omit', keepalive:true, cache:'no-store', redirect:'follow' })
-          .catch(function(){ pfSendImg(url); });
-        return;
-      }
-    }catch(x){}
-    pfSendImg(url);
-  }
-  function pfSendImg(url){
-    try{ var i = new Image(); _pfHits.push(i); i.onload = i.onerror = function(){ var n = _pfHits.indexOf(i); if(n > -1) _pfHits.splice(n,1); }; i.src = url; }catch(x){}
-  }
   var FB_PAGE = 'https://www.facebook.com/financial.advisor.donna.n';
   var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var modal = document.getElementById('ppModal'), body = document.getElementById('ppBody');
@@ -884,7 +864,7 @@
       estimate: yr ? Math.round(yr / 12) + '/mo at ' + short(state.cov || PROPOSAL.minFA) : '', source: SOURCE
     };
     var q = []; for(var k in data) q.push(encodeURIComponent(k) + '=' + encodeURIComponent(data[k]));
-    try{ pfSend(LEADS_URL + '?' + q.join('&') + '&t=' + Date.now()); }catch(x){}
+    try{ var img = new Image(); img.src = LEADS_URL + '?' + q.join('&') + '&t=' + Date.now(); }catch(x){}
     state.email = email;
     track('proposal_submitted', { plan: PROPOSAL.planId, coverage: data.coverage });
     track('generate_lead', { method:'proposal', plan: PROPOSAL.planId, gender: gender });
@@ -903,7 +883,7 @@
       + '<button type="button" class="pp-link" id="ppBack">Back to the page</button></div>');
     document.getElementById('ppBack').addEventListener('click', close);
     document.getElementById('ppFb').addEventListener('click', function(){
-      try{ pfSend(LEADS_URL + '?action=follow&email=' + encodeURIComponent(state.email) + '&t=' + Date.now()); }catch(x){}
+      try{ var img = new Image(); img.src = LEADS_URL + '?action=follow&email=' + encodeURIComponent(state.email) + '&t=' + Date.now(); }catch(x){}
     });
   }
 
