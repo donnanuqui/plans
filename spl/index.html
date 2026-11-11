@@ -313,15 +313,15 @@
         <label for="sfAgeInput">Your age today</label>
         <div class="sf-age">
           <button type="button" id="sfMinus" aria-label="One year younger">−</button>
-          <input type="number" id="sfAgeInput" inputmode="numeric" min="7" max="75" value="50" aria-describedby="sfAgeHelp">
+          <input type="number" id="sfAgeInput" inputmode="numeric" min="0" max="80" value="50" aria-describedby="sfAgeHelp">
           <button type="button" id="sfPlus" aria-label="One year older">+</button>
         </div>
         <label id="sfCovEstLbl">Coverage</label>
         <div class="sf-cov sf-cov-est" role="group" aria-labelledby="sfCovEstLbl">
-          <button type="button" data-cov="5000000" aria-pressed="true">₱5M</button>
-          <button type="button" data-cov="10000000" aria-pressed="false">₱10M</button>
-          <button type="button" data-cov="25000000" aria-pressed="false">₱25M</button>
+          <button type="button" data-cov="25000000" aria-pressed="true">₱25M (min)</button>
           <button type="button" data-cov="50000000" aria-pressed="false">₱50M</button>
+          <button type="button" data-cov="75000000" aria-pressed="false">₱75M</button>
+          <button type="button" data-cov="100000000" aria-pressed="false">₱100M</button>
         </div>
         <div class="sf-other"><span>Or type an amount</span><input type="text" id="sfCovOther" inputmode="numeric" autocomplete="off" placeholder="e.g. 600,000" aria-label="Coverage amount in pesos" aria-describedby="sfOtherMsg"></div>
         <p class="sf-other-msg" id="sfOtherMsg" aria-live="polite"></p>
@@ -338,10 +338,10 @@
       </div>
       <div class="sf-cov" role="group" aria-label="Coverage amount">
         <span>Show for coverage of</span>
-          <button type="button" data-cov="5000000" aria-pressed="true">₱5M</button>
-          <button type="button" data-cov="10000000" aria-pressed="false">₱10M</button>
-          <button type="button" data-cov="25000000" aria-pressed="false">₱25M</button>
+          <button type="button" data-cov="25000000" aria-pressed="true">₱25M (min)</button>
           <button type="button" data-cov="50000000" aria-pressed="false">₱50M</button>
+          <button type="button" data-cov="75000000" aria-pressed="false">₱75M</button>
+          <button type="button" data-cov="100000000" aria-pressed="false">₱100M</button>
       </div>
       <div class="sf-tiles">
         <div class="sf-tile"><span class="sf-ico" style="width:52px;height:52px;background:#E3EADF"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#46703F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M9 12l2 2l4 -4"/></svg></span><div class="n" data-pct="200"></div><div class="l">for your family from day 1, for estate liquidity. Guaranteed</div></div>
@@ -402,7 +402,7 @@
           <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#46703F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/></svg><span>Want to plan for estate taxes</span></li>
           <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#46703F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/></svg><span>Want control over how heirs receive their share</span></li></ul></div>
         <div><h3>Good to know</h3><ul>
-          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></svg><span>Issue ages 7 to 75; exact limits depend on the payment period</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></svg><span>Minimum coverage ₱25M. Issue ages up to 80 on 2-pay, 75 on 5-pay and 70 on 10-pay</span></li>
           <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></svg><span>Designed one-on-one around your estate and goals</span></li>
           <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></svg><span>Dividends are not guaranteed</span></li>
           <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></svg><span>Priority processing and private home medical exams</span></li></ul></div>
@@ -468,7 +468,7 @@
      same figures as the Plan Finder. Yearly premium, base plan, minimum coverage, non-smoker.
      Only the main age columns are used; any age in between is the straight-line average of the
      two nearest ages (age 50 = average of 45 and 55). */
-  var BENCH = {"min_fa": 5000000, "age_min": 7, "age_max": 75, "yearly": {}};
+  var BENCH = {"min_fa": 25000000, "age_min": 0, "age_max": 80, "yearly": {}};
   var MIN_AGE = BENCH.age_min || 0, MAX_AGE = BENCH.age_max;
   var input = document.getElementById('sfAgeInput'), out = document.getElementById('sfOut');
   var cov = BENCH.min_fa;
@@ -523,10 +523,10 @@
   function render(){
     var age = readAge();
     if(age === null){ window.SF_STATE.age = null; out.innerHTML = '<p class="sf-err">Enter your age in years, from ' + MIN_AGE + ' to ' + MAX_AGE + '.</p>'; return; }
-    if(age < MIN_AGE){ window.SF_STATE.age = age; out.innerHTML = '<p class="sf-err">This plan is for ages 7 to 75.</p>'; return; }
+    if(age < MIN_AGE){ window.SF_STATE.age = age; out.innerHTML = '<p class="sf-err">This plan is for ages 0 to 80.</p>'; return; }
     if(age > MAX_AGE){
       window.SF_STATE.age = age;
-      out.innerHTML = '<p class="sf-err">This plan is available up to age 75. <a href="https://plans.donnanuqui.com" style="color:inherit;font-weight:700">See plans for your age</a></p>';
+      out.innerHTML = '<p class="sf-err">This plan is available up to age 80. <a href="https://plans.donnanuqui.com" style="color:inherit;font-weight:700">See plans for your age</a></p>';
       return;
     }
     var mo = null;
@@ -579,7 +579,7 @@
     other.value = digits ? parseInt(digits, 10).toLocaleString('en-PH') : '';
     var v = digits ? parseInt(digits, 10) : 0;
     if(!v){ otherMsg.textContent = ''; other.classList.remove('on'); setCov(BENCH.min_fa, false); return; }
-    if(v < BENCH.min_fa){ otherMsg.textContent = "For coverage below ₱5,000,000, message me and we’ll find the right plan."; other.classList.remove('on'); return; }
+    if(v < BENCH.min_fa){ otherMsg.textContent = "For coverage below ₱25,000,000, message me and we’ll find the right plan."; other.classList.remove('on'); return; }
     otherMsg.textContent = ''; other.classList.add('on');
     setCov(v, true);
     clearTimeout(otherTimer);
@@ -615,7 +615,7 @@
       var a = curAge();
       if(a === null || a === lastSent) return;
       lastSent = a;
-      if(a > 75 || a < 7) send('age_out_of_range', ctx({}));
+      if(a > 80 || a < 0) send('age_out_of_range', ctx({}));
       else{
         var big = document.querySelector('.sf-price .big');
         var mo = big ? parseInt(big.textContent.replace(/[^0-9]/g, ''), 10) : null;
@@ -696,30 +696,11 @@
     planId: 'premier-legacy',
     planName: 'Sun Life Premier Legacy',
     tline: 'Preserve and pass on your wealth, your way.',
-    minFA: 5000000, ageMin: 7, ageMax: 75, forParent: false,
+    minFA: 25000000, ageMin: 0, ageMax: 80, forParent: false,
     noPrice: true, daily: false, minLabel: false, covNoun: "Coverage", covQ: "Coverage you want",
-    coverage: [5000000, 10000000, 25000000, 50000000]   /* same six amounts as the page */
+    coverage: [25000000, 50000000, 75000000, 100000000]   /* same six amounts as the page */
   };
   var LEADS_URL = 'https://script.google.com/macros/s/AKfycbzVcrMEVF-Hj0M3qc2uzcP6_yYv7hJSTJ2ao3e04NVgVIRq7Ol-QDamBgCK-mr6EtMR7g/exec';
-
-  /* Send a lead/follow hit to the Google Sheet. Uses fetch (keepalive, no cookies)
-     so it works on Android browsers that drop or block image pixels, or that send
-     Google sign-in cookies which make the Apps Script fail. Falls back to an image
-     kept in memory so it can't be garbage-collected before it sends. */
-  var _pfHits = [];
-  function pfSend(url){
-    try{
-      if(window.fetch){
-        fetch(url, { method:'GET', mode:'no-cors', credentials:'omit', keepalive:true, cache:'no-store', redirect:'follow' })
-          .catch(function(){ pfSendImg(url); });
-        return;
-      }
-    }catch(x){}
-    pfSendImg(url);
-  }
-  function pfSendImg(url){
-    try{ var i = new Image(); _pfHits.push(i); i.onload = i.onerror = function(){ var n = _pfHits.indexOf(i); if(n > -1) _pfHits.splice(n,1); }; i.src = url; }catch(x){}
-  }
   var FB_PAGE = 'https://www.facebook.com/financial.advisor.donna.n';
   var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var modal = document.getElementById('ppModal'), body = document.getElementById('ppBody');
@@ -877,7 +858,7 @@
       estimate: yr ? Math.round(yr / 12) + '/mo at ' + short(state.cov || PROPOSAL.minFA) : '', source: SOURCE
     };
     var q = []; for(var k in data) q.push(encodeURIComponent(k) + '=' + encodeURIComponent(data[k]));
-    try{ pfSend(LEADS_URL + '?' + q.join('&') + '&t=' + Date.now()); }catch(x){}
+    try{ var img = new Image(); img.src = LEADS_URL + '?' + q.join('&') + '&t=' + Date.now(); }catch(x){}
     state.email = email;
     track('proposal_submitted', { plan: PROPOSAL.planId, coverage: data.coverage });
     track('generate_lead', { method:'proposal', plan: PROPOSAL.planId, gender: gender });
@@ -896,7 +877,7 @@
       + '<button type="button" class="pp-link" id="ppBack">Back to the page</button></div>');
     document.getElementById('ppBack').addEventListener('click', close);
     document.getElementById('ppFb').addEventListener('click', function(){
-      try{ pfSend(LEADS_URL + '?action=follow&email=' + encodeURIComponent(state.email) + '&t=' + Date.now()); }catch(x){}
+      try{ var img = new Image(); img.src = LEADS_URL + '?action=follow&email=' + encodeURIComponent(state.email) + '&t=' + Date.now(); }catch(x){}
     });
   }
 
