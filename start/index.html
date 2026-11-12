@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en-PH" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="only light">
+<title>Find Your Plan by Life Stage | Donna Nuqui</title>
+<meta name="description" content="One question first: who depends on your income? Get the plans that fit your life stage, your budget and your age, with estimates you can see right away.">
+<link rel="canonical" href="https://plans.donnanuqui.com/start/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://plans.donnanuqui.com/start/">
+<meta property="og:site_name" content="Donna Nuqui — Financial Advisor">
+<meta property="og:title" content="Who depends on your income? Find the plan that fits your life stage">
+<meta property="og:description" content="Single, supporting your parents, married, with kids, or thinking about retirement. Answer a few taps and see the plans that fit you, with estimates.">
+<meta property="og:locale" content="en_PH">
+<meta property="og:image" content="https://plans.donnanuqui.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="Donna Nuqui">
+<script>
+  var PF_GA_ID = 'G-1TXKES216M';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  var PF_SRC = '(direct)';
+  try{
+    var q0 = new URLSearchParams(location.search);
+    PF_SRC = q0.get('src') || q0.get('utm_content') || q0.get('utm_campaign') || (document.referrer ? new URL(document.referrer).hostname : '(direct)');
+  }catch(e){}
+  if(/^G-[A-Z0-9]+$/.test(PF_GA_ID)){
+    var gs = document.createElement('script'); gs.async = true;
+    gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + PF_GA_ID;
+    document.head.appendChild(gs);
+    gtag('js', new Date());
+    gtag('set', { page_type:'funnel', funnel:'life_stage', post_src: PF_SRC });
+    gtag('config', PF_GA_ID, { content_group:'life_stage_funnel', post_src: PF_SRC });
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=DM+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root{ color-scheme:only light; }
+  html,body{ margin:0; background:#F6F2EB; }
+  .pf-wrap{
+    --bg:#F6F2EB;--card:#FFFFFF;--ink:#16150F;--muted:#4F4C45;--line:#E6DFD2;--soft:#EFE9DF;
+    --gold:#B89C6E;--goldd:#8B6F3F;--goldl:#F2EAD9;
+    --solo:#5F7F5A;--solol:#E3EADF;
+    --bread:#B4603F;--breadl:#F5E3DA;
+    --couple:#4E7090;--couplel:#E1E8EF;
+    --family:#8B6F3F;--familyl:#F2EAD9;
+    --legacy:#6E5E84;--legacyl:#ECE7F1;
+    --sandwich:#2F7A78;--sandwichl:#DCEDEC;
+    --pc:var(--gold);--pcl:var(--goldl);
+    --serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+    background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.6;
+    width:100%; max-width:100%; padding-top:124px; padding-bottom:64px;
+    padding-left:max(20px, env(safe-area-inset-left, 0px)); padding-right:max(20px, env(safe-area-inset-right, 0px));
+    overflow-x:clip; -webkit-text-size-adjust:100%; text-size-adjust:100%;
+  }
+  .pf-wrap{ box-sizing:border-box; margin:0; }
+  .pf-wrap *, .pf-wrap *::before, .pf-wrap *::after{ box-sizing:border-box; margin:0; padding:0; }
+  .pf-wrap[data-path="solo"]{ --pc:var(--solo); --pcl:var(--solol); }
+  .pf-wrap[data-path="bread"]{ --pc:var(--bread); --pcl:var(--breadl); }
+  .pf-wrap[data-path="couple"]{ --pc:var(--couple); --pcl:var(--couplel); }
+  .pf-wrap[data-path="family"]{ --pc:var(--family); --pcl:var(--familyl); }
+  .pf-wrap[data-path="sandwich"]{ --pc:var(--sandwich); --pcl:var(--sandwichl); }
+  .pf-wrap[data-path="legacy"]{ --pc:var(--legacy); --pcl:var(--legacyl); }
+  .st-inner{ max-width:940px; margin:0 auto; display:flex; flex-direction:column; gap:28px; }
+  #sAbout, #sHealth, #sBudget, #sCalc{ max-width:700px; width:100%; margin:0 auto; }
+
+  /* Site header: same as plans.donnanuqui.com */
+  .pf-topnav{ position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:calc(1.25rem + env(safe-area-inset-top, 0px)) 6vw 1.25rem; background:var(--bg); border-bottom:1px solid var(--line); }
+  .pf-nav-logo{ font-family:var(--serif); font-size:1.1rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); text-decoration:none; }
+  .pf-nav-links{ display:flex; gap:2.5rem; list-style:none; }
+  .pf-nav-links a{ font-size:1.08rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+  .pf-nav-links a:hover{ color:var(--ink); }
+  .pf-nav-links a[aria-current="page"]{ color:var(--ink); font-weight:600; }
+  .pf-nav-toggle{ display:none; background:none; border:none; cursor:pointer; padding:.5rem; flex-direction:column; gap:5px; z-index:101; }
+  .pf-nav-toggle span{ display:block; width:24px; height:2px; background:var(--ink); transition:all .3s; }
+  .pf-nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .pf-nav-toggle.open span:nth-child(2){ opacity:0; }
+  .pf-nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  @media(max-width:768px){
+    .pf-wrap{ padding-top:108px; }
+    .pf-nav-toggle{ display:flex; }
+    .pf-nav-links{ position:fixed; top:0; right:0; bottom:0; width:100%; max-width:320px; background:var(--bg); flex-direction:column; justify-content:center; align-items:center; gap:2rem; transform:translateX(100%); transition:transform .3s ease; padding:2rem; box-shadow:-4px 0 24px rgba(0,0,0,.1); z-index:99; }
+    .pf-nav-links.open{ transform:translateX(0); }
+    .pf-nav-links a{ font-size:1.25rem; letter-spacing:.15em; }
+  }
+
+  .pf-eyebrow{ font-size:.76rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--goldd); }
+  h1,h2,h3{ font-family:var(--serif); font-weight:500; line-height:1.1; text-wrap:balance; }
+  h1{ font-size:clamp(2.3rem,6vw,3.3rem); }
+  h2{ font-size:clamp(1.8rem,4.5vw,2.4rem); }
+  h3{ font-size:1.35rem; font-weight:600; }
+  h1 em, h2 em{ font-style:italic; color:var(--pc); }
+  .st-lede{ color:var(--muted); font-size:1.06rem; max-width:60ch; }
+  .st-screen{ display:none; flex-direction:column; gap:22px; }
+  .st-screen.on{ display:flex; }
+  .st-head{ display:flex; flex-direction:column; gap:10px; }
+
+  /* Progress */
+  /* Stepper */
+  .st-steps{ list-style:none; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; }
+  .st-steps li{ display:flex; flex-direction:column; gap:8px; border-top:4px solid var(--line); padding-top:10px; color:var(--muted); min-width:0; }
+  .st-steps li.on, .st-steps li.done{ border-top-color:var(--pc); }
+  .st-steps li.on{ color:var(--ink); }
+  .st-steps .n{ width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:700; background:var(--card); border:1px solid var(--line); }
+  .st-steps li.on .n{ background:var(--pc); border-color:var(--pc); color:#fff; }
+  .st-steps li.done .n{ background:var(--pcl); border-color:var(--pcl); color:var(--pc); }
+  .st-steps .t{ font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .st-nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; border-top:1px solid var(--line); padding-top:16px; }
+  .st-nav .st-next{ align-self:auto; }
+  /* The split question, highlighted */
+  .st-ask-q{ margin-top:14px; background:var(--ink); color:var(--bg); padding:22px 24px; display:flex; flex-direction:column; gap:6px; border-left:6px solid var(--gold); }
+  .st-ask-q .pf-eyebrow{ color:#E9C9A0; }
+  .st-ask-q h2{ color:var(--bg); font-size:clamp(1.9rem,4.6vw,2.6rem); }
+  .st-ask-q h2 em{ color:#E9C9A0; }
+  .st-ask-q p:last-child{ color:#D9D3C6; font-size:.98rem; }
+  .st-back{ align-self:flex-start; background:none; border:0; font:inherit; font-size:.95rem; font-weight:600; color:var(--muted); cursor:pointer; min-height:48px; padding:0 8px 0 0; }
+  .st-back:hover{ color:var(--ink); }
+
+  /* Split screen: hero */
+  .st-top{ display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:28px; align-items:center; }
+  .st-top-copy{ display:flex; flex-direction:column; gap:16px; min-width:0; }
+  .st-top h1{ font-size:clamp(2.6rem,6.4vw,4rem); font-weight:400; line-height:1.02; }
+  .st-top h1 em{ color:var(--goldd); }
+  .st-stats{ display:flex; flex-wrap:wrap; gap:6px 22px; font-size:.92rem; color:var(--muted); }
+  .st-stats b{ color:var(--ink); }
+  .st-art{ width:100%; max-width:320px; justify-self:center; height:auto; }
+  .st-sechead{ margin-top:10px; }
+  /* The split question, highlighted */
+  .st-q{ gap:12px; }
+  .st-q h1{ font-size:clamp(2.6rem,6.6vw,4.1rem); font-weight:500; line-height:1.05; max-width:16ch; }
+  .st-q h1 em{ color:#7A5626; font-weight:600; background:linear-gradient(transparent 60%, #F0D9AE 60%, #F0D9AE 92%, transparent 92%); padding:0 .08em; -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+  .st-q .st-lede{ font-size:1.1rem; }
+
+  /* Path picker (same card style as the Plans section) */
+  .st-paths{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+  .st-path{ text-align:left; font:inherit; color:var(--ink); background:var(--card); border:1px solid var(--line); border-top:5px solid var(--c); padding:20px 18px 18px; cursor:pointer; display:flex; flex-direction:column; align-items:flex-start; gap:6px; transition:transform .15s, box-shadow .15s; min-width:0; }
+  .st-path:hover{ transform:translateY(-3px); box-shadow:0 12px 28px rgba(22,21,15,.09); }
+  .st-path .ic{ width:52px; height:52px; border-radius:50%; background:var(--cl); display:flex; align-items:center; justify-content:center; margin-bottom:10px; }
+  .st-path b{ font-family:var(--serif); font-size:1.6rem; font-weight:600; line-height:1.1; letter-spacing:-.005em; color:var(--ink); }
+  .st-path b em{ font-style:italic; color:var(--c); }
+  .st-path b i{ font-style:italic; font-weight:500; color:var(--muted); }
+  .st-path small{ color:var(--muted); font-size:.92rem; line-height:1.5; }
+  .st-path .big{ margin-top:auto; padding-top:10px; font-family:var(--serif); font-size:1.65rem; font-weight:500; line-height:1.1; color:var(--c); }
+  .st-medlink{ font-size:.95rem; color:var(--muted); }
+  .st-medlink a{ color:var(--couple); font-weight:600; }
+
+  /* Options */
+  .st-opts{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .st-opt{ font:inherit; text-align:left; color:var(--ink); background:var(--card); border:2px solid var(--line); padding:14px 16px; min-height:64px; cursor:pointer; display:flex; flex-direction:column; justify-content:center; gap:2px; transition:border-color .15s, background .15s; }
+  .st-opt:hover{ border-color:var(--gold); }
+  .st-opt{ position:relative; padding-right:52px !important; }
+  .st-opt::after{ content:""; position:absolute; right:16px; top:50%; width:22px; height:22px; margin-top:-11px; border-radius:50%; border:2px solid var(--line); background:var(--card); }
+  .st-opt[aria-pressed="true"]{ border-color:var(--pc); background:var(--pcl); box-shadow:inset 0 0 0 1px var(--pc); }
+  .st-opt[aria-pressed="true"]::after{ border-color:var(--pc); background:var(--pc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L19 7'/%3E%3C/svg%3E") center/14px no-repeat; }
+  .st-opt b{ font-size:1rem; line-height:1.35; }
+  .st-opt small{ font-size:.86rem; color:var(--muted); line-height:1.4; }
+
+  /* Age */
+  .st-card{ background:var(--card); border:1px solid var(--line); padding:22px 20px; display:flex; flex-direction:column; gap:14px; }
+  .st-lbl{ font-size:.76rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .st-age{ display:flex; align-items:center; gap:10px; max-width:340px; }
+  .st-age button{ width:52px; height:56px; font:inherit; font-size:1.5rem; background:var(--soft); border:1px solid var(--line); color:var(--ink); cursor:pointer; }
+  .st-age input{ flex:1; min-width:0; height:56px; font-family:var(--serif); font-size:1.9rem; font-weight:600; text-align:center; color:var(--ink); background:var(--card); border:1px solid var(--line); border-radius:0; -moz-appearance:textfield; }
+  .st-age input::-webkit-outer-spin-button, .st-age input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  .st-toggle{ display:flex; gap:12px; align-items:center; font-size:.98rem; cursor:pointer; min-height:44px; }
+  .st-toggle input{ width:22px; height:22px; accent-color:var(--pc); flex:none; }
+  .st-err{ font-size:.9rem; color:#8A3A2C; background:#F8E6DF; padding:10px 12px; }
+
+  /* Chips (calculators) */
+  /* Calculator: inputs on the left, live result on the right */
+  #sCalc{ max-width:940px; }
+  #stCalcBody.st-card{ display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:26px; align-items:start; padding:24px; }
+  .st-calc-in{ display:flex; flex-direction:column; gap:22px; min-width:0; }
+  .st-field{ display:flex; flex-direction:column; gap:10px; }
+  .st-flbl{ display:flex; align-items:center; gap:10px; font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); }
+  .st-flbl span{ width:24px; height:24px; border-radius:50%; background:var(--pcl); color:var(--pc); display:inline-flex; align-items:center; justify-content:center; font-size:.76rem; letter-spacing:0; }
+  .st-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .st-chips button{ font:inherit; font-size:.95rem; font-weight:600; padding:9px 16px; min-height:44px; border-radius:999px; background:var(--soft); border:1.5px solid transparent; color:var(--ink); cursor:pointer; font-variant-numeric:tabular-nums; transition:background .15s, border-color .15s, color .15s, transform .1s; }
+  .st-chips button:hover{ border-color:var(--pc); }
+  .st-chips button:active, .st-tiles button:active{ transform:scale(.97); }
+  .st-chips button[aria-pressed="true"]{ background:var(--pc); border-color:var(--pc); color:#fff; box-shadow:0 4px 12px rgba(22,21,15,.14); }
+  .st-tiles{ display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; }
+  .st-tiles button{ font:inherit; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:14px 6px 12px; min-height:96px; background:var(--card); border:1.5px solid var(--line); color:var(--ink); cursor:pointer; text-align:center; transition:border-color .15s, background .15s, transform .1s; }
+  .st-tiles button i{ width:46px; height:46px; border-radius:50%; background:var(--soft); color:var(--muted); display:flex; align-items:center; justify-content:center; transition:background .15s, color .15s; }
+  .st-tiles button span{ font-size:.86rem; font-weight:600; line-height:1.25; }
+  .st-tiles button:hover{ border-color:var(--pc); }
+  .st-tiles button[aria-pressed="true"]{ border-color:var(--pc); background:var(--pcl); box-shadow:inset 0 0 0 1px var(--pc); }
+  .st-tiles button[aria-pressed="true"] i{ background:var(--pc); color:#fff; }
+  .st-calc-out{ position:sticky; top:96px; background:var(--pc); color:#fff; padding:24px 22px; display:flex; flex-direction:column; gap:8px; box-shadow:0 18px 40px rgba(22,21,15,.16); overflow:hidden; }
+  .st-calc-out::before{ content:""; position:absolute; right:-60px; top:-60px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.10); }
+  .st-calc-out .k{ position:relative; font-size:.74rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.82); line-height:1.5; }
+  .st-calc-out .v{ position:relative; font-family:var(--serif); font-size:clamp(2.5rem,5vw,3.2rem); font-weight:600; line-height:1; color:#fff; font-variant-numeric:lining-nums tabular-nums; }
+  .st-calc-out .v small{ font-family:var(--sans); font-size:1rem; font-weight:600; color:rgba(255,255,255,.85); margin-left:6px; white-space:nowrap; }
+  .st-calc-out .mini{ display:grid; grid-template-columns:1fr 1fr; gap:10px; border-top:1px solid rgba(255,255,255,.25); padding-top:12px; margin-top:6px; }
+  .st-calc-out .mini b{ display:block; font-family:var(--serif); font-size:1.45rem; font-weight:600; line-height:1.1; }
+  .st-calc-out .mini small{ font-size:.78rem; color:rgba(255,255,255,.8); line-height:1.35; }
+  .st-calc-out p{ font-size:.9rem; color:rgba(255,255,255,.88); line-height:1.5; }
+  .st-calc-out.bump .v{ animation:stBump .35s ease; }
+  @keyframes stBump{ 0%{ transform:scale(.94); opacity:.4; } 100%{ transform:none; opacity:1; } }
+  @media(max-width:760px){
+    #stCalcBody.st-card{ grid-template-columns:minmax(0,1fr); padding:18px 16px; }
+    .st-tiles{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .st-calc-out{ position:relative; top:auto; }
+  }
+  @media (prefers-reduced-motion: reduce){ .st-calc-out.bump .v{ animation:none; } }
+
+  /* Buttons */
+  .st-next{ align-self:flex-start; min-height:52px; padding:0 28px; font-family:var(--sans); font-size:.95rem; font-weight:700; letter-spacing:.04em; background:var(--ink); color:var(--bg); border:0; cursor:pointer; }
+  .st-next:hover{ background:#2B2920; }
+  .st-next:disabled{ opacity:.35; cursor:not-allowed; }
+  .st-wrap button:focus-visible, .pf-wrap a:focus-visible, .pf-wrap input:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+  /* Results */
+  .st-hero{ background:var(--card); border:1px solid var(--line); border-top:6px solid var(--pc); padding:24px 22px; display:flex; flex-direction:column; gap:10px; }
+  .st-hero .who{ font-family:var(--serif); font-style:italic; font-size:1.2rem; color:var(--muted); }
+  .st-nums{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+  .st-num{ background:var(--card); border:1px solid var(--line); padding:16px; display:flex; flex-direction:column; gap:4px; min-width:0; }
+  .st-num .v{ font-family:var(--serif); font-size:2rem; font-weight:600; line-height:1; font-variant-numeric:tabular-nums; }
+  .st-num .l{ font-size:.86rem; color:var(--muted); line-height:1.4; }
+  .st-num.hl{ background:var(--pcl); border-color:transparent; }
+  .st-num.hl .v{ color:var(--pc); }
+  .st-note{ font-size:.82rem; color:var(--muted); line-height:1.5; }
+  .st-flag{ font-size:.92rem; background:#EAF1EE; border-left:4px solid #4F8C82; padding:12px 14px; }
+  .st-plans{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+  .st-plan{ background:var(--card); border:1px solid var(--line); border-top:5px solid var(--cc); padding:20px 20px 16px; display:flex; flex-direction:column; gap:8px; min-width:0; }
+  .st-plan.lead{ box-shadow:0 0 0 2px var(--pc), 0 14px 30px rgba(22,21,15,.10); border-top-color:var(--cc); }
+  .st-plan .chips{ display:flex; flex-wrap:wrap; gap:6px; }
+  .st-plan .chip{ font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:4px 9px; background:var(--cc); color:#fff; }
+  .st-plan .chip.dark{ background:var(--ink); color:#E9C9A0; }
+  .st-plan .chip.soft{ background:var(--soft); color:var(--muted); }
+  .st-plan .nm{ font-family:var(--serif); font-size:1.55rem; font-weight:500; line-height:1.15; margin-top:4px; }
+  .st-plan .big{ font-family:var(--serif); font-size:2.6rem; font-weight:500; line-height:1; color:var(--cc); margin-top:8px; font-variant-numeric:lining-nums; }
+  .st-plan .cap{ font-size:.92rem; line-height:1.45; }
+  .st-plan .why{ font-size:.88rem; color:var(--muted); line-height:1.45; }
+  .st-plan .foot{ margin-top:auto; border-top:1px solid var(--line); padding-top:12px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:6px 12px; }
+  .st-plan .price{ font-size:.92rem; color:var(--ink); }
+  .st-plan .price b{ font-family:var(--serif); font-size:1.15rem; font-weight:600; font-variant-numeric:lining-nums; }
+  .st-plan .price small{ display:block; font-size:.76rem; color:var(--muted); }
+  .st-plan .price .over{ color:#8A3A2C; font-weight:600; }
+  .st-plan .go{ display:inline-flex; align-items:center; gap:6px; min-height:44px; font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--goldd); text-decoration:none; white-space:nowrap; }
+  .st-plan .go:hover{ color:var(--ink); }
+  .st-plan .go span{ transition:transform .15s; }
+  .st-plan .go:hover span{ transform:translateX(3px); }
+  .st-parent .st-plans{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .st-plans .st-group{ grid-column:1 / -1; margin-top:10px; }
+  .st-group{ font-size:.8rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:8px; }
+  .st-parent{ background:var(--breadl); border:1px solid #E7C9BB; padding:18px; display:flex; flex-direction:column; gap:12px; }
+  .st-parent .row{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .st-parent input{ width:96px; height:48px; font-family:var(--serif); font-size:1.4rem; font-weight:600; text-align:center; border:1px solid var(--line); background:var(--card); border-radius:0; }
+
+  /* Plan page panel */
+  .st-sheet{ position:fixed; inset:0; z-index:300; background:var(--bg); display:flex; flex-direction:column; animation:stSheetIn .25s ease; }
+  .st-sheet[hidden]{ display:none; }
+  @keyframes stSheetIn{ from{ transform:translateY(24px); opacity:0; } to{ transform:none; opacity:1; } }
+  .st-sheet-bar{ flex:none; display:flex; align-items:center; gap:12px; padding:calc(10px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); background:var(--ink); color:var(--bg); }
+  .st-sheet-back{ flex:none; min-height:44px; padding:0 16px; font-family:var(--sans); font-size:.92rem; font-weight:700; background:var(--gold); color:#16150F; border:0; cursor:pointer; }
+  .st-sheet-back:hover{ background:#CDAE7A; }
+  .st-sheet-name{ flex:1; min-width:0; font-family:var(--serif); font-size:1.15rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .pf-wrap a.st-sheet-open{ flex:none; color:#D9D3C6; font-size:.82rem; text-decoration:underline; white-space:nowrap; }
+  .st-sheet iframe{ flex:1; width:100%; border:0; background:#FDFCFA; }
+  @media(max-width:640px){ .st-sheet-name{ display:none; } .st-sheet-back{ flex:1; } }
+  @media (prefers-reduced-motion: reduce){ .st-sheet{ animation:none; } }
+
+  /* Send my results */
+  .st-lead{ background:var(--ink); color:var(--bg); padding:26px 22px; display:flex; flex-direction:column; gap:12px; }
+  .st-lead h2{ color:var(--bg); }
+  .st-lead h2 em{ color:#E9C9A0; }
+  .st-lead p{ color:#D9D3C6; font-size:.96rem; }
+  .st-lead form{ display:flex; flex-direction:column; gap:14px; margin-top:4px; }
+  .st-lead .row{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; align-items:end; }
+  .st-lead .row-dob{ grid-template-columns:minmax(0,2fr) minmax(0,1fr); align-items:start; }
+  .st-lead .f{ display:flex; flex-direction:column; gap:7px; min-width:0; }
+  .st-lead .lt{ display:block; font-size:.74rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#D9D3C6; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .st-lead .lt i{ font-style:normal; text-transform:none; letter-spacing:0; font-weight:500; color:#B5AE9F; }
+  .st-dob{ display:grid; grid-template-columns:1.5fr 1fr 1.2fr; gap:8px; }
+  .st-lead input[type=text], .st-lead input[type=email], .st-lead input[type=tel], .st-lead select{ width:100%; height:50px; font-family:var(--sans); font-size:1rem; color:var(--ink); background:#fff; border:1px solid #fff; padding:0 14px; border-radius:0; -webkit-appearance:none; appearance:none; }
+  .st-lead select{ padding-right:30px; cursor:pointer; background-image:linear-gradient(45deg,transparent 50%,#16150F 50%),linear-gradient(135deg,#16150F 50%,transparent 50%); background-position:calc(100% - 17px) 50%, calc(100% - 12px) 50%; background-size:5px 5px; background-repeat:no-repeat; }
+  .st-lead select:invalid, .st-lead select.empty{ color:#7A766C; }
+  .st-lead input:focus, .st-lead select:focus{ outline:2px solid var(--gold); outline-offset:0; }
+  .st-dob-age{ font-size:.88rem !important; color:#D9D3C6; min-height:1.3em; }
+  .st-dob-age b{ color:#E9C9A0; }
+  .st-consent{ display:flex; gap:10px; align-items:flex-start; font-size:.86rem; color:#D9D3C6; cursor:pointer; }
+  .st-consent input{ width:20px; height:20px; flex:0 0 20px; margin-top:2px; accent-color:var(--gold); }
+  .st-lead .err{ color:#F3B9A6; font-size:.9rem; font-weight:600; min-height:1em; }
+  .st-lead button[type=submit]{ align-self:flex-start; min-height:52px; padding:0 26px; font-family:var(--sans); font-size:.92rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; background:var(--gold); color:#16150F; border:0; cursor:pointer; }
+  .st-lead button[type=submit]:hover{ background:#CDAE7A; }
+  .st-done{ display:flex; flex-direction:column; gap:10px; }
+  .st-done a{ align-self:flex-start; display:inline-flex; align-items:center; min-height:48px; padding:0 20px; font-size:.92rem; font-weight:700; text-decoration:none; }
+  .st-done .fb{ background:#1877F2; color:#fff; }
+  .st-done .ms{ border:1px solid #6B665C; color:var(--bg); }
+
+  .st-more{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .st-more a{ background:var(--card); border:1px solid var(--line); padding:16px 18px; text-decoration:none; color:var(--ink); display:flex; flex-direction:column; gap:4px; }
+  .st-more a b{ font-size:1rem; }
+  .st-more a small{ color:var(--muted); font-size:.88rem; }
+  .st-more a:hover{ border-color:var(--gold); }
+  .st-restart{ align-self:center; background:none; border:0; font:inherit; font-size:.92rem; color:var(--muted); text-decoration:underline; cursor:pointer; min-height:44px; }
+  .pf-contact{ border-top:1px solid var(--line); padding-top:22px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:4px; }
+  .pf-contact .row{ display:flex; flex-wrap:wrap; justify-content:center; gap:4px 28px; }
+  .pf-contact a{ color:var(--ink); text-decoration:none; font-size:.92rem; font-weight:500; min-height:44px; display:inline-flex; align-items:center; }
+  .pf-contact a:hover{ color:var(--goldd); }
+  /* "Prefer to talk now?": pick an app (same options as the Plan Finder's Message Donna sheet) */
+  .st-ask{ gap:10px; }
+  .st-ask h2{ font-size:clamp(1.5rem,4vw,1.9rem); }
+  .st-ask h2 em{ font-style:italic; color:var(--goldd); }
+  .st-ask-sub{ font-size:.92rem; color:var(--muted); }
+  .st-askopts{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; width:100%; max-width:760px; margin-top:6px; }
+  .pf-contact a.st-askopt{ display:flex; align-items:center; gap:12px; padding:14px; min-height:64px; border:1px solid var(--line); background:var(--card); color:var(--ink); text-decoration:none; font-weight:700; font-size:.98rem; text-align:left; }
+  .pf-contact a.st-askopt:hover{ border-color:var(--ink); color:var(--ink); }
+  .st-askopt i{ flex:0 0 34px; height:34px; display:flex; align-items:center; justify-content:center; color:#fff; font-style:normal; }
+  .st-askopt i svg{ width:20px; height:20px; }
+  .st-askopt span{ display:flex; flex-direction:column; line-height:1.25; min-width:0; }
+  .st-askopt small{ font-weight:400; font-size:.8rem; color:var(--muted); }
+  .st-askmsg{ width:100%; max-width:760px; font-size:.86rem; color:var(--muted); background:var(--soft); padding:10px 14px; line-height:1.5; text-align:left; }
+  .st-askmsg b{ color:var(--ink); }
+  .st-asknum{ font-size:.9rem; color:var(--muted); }
+  .pf-contact .st-asknum a{ display:inline; min-height:0; font-weight:700; text-decoration:underline; }
+  @media(max-width:860px){ .st-paths, .st-plans{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media(max-width:760px){ .st-askopts{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  .pf-disclaimer{ font-size:.78rem; color:var(--muted); line-height:1.55; max-width:80ch; margin:0 auto; text-align:center; }
+
+  @media(max-width:640px){
+    .st-paths, .st-plans, .st-parent .st-plans, .st-opts, .st-more, .st-lead .row, .st-lead .row-dob, .st-top{ grid-template-columns:minmax(0,1fr); }
+    .st-art{ max-width:210px; order:-1; }
+    .st-nums{ grid-template-columns:minmax(0,1fr); }
+    .st-num{ flex-direction:row; align-items:baseline; gap:12px; }
+    .st-num .v{ min-width:6.5rem; font-size:1.7rem; }
+    .st-plan{ grid-template-columns:minmax(0,1fr); }
+    .st-plan .price{ grid-row:auto; grid-column:1; text-align:left; flex-direction:row; align-items:baseline; gap:8px; flex-wrap:wrap; }
+    .st-next, .st-lead button[type=submit]{ width:100%; }
+    .st-nav .st-next{ width:auto; flex:1; }
+    .st-steps .t{ font-size:.68rem; letter-spacing:.02em; white-space:normal; }
+    .st-note, .pf-disclaimer{ font-size:.875rem; }
+  }
+  @media (prefers-reduced-motion: reduce){ .pf-wrap *{ transition:none !important; } }
+</style>
+</head>
+<body>
+<div class="pf-wrap" id="stWrap">
+  <div class="pf-topnav">
+    <a class="pf-nav-logo" href="https://me.donnanuqui.com/">Donna Nuqui</a>
+    <button class="pf-nav-toggle" id="pfNavToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="pf-nav-links" id="pfNavLinks">
+      <li><a href="https://me.donnanuqui.com/#about">Meet Donna</a></li>
+      <li><a href="https://me.donnanuqui.com/#services">Services</a></li>
+      <li><a href="https://me.donnanuqui.com/#tools">Tools</a></li>
+      <li><a href="https://plans.donnanuqui.com" aria-current="page">Plans</a></li>
+      <li><a href="https://me.donnanuqui.com/#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <main class="st-inner">
+
+    <!-- 1. The split question -->
+    <section class="st-screen on" id="sSplit" aria-labelledby="stSplitTitle">
+      <div class="st-head st-q">
+        <p class="pf-eyebrow">Find your plan in 1 minute</p>
+        <h1 id="stSplitTitle">One question first: <em>who depends on your income?</em></h1>
+        <p class="st-lede">Your life stage decides what you actually need. Pick the one that sounds most like you right now.</p>
+      </div>
+      <div class="st-paths" id="stPaths"></div>
+      <p class="st-medlink">Have a medical condition, or got declined before? <a href="https://plans.donnanuqui.com/elp/?src=start_split" data-plan="elp" data-rank="split">See the plan with guaranteed acceptance →</a></p>
+    </section>
+
+    <!-- 2. About you -->
+    <section class="st-screen" id="sAbout" aria-labelledby="stAboutTitle">
+      <ol class="st-steps" aria-label="Step 1 of 4"><li class="on" aria-current="step"><span class="n">1</span><span class="t">Your age</span></li><li class=""><span class="n">2</span><span class="t">Your health</span></li><li class=""><span class="n">3</span><span class="t">Your budget</span></li><li class=""><span class="n">4</span><span class="t">Your numbers</span></li></ol>
+      <div class="st-head">
+        <p class="pf-eyebrow" id="stAboutEyebrow"></p>
+        <h2 id="stAboutTitle">How old are you?</h2>
+        <p class="st-lede" id="stAboutLede"></p>
+      </div>
+      <div class="st-card">
+        <label class="st-lbl" for="stAge">Your age today</label>
+        <div class="st-age">
+          <button type="button" id="stMinus" aria-label="One year younger">−</button>
+          <input type="number" id="stAge" inputmode="numeric" min="18" max="75" value="30">
+          <button type="button" id="stPlus" aria-label="One year older">+</button>
+        </div>
+        <label class="st-toggle"><input type="checkbox" id="stOfw"> <span>I work abroad (OFW)</span></label>
+        <p class="st-err" id="stAgeErr" hidden></p>
+      </div>
+      <div class="st-nav"><button type="button" class="st-back" data-back>← Back</button><button type="button" class="st-next" id="stAboutNext">Next →</button></div>
+    </section>
+
+    <!-- 3. Health -->
+    <section class="st-screen" id="sHealth" aria-labelledby="stHealthTitle">
+      <ol class="st-steps" aria-label="Step 2 of 4"><li class="done"><span class="n">✓</span><span class="t">Your age</span></li><li class="on" aria-current="step"><span class="n">2</span><span class="t">Your health</span></li><li class=""><span class="n">3</span><span class="t">Your budget</span></li><li class=""><span class="n">4</span><span class="t">Your numbers</span></li></ol>
+      <div class="st-head">
+        <p class="pf-eyebrow">Just between us</p>
+        <h2 id="stHealthTitle">How’s your health right now?</h2>
+        <p class="st-lede">This tells me which plans you can get approved for.</p>
+      </div>
+      <div class="st-opts" id="stHealthOpts" role="group" aria-labelledby="stHealthTitle"></div>
+      <div class="st-nav"><button type="button" class="st-back" data-back>← Back</button><button type="button" class="st-next" id="stHealthNext" disabled>Next →</button></div>
+    </section>
+
+    <!-- 4. Budget -->
+    <section class="st-screen" id="sBudget" aria-labelledby="stBudgetTitle">
+      <ol class="st-steps" aria-label="Step 3 of 4"><li class="done"><span class="n">✓</span><span class="t">Your age</span></li><li class="done"><span class="n">✓</span><span class="t">Your health</span></li><li class="on" aria-current="step"><span class="n">3</span><span class="t">Your budget</span></li><li class=""><span class="n">4</span><span class="t">Your numbers</span></li></ol>
+      <div class="st-head">
+        <p class="pf-eyebrow">Your budget</p>
+        <h2 id="stBudgetTitle">How much can you set aside every month?</h2>
+        <p class="st-lede">Be honest with yourself. A plan you can keep is better than a big one you can’t. I’ll only lead with plans that fit.</p>
+      </div>
+      <div class="st-opts" id="stBudgetOpts" role="group" aria-labelledby="stBudgetTitle"></div>
+      <div class="st-nav"><button type="button" class="st-back" data-back>← Back</button><button type="button" class="st-next" id="stBudgetNext" disabled>Next →</button></div>
+    </section>
+
+    <!-- 5. The numbers tool for their path -->
+    <section class="st-screen" id="sCalc" aria-labelledby="stCalcTitle">
+      <ol class="st-steps" aria-label="Step 4 of 4"><li class="done"><span class="n">✓</span><span class="t">Your age</span></li><li class="done"><span class="n">✓</span><span class="t">Your health</span></li><li class="done"><span class="n">✓</span><span class="t">Your budget</span></li><li class="on" aria-current="step"><span class="n">4</span><span class="t">Your numbers</span></li></ol>
+      <div class="st-head">
+        <p class="pf-eyebrow" id="stCalcEyebrow">Your numbers</p>
+        <h2 id="stCalcTitle"></h2>
+        <p class="st-lede" id="stCalcLede"></p>
+      </div>
+      <div class="st-card" id="stCalcBody"></div>
+      <div class="st-nav"><button type="button" class="st-back" data-back>← Back</button><button type="button" class="st-next" id="stCalcNext">See my plans →</button></div>
+    </section>
+
+    <!-- 6. Results -->
+    <section class="st-screen" id="sResults" aria-labelledby="stResTitle">
+      <button type="button" class="st-back" data-back>← Change my answers</button>
+      <div class="st-hero">
+        <p class="pf-eyebrow" id="stResEyebrow"></p>
+        <h1 id="stResTitle"></h1>
+        <p class="who" id="stResWho"></p>
+        <p class="st-lede" id="stResAngle"></p>
+      </div>
+      <div id="stResNums"></div>
+      <div id="stResFlag"></div>
+      <div class="st-head">
+        <p class="pf-eyebrow">Plans that fit you</p>
+        <h2 id="stPlansTitle">Here’s where <em>I’d start.</em></h2>
+        <p class="st-note" id="stPlansNote"></p>
+      </div>
+      <div class="st-plans" id="stPlans"></div>
+      <div id="stParents"></div>
+
+      <section class="st-lead" aria-labelledby="stLeadTitle" id="stLead">
+        <p class="pf-eyebrow" style="color:#E9C9A0">Free, no obligation</p>
+        <h2 id="stLeadTitle">Want this sent to you, <em>with your exact numbers?</em></h2>
+        <p>I’ll send your results plus a proposal for your top plan within 24 hours, with the exact premium for your age.</p>
+        <form id="stLeadForm" novalidate>
+          <label class="f"><span class="lt">Your name</span><input type="text" id="stName" autocomplete="name" placeholder="e.g. Maria Santos"></label>
+          <div class="row">
+            <label class="f"><span class="lt">Email</span><input type="email" id="stEmail" autocomplete="email" inputmode="email" placeholder="you@email.com"></label>
+            <label class="f"><span class="lt">Mobile number <i>(optional)</i></span><input type="tel" id="stMobile" autocomplete="tel" inputmode="tel" placeholder="09XX XXX XXXX"></label>
+          </div>
+          <div class="row row-dob">
+            <div class="f"><span class="lt" id="stDobLbl">Your birthday</span><div class="st-dob" role="group" aria-labelledby="stDobLbl" id="stDob"></div><p class="st-dob-age" id="stDobAge" aria-live="polite">So your proposal uses your exact age.</p></div>
+            <label class="f"><span class="lt">Gender</span><select id="stGender" class="empty"><option value="" selected disabled>Select</option><option value="Male">Male</option><option value="Female">Female</option></select></label>
+          </div>
+          <label class="st-consent"><input type="checkbox" id="stConsent"> <span>I agree to let Donna Nuqui, a licensed financial advisor, contact me about my results. My details won’t be shared with anyone else.</span></label>
+          <p class="err" id="stLeadErr" role="alert"></p>
+          <button type="submit">Send me my results</button>
+        </form>
+      </section>
+
+      <div class="st-more">
+        <a href="https://donnanuqui.com/financial-check" id="stFinCheck"><b>Not ready for a plan yet?</b><small>Take the free Financial Readiness Check first.</small></a>
+        <a href="https://plans.donnanuqui.com/?src=start_compare"><b>Compare all plans</b><small>See every Sun Life plan I offer, by age.</small></a>
+      </div>
+      <button type="button" class="st-restart" id="stRestart">Start over with a different answer</button>
+    </section>
+
+    <div class="pf-contact st-ask" aria-labelledby="stAskH">
+      <p class="pf-eyebrow">Prefer to talk now?</p>
+      <h2 id="stAskH">Message me <em>on the app you use.</em></h2>
+      <p class="st-ask-sub">Pick whatever’s easiest for you. I usually reply within the day.</p>
+      <div class="st-askopts" id="stAskOpts"></div>
+      <p class="st-askmsg" id="stAskMsg"></p>
+      <p class="st-asknum">Or call <a href="tel:+639623858115" data-ask-k="call">0962 385 8115</a> · <a href="mailto:donnadel.g.nuqui@sunlife.com.ph" data-ask-k="email">Email me</a></p>
+    </div>
+    <p class="pf-disclaimer">Estimates are for the base plan only at each plan’s minimum coverage, non-smoker, from Donna’s premium benchmarks. Ages between benchmark points are estimated. Riders cost extra. The calculators are simple guides that don’t include interest or inflation. Educational summary only, not a formal quote. Benefits, issue ages and approval are subject to underwriting and the actual policy contract.</p>
+  </main>
+
+  <!-- Plan page panel: opens on top of the funnel so they can come straight back -->
+  <div class="st-sheet" id="stSheet" role="dialog" aria-modal="true" aria-labelledby="stSheetName" hidden>
+    <div class="st-sheet-bar">
+      <button type="button" class="st-sheet-back" id="stSheetBack"><span aria-hidden="true">←</span> Back to your results</button>
+      <span class="st-sheet-name" id="stSheetName"></span>
+      <a class="st-sheet-open" id="stSheetOpen" href="#" target="_blank" rel="noopener">Open full page <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var t = document.getElementById('pfNavToggle'), l = document.getElementById('pfNavLinks');
+  if(t && l){
+    t.addEventListener('click', function(){ t.classList.toggle('open'); l.classList.toggle('open'); });
+    var links = l.querySelectorAll('a');
+    for(var i = 0; i < links.length; i++){ links[i].addEventListener('click', function(){ t.classList.remove('open'); l.classList.remove('open'); }); }
+  }
+})();
+(function(){
+  /* =========================================================
+     LIFE-STAGE FUNNEL (plans.donnanuqui.com/start)
+     Split question -> about you -> health -> budget -> path calculator -> results.
+     Premiums: same benchmarks as the Plan Finder (Product Dashboard, Benchmarks tab,
+     snapshot 2026-10-14). Yearly premium, base plan, minimum coverage, non-smoker.
+     Ages in between are the straight-line average of the nearest two benchmark ages.
+     Link a post straight to a path with ?path=solo | bread | couple | family | sandwich | legacy
+     ========================================================= */
+  var LEADS_URL = 'https://script.google.com/macros/s/AKfycbzVcrMEVF-Hj0M3qc2uzcP6_yYv7hJSTJ2ao3e04NVgVIRq7Ol-QDamBgCK-mr6EtMR7g/exec';
+  var MESSENGER = 'https://m.me/financial.advisor.donna.n';
+  var FB_PAGE = 'https://www.facebook.com/financial.advisor.donna.n';
+
+  var PLANS = {
+    smp:  { name:'Sun MaxiLink Prime', min:350000, a0:0, a1:65, bench:{25:17587.5, 35:20860, 45:30250.5, 55:46424, 60:64088.5, 65:73822},
+            hook:'<b>2× your coverage</b> as life insurance, plus a fund that can grow' },
+    ml100:{ name:'Sun MaxiLink 100', min:350000, a0:0, a1:70, bench:{25:13191.5, 35:15470, 45:18340, 55:39550, 60:41685, 65:68320},
+            hook:'<b>Covered until 100</b>, with 2× your coverage plus your fund' },
+    sfw:  { name:'Sun Fit and Well Advantage 10', min:300000, a0:0, a1:60, bench:{25:15198, 35:19152, 45:23988, 55:27660, 60:29820}, health:true,
+            hook:'<b>114 illnesses</b> covered, cash paid to you, plus cash back from 65' },
+    sla:  { name:'Sun LifeAssure', min:1000000, a0:18, a1:60, bench:{25:7720, 35:8720, 45:16250, 55:31410, 60:36000}, health:true,
+            hook:'<b>₱1M cash</b> if diagnosed with any of 36 critical illnesses' },
+    ssi:  { name:'Sun Secure Income 10', min:250000, a0:0, a1:65, bench:{25:56362.5, 35:56830, 45:57880, 55:60142.5, 60:61867.5, 65:64335},
+            hook:'<b>6% of your coverage every year</b>, guaranteed, from year 6 to age 100' },
+    slc:  { name:'SUN Smarter Life Classic', min:200000, a0:0, a1:80, bench:{25:15874, 35:19384, 45:23822, 55:29760, 60:33686, 65:38222},
+            hook:'<b>2× your coverage</b> for your family, until age 100, with no market risk' },
+    sa8:  { name:'Sun Acceler8', min:250000, a0:0, a1:65, bench:{25:51825, 35:52475, 45:53825, 55:57375, 60:61177.5, 65:66967.5},
+            hook:'<b>Guaranteed cash every 2 years</b> from year 8, plus 102% of your coverage at year 20' },
+    elp:  { name:'Sun Life EasyLink Protect 10', min:375000, a0:18, a1:70, bench:{25:30000, 35:30000, 45:30000, 55:30000, 60:30000, 65:30000},
+            hook:'<b>Guaranteed acceptance</b>, no medical exam needed' },
+    sap:  { name:'Sun Life Save and Protect', min:460000, a0:0, a1:50, bench:{25:23000, 35:23000, 45:23000, 50:28750},
+            hook:'<b>At least 100% of your premiums back</b> at year 20, guaranteed. No medical exam.' },
+    sda:  { name:'Sun Dream Achiever', min:250000, a0:18, a1:40, bench:{25:46922.5, 35:47542.5},
+            hook:'<b>100% of your coverage</b> paid out as 4 guaranteed school years' },
+    ofw:  { name:'Sun Life OFW Health Protect', min:300000, a0:18, a1:50, bench:{25:17998, 35:21952, 45:26788}, health:true,
+            hook:'<b>Cash for a major illness</b>, plus hospital and recovery cash, wherever you work' },
+    ssc:  { name:'SUN Senior Care', min:300000, a0:50, a1:70, bench:{55:67989, 60:72855, 65:79107}, health:true,
+            hook:'<b>150% of the coverage</b> in cash for 17 age-related illnesses' },
+    spl:  { name:'Sun Life Premier Legacy', min:null, a0:7, a1:75, bench:{},
+            hook:'<b>200% of your coverage</b> for your heirs, paid out the way you decide' }
+  };
+
+  var PATHS = {
+    solo: {
+      label:'The Solo Saver', ans:'Just me', sub:'Single, and no one depends on my income yet', c:'#5F7F5A', bg:'#E3EADF', icon:'user',
+      teaser:'Grow your money first', big:'100% back',
+      who:'“Insurance? Wala pa akong pamilya. I want my money to grow.”',
+      angle:'You don’t need big life insurance yet. You need your money to grow, and a safety net so one hospital bill doesn’t wipe it out. Start small while you’re young, when your rates are lowest.',
+      about:'Saving starts cheaper the younger you are.',
+      calc:'goal',
+      plans:[
+        ['sap','Money back, guaranteed. If nothing happens, you still get your premiums back at year 20.'],
+        ['smp','The smallest start. Grows with the market, and you’re done paying in 10 years.'],
+        ['sa8','Your “level up” when your budget allows: guaranteed cash every 2 years from year 8.'],
+        ['sfw','Protects your savings, so one serious illness won’t wipe out what you’ve built.']
+      ]
+    },
+    bread: {
+      label:'The Solo Breadwinner', ans:'My parents or siblings', sub:'Single, no kids yet, and I help support Mama, Papa or my siblings', c:'#B4603F', bg:'#F5E3DA', icon:'hands',
+      teaser:'Protect the support you give', big:'₱1M cash',
+      who:'“Ako ang inaasahan nina Mama at Papa.”',
+      angle:'If you get sick or can’t work, their support stops too. Protect your income first, then build savings for yourself.',
+      about:'This sets which plans you can get, and your estimate.',
+      calc:'support', parents:true,
+      plans:[
+        ['sfw','Health first: if you get sick, the cash comes to you, so the support doesn’t stop.'],
+        ['sla','The most affordable start: ₱1M cash on a critical illness diagnosis, or for your family.'],
+        ['smp','Protection that also grows your own money, done paying in 10 years.'],
+        ['sa8','Guaranteed cash every 2 years, for your own goals.']
+      ]
+    },
+    couple: {
+      label:'The Couple Builder', ans:'My spouse or partner', sub:'Married or living together, no kids yet', c:'#4E7090', bg:'#E1E8EF', icon:'hearts',
+      teaser:'Grow together, protect each other', big:'2× cover + fund',
+      who:'“We’re building our life: a house, a business, our future.”',
+      angle:'Grow together and protect each other. Your plans shouldn’t fall apart if one income stops.',
+      about:'Answer for yourself. Your partner can take it too.',
+      calc:'goal',
+      plans:[
+        ['smp','Grows your money while you protect each other, done paying in 10 years.'],
+        ['sa8','Guaranteed cash every 2 years for your house or business fund.'],
+        ['sfw','Health cover, so one illness doesn’t drain your shared savings.']
+      ]
+    },
+    family: {
+      label:'The Family Protector', ans:'My family (spouse and kids)', sub:'My spouse and kids depend on me. Single parents, this is you too.', c:'#8B6F3F', bg:'#F2EAD9', icon:'family',
+      teaser:'Make sure they’re okay, no matter what', big:'₱60K a year',
+      who:'“Everything I do is for my kids.”',
+      angle:'Make sure your kids are okay no matter what happens to you, and that their schooling is funded, guaranteed.',
+      about:'This sets which plans you can get, and your estimate.',
+      calc:'gap',
+      plans:[
+        ['ssi','Make your child the insured: ₱60K a year for every ₱1M, guaranteed, from year 6 to age 100. It can reach your grandchildren.'],
+        ['sda','A guaranteed college fund, paid out as 4 school years. You finish paying in 5 years.'],
+        ['slc','Lifetime protection for your family: 2× your coverage, with no market risk.'],
+        ['smp','Protection plus growth, done paying in 10 years.'],
+        ['sfw','Health cover, so a hospital bill never touches the kids’ fund.'],
+        ['sla','The most affordable way to protect them today.']
+      ]
+    },
+    sandwich: {
+      label:'The Sandwich Generation', ans:'My family AND my parents', sub:'My spouse and kids depend on me, and I still help support Mama and Papa', c:'#2F7A78', bg:'#DCEDEC', icon:'layers',
+      teaser:'Two generations depend on you', big:'2 generations',
+      who:'“Para sa mga anak ko, at para pa rin kina Mama at Papa.”',
+      angle:'Your kids and your parents both depend on you. If you get sick or can’t work, both generations lose their support at the same time. Protect your income first, then your kids’ future, then your parents’ health, so their hospital bills don’t come out of your kids’ fund.',
+      about:'This sets which plans you can get, and your estimate. You can check your parents’ plans on the results page.',
+      calc:'sandwich', parents:true, parentsAlways:true,
+      plans:[
+        ['sfw','Health first: if you get sick, the cash comes to you, so neither your kids nor your parents lose your support.'],
+        ['sla','The most affordable way to protect both generations: ₱1M cash on a critical illness diagnosis.'],
+        ['ssi','Your kids’ fund, guaranteed: make your child the insured and get ₱60K a year for every ₱1M, from year 6 to age 100.'],
+        ['slc','Lifetime protection: 2× your coverage for your family, with no market risk.'],
+        ['smp','Protection that also grows your money, done paying in 10 years.']
+      ]
+    },
+    legacy: {
+      label:'The Legacy Planner', ans:'My kids are grown', sub:'My kids are on their own now. I’m thinking about retirement and what I’ll leave behind', c:'#6E5E84', bg:'#ECE7F1', icon:'sun',
+      teaser:'Retire with income, leave a legacy', big:'Income to 100',
+      who:'“Retirement na ang iniisip ko, and what I’ll leave behind.”',
+      angle:'Retire with income that keeps coming, and pass on what you built, your way.',
+      about:'Some plans have age limits, so this keeps your list accurate.',
+      calc:'retire',
+      plans:[
+        ['ssi','Guaranteed yearly income until 100: 6% of your coverage every year from year 6.'],
+        ['slc','Lifetime cover your heirs receive, and you can still apply up to age 80.'],
+        ['ssc','Health cover made for ages 50 to 70: cash for 17 age-related illnesses.'],
+        ['ml100','Covered until 100, with a fund that can grow.'],
+        ['spl','For bigger estates: ready cash for estate tax, and you decide who receives what.']
+      ]
+    }
+  };
+  /* Card look for each plan (same style as the Plans section): category, colour, big number + caption */
+  var CATS = { health:['Be ready if I get sick','#B4603F'], save:['Save for a big goal','#A88A55'], kids:['My kids’ future','#8B6F3F'],
+    protect:['Protect my family','#4E7090'], grow:['Grow my money','#5F7F5A'], legacy:['Pass on my wealth','#16150F'],
+    income:['Guaranteed income','#6E5E84'], easy:['Guaranteed acceptance','#2F7A78'], parent:['For Mama or Papa','#B4603F'] };
+  var LOOK = {
+    smp:['grow','2×','your coverage as life insurance, plus a fund that can grow'],
+    ml100:['grow','Age 100','covered for life, with 2× your coverage plus your fund'],
+    sfw:['health','114','illnesses covered, with cash paid to you, plus cash back from 65'],
+    sla:['health','₱1M','cash if diagnosed with any of 36 critical illnesses'],
+    ssi:['income','₱60K a year','for every ₱1M of coverage, guaranteed, from year 6 to age 100'],
+    slc:['protect','2×','your coverage for your family until age 100, with no market risk'],
+    sa8:['save','102%','of your coverage back at year 20, plus cash every 2 years from year 8'],
+    elp:['easy','100%','guaranteed acceptance, with no medical exam'],
+    sap:['save','100%','of your premiums back at year 20, guaranteed, with no medical exam'],
+    sda:['kids','4 years','of school paid out as 100% of your coverage, guaranteed'],
+    ofw:['health','₱1M','cash for a major illness at ₱1M coverage, plus hospital and recovery cash'],
+    ssc:['health','150%','of your coverage in cash for 17 age-related illnesses'],
+    spl:['legacy','200%','of your coverage for your heirs, paid out the way you decide']
+  };
+  var PATH_ORDER = ['solo', 'family', 'couple', 'sandwich', 'bread', 'legacy'];
+
+  var HEALTH = [
+    { k:'ok', t:'Healthy, no major issues' },
+    { k:'family', t:'Healthy, but serious illness runs in my family' },
+    { k:'cond', t:'I have a medical condition', s:'Like high blood pressure or diabetes' },
+    { k:'declined', t:'I applied before and got declined' }
+  ];
+  var BUDGETS = [
+    { k:'b1', t:'Below ₱1,500', max:1500 },
+    { k:'b2', t:'₱1,500 to ₱3,000', max:3000 },
+    { k:'b3', t:'₱3,000 to ₱5,000', max:5000 },
+    { k:'b4', t:'₱5,000 to ₱10,000', max:10000 },
+    { k:'b5', t:'₱10,000 or more', max:1e9 }
+  ];
+
+  var ICONS = {
+    user:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',
+    hands:'<path d="M19.5 12.6 12 20l-7.5-7.4A5 5 0 1 1 12 6a5 5 0 1 1 7.5 6.6"/><path d="M12 6 8.7 9.3a1 1 0 0 0 0 1.4l.5.5a2 2 0 0 0 2.8 0l1-1a3 3 0 0 1 4.2 0l2.3 2.3M12.5 15.5l2 2M15 13l2 2"/>',
+    hearts:'<path d="M9.5 18.5 4 13a3.5 3.5 0 1 1 5.5-4.3A3.5 3.5 0 1 1 15 13l-5.5 5.5z"/><path d="M14.6 7.4A3.5 3.5 0 0 1 21 9.5c0 1-.4 1.9-1 2.5l-5.5 5.5"/>',
+    family:'<circle cx="8" cy="5" r="2.5"/><circle cx="17" cy="7" r="2"/><path d="M5 21v-6l-1-1 1.5-5h5L12 14l-1 1v6M15 21v-4h-1l1.5-5h3L20 17h-1v4"/>',
+    layers:'<circle cx="6" cy="5" r="2.2"/><path d="M2.5 12.5a3.5 3.5 0 0 1 7 0"/><circle cx="15" cy="7" r="2.4"/><path d="M11 15a4 4 0 0 1 8 0"/><circle cx="9.5" cy="16" r="1.7"/><path d="M7 21.5a2.5 2.5 0 0 1 5 0"/>',
+    sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'
+  };
+  function svg(name, color, size){
+    return '<svg aria-hidden="true" focusable="false" width="' + (size || 26) + '" height="' + (size || 26) + '" viewBox="0 0 24 24" fill="none" stroke="' + color + '" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + (ICONS[name] || '') + '</svg>';
+  }
+
+  /* ---------- state ---------- */
+  var S = { path:null, age:30, ofw:false, health:null, budget:null, calc:{}, parentAge:null };
+  var wrap = document.getElementById('stWrap');
+  function $(id){ return document.getElementById(id); }
+  function peso(n){ return '₱' + Math.round(n).toLocaleString('en-PH'); }
+  function short(n){
+    if(n >= 1000000) return '₱' + (Math.round(n / 100000) / 10).toString().replace(/\.0$/, '') + 'M';
+    if(n >= 1000) return '₱' + Math.round(n / 1000) + 'K';
+    return peso(n);
+  }
+  function esc(t){ return String(t == null ? '' : t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function band(a){ if(a <= 30) return '18-30'; if(a <= 45) return '31-45'; if(a <= 60) return '46-60'; return '61+'; }
+  function track(name, params){
+    var p = params || {}; p.path = p.path || S.path || 'none'; p.post_src = PF_SRC;
+    try{ if(typeof gtag === 'function') gtag('event', name, p); }catch(e){}
+  }
+  function budgetOf(k){ for(var i = 0; i < BUDGETS.length; i++){ if(BUDGETS[i].k === k) return BUDGETS[i]; } return null; }
+  function healthOf(k){ for(var i = 0; i < HEALTH.length; i++){ if(HEALTH[i].k === k) return HEALTH[i]; } return null; }
+  function hasCondition(){ return S.health === 'cond' || S.health === 'declined'; }
+
+  /* Yearly premium at the plan's minimum coverage, for an age (benchmark ages, straight-line in between). */
+  function yearly(plan, age){
+    var y = plan.bench, keys = Object.keys(y).map(Number).sort(function(a, b){ return a - b; });
+    if(!keys.length) return null;
+    if(y[age] !== undefined) return y[age];
+    var first = keys[0], last = keys[keys.length - 1];
+    if(age < first) return y[first];
+    for(var i = 0; i < keys.length - 1; i++){
+      var a = keys[i], b = keys[i + 1];
+      if(age > a && age < b) return y[a] + (y[b] - y[a]) * (age - a) / (b - a);
+    }
+    if(keys.length > 1){
+      var prev = keys[keys.length - 2], slope = (y[last] - y[prev]) / (last - prev);
+      return y[last] + Math.max(0, slope) * (age - last);
+    }
+    return y[last];
+  }
+  function ageOk(plan, age){ return age >= plan.a0 && age <= plan.a1; }
+
+  /* ---------- screens + phone Back button ---------- */
+  var ORDER = ['sSplit', 'sAbout', 'sHealth', 'sBudget', 'sCalc', 'sResults'];
+  /* The on-page Back buttons use our own list of visited screens, so they work everywhere
+     (including previews inside apps, where the browser history doesn't respond).
+     Each forward step also adds a browser history entry, so the phone's Back button steps back too. */
+  var current = 'sSplit', trail = [], sheetOpen = false, sheetPushed = false, ignorePop = false;
+  function show(id, push){
+    if(push && id !== current) trail.push(current);
+    var all = document.querySelectorAll('.st-screen');
+    for(var i = 0; i < all.length; i++) all[i].classList.remove('on');
+    $(id).classList.add('on');
+    current = id;
+    try{ window.scrollTo(0, 0); }catch(e){}
+    if(push){ try{ history.pushState({ st:id }, '', location.search || location.pathname); }catch(e){} }
+    track('start_step_view', { step: id.replace(/^s/, '').toLowerCase() });
+  }
+  function back(){
+    var prev = trail.length ? trail.pop() : 'sSplit';
+    if(prev === 'sSplit'){ S.path = null; wrap.removeAttribute('data-path'); }
+    show(prev, false);
+  }
+  window.addEventListener('popstate', function(){
+    if(ignorePop){ ignorePop = false; return; }
+    if(sheetOpen){ closeSheet(false); return; }
+    if(current === 'sSplit' && !trail.length) return;
+    back();
+  });
+  var backs = document.querySelectorAll('[data-back]');
+  for(var b = 0; b < backs.length; b++) backs[b].addEventListener('click', back);
+
+  /* ---------- 1. split ---------- */
+  function renderPaths(){
+    var html = '';
+    PATH_ORDER.forEach(function(k, i){
+      var p = PATHS[k];
+      html += '<button type="button" class="st-path' + '' + '" data-path="' + k + '" style="--c:' + p.c + ';--cl:' + p.bg + '">'
+        + '<span class="ic">' + svg(p.icon, p.c) + '</span>'
+        + '<b>' + p.ans.replace(/ AND /, ' <em>and</em> ').replace(/\((.+)\)/, '<i>($1)</i>') + '</b><small>' + p.sub + '</small></button>';
+    });
+    $('stPaths').innerHTML = html;
+    var bs = $('stPaths').querySelectorAll('button');
+    for(var i = 0; i < bs.length; i++) bs[i].addEventListener('click', function(){ pickPath(this.getAttribute('data-path'), true); });
+  }
+  function pickPath(k, push){
+    S.path = k;
+    wrap.setAttribute('data-path', k);
+    var p = PATHS[k];
+    $('stAboutEyebrow').textContent = p.label;
+    $('stAboutLede').textContent = p.about;
+    if(k === 'legacy' && S.age < 45){ S.age = 55; $('stAge').value = 55; }
+    track('start_path_select', { path:k });
+    show('sAbout', push);
+  }
+
+  /* ---------- 2. about you ---------- */
+  var ageIn = $('stAge');
+  function readAge(){ var v = String(ageIn.value).trim(); return /^\d+$/.test(v) ? parseInt(v, 10) : null; }
+  function stepAge(d){ var a = readAge(); if(a === null) a = 30; a = Math.min(75, Math.max(18, a + d)); ageIn.value = a; $('stAgeErr').hidden = true; }
+  $('stMinus').addEventListener('click', function(){ stepAge(-1); });
+  $('stPlus').addEventListener('click', function(){ stepAge(1); });
+  ageIn.addEventListener('input', function(){ $('stAgeErr').hidden = true; });
+  $('stAboutNext').addEventListener('click', function(){
+    var a = readAge();
+    if(a === null || a < 18 || a > 75){ var er = $('stAgeErr'); er.textContent = 'Please enter your age, from 18 to 75.'; er.hidden = false; return; }
+    S.age = a; S.ofw = $('stOfw').checked;
+    track('start_about', { age:a, age_band:band(a), ofw:S.ofw ? 'yes' : 'no' });
+    renderOpts('stHealthOpts', HEALTH, 'health');
+    show('sHealth', true);
+  });
+
+  /* ---------- 3 + 4. tap-to-answer screens ---------- */
+  function renderOpts(boxId, list, key){
+    var html = '';
+    list.forEach(function(o){
+      html += '<button type="button" class="st-opt" data-k="' + o.k + '" aria-pressed="' + (S[key] === o.k ? 'true' : 'false') + '"><b>' + o.t + '</b>' + (o.s ? '<small>' + o.s + '</small>' : '') + '</button>';
+    });
+    $(boxId).innerHTML = html;
+    var bs = $(boxId).querySelectorAll('button');
+    for(var i = 0; i < bs.length; i++) bs[i].addEventListener('click', function(){
+      S[key] = this.getAttribute('data-k');
+      for(var j = 0; j < bs.length; j++) bs[j].setAttribute('aria-pressed', bs[j] === this ? 'true' : 'false');
+      track('start_answer', { question:key, answer:S[key] });
+      $(key === 'health' ? 'stHealthNext' : 'stBudgetNext').disabled = false;
+    });
+    $(key === 'health' ? 'stHealthNext' : 'stBudgetNext').disabled = !S[key];
+  }
+  $('stHealthNext').addEventListener('click', function(){ if(!S.health) return; renderOpts('stBudgetOpts', BUDGETS, 'budget'); show('sBudget', true); });
+  $('stBudgetNext').addEventListener('click', function(){ if(!S.budget) return; renderCalc(); show('sCalc', true); });
+
+  /* ---------- 5. calculators ---------- */
+  var CALCS = {
+    goal: {
+      eyebrow:'Your savings goal',
+      title:function(){ return S.path === 'couple' ? 'What are you building <em>together?</em>' : 'What are you <em>saving for?</em>'; },
+      lede:'Pick a goal, an amount and when you want it. I’ll show what it takes every month.',
+      fields:[
+        { id:'what', lbl:'Saving for', tiles:true, opts:[['House','House'],['Business','Business'],['Emergency fund','Emergency fund'],['Travel','Travel'],['Retirement','Retirement']], def:'House' },
+        { id:'amount', lbl:'How much', opts:[[300000,'₱300K'],[500000,'₱500K'],[1000000,'₱1M'],[2000000,'₱2M'],[5000000,'₱5M']], def:1000000 },
+        { id:'years', lbl:'In how many years', opts:[[3,'3 years'],[5,'5 years'],[10,'10 years'],[15,'15 years'],[20,'20 years']], def:10 }
+      ],
+      out:function(c){
+        var mo = c.amount / (c.years * 12);
+        return { k:'To reach ' + short(c.amount) + ' for your ' + c.what.toLowerCase() + ' in ' + c.years + ' years', v:peso(mo) + ' a month',
+          p:'Before any interest. A savings plan does part of the work, and keeps you protected while you save.',
+          nums:[[short(c.amount), 'your ' + c.what.toLowerCase() + ' goal'], [peso(mo), 'a month to get there', true], [c.years + ' yrs', 'until you reach it']],
+          summary:c.what + ' ' + short(c.amount) + ' in ' + c.years + ' yrs (' + peso(mo) + '/mo)' };
+      }
+    },
+    support: {
+      eyebrow:'The support you give',
+      title:function(){ return 'What happens to their support <em>if you can’t work?</em>'; },
+      lede:'Two quick taps. This is what your family would need from somewhere else.',
+      fields:[
+        { id:'monthly', lbl:'You give your family about', opts:[[5000,'₱5K/mo'],[10000,'₱10K/mo'],[15000,'₱15K/mo'],[20000,'₱20K/mo'],[30000,'₱30K+/mo']], def:10000 },
+        { id:'years', lbl:'For how many more years', opts:[[5,'5 years'],[10,'10 years'],[15,'15 years'],[20,'20 years']], def:10 },
+        { id:'parent', lbl:'Is a parent 50 or older?', opts:[['yes','Yes'],['no','No']], def:'yes' }
+      ],
+      out:function(c){
+        var total = c.monthly * 12 * c.years;
+        return { k:'If you got sick or couldn’t work, they’d need', v:short(total), p:peso(c.monthly) + ' a month for ' + c.years + ' years. Protecting your income protects them too.',
+          nums:[[short(total), 'their support if you couldn’t work', true], [peso(c.monthly), 'a month you give now'], [c.years + ' yrs', 'they’ll still need you']],
+          summary:'Supports family ' + peso(c.monthly) + '/mo for ' + c.years + ' yrs (' + short(total) + '); parent 50+: ' + c.parent };
+      }
+    },
+    gap: {
+      eyebrow:'Your family’s protection gap',
+      title:function(){ return 'Would your family be okay <em>without your income?</em>'; },
+      lede:'Two quick taps. 10 years of your income gives them time to adjust, finish school and pay off loans.',
+      fields:[
+        { id:'income', lbl:'Your monthly income', opts:[[25000,'₱25K'],[40000,'₱40K'],[60000,'₱60K'],[100000,'₱100K'],[150000,'₱150K+']], def:40000 },
+        { id:'have', lbl:'Life insurance you already have', opts:[[0,'None yet'],[500000,'₱500K'],[1000000,'₱1M'],[2000000,'₱2M'],[3000000,'₱3M+']], def:0 }
+      ],
+      out:function(c){
+        var need = c.income * 12 * 10, gap = Math.max(need - c.have, 0);
+        return { k:'Your family’s protection gap', v:gap ? short(gap) : 'Covered',
+          p:gap ? 'They’d need ' + short(need) + ' (10 years of your income). You have ' + (c.have ? short(c.have) : 'no cover yet') + '.' : 'Your current cover reaches 10 years of your income. Let’s check your health and kids’ fund next.',
+          nums:[[short(need), 'your family would need'], [c.have ? short(c.have) : '₱0', 'you have now'], [gap ? short(gap) : '₱0', 'your gap', true]],
+          summary:'Income ' + short(c.income) + '/mo, has ' + short(c.have) + ' cover, gap ' + short(gap) };
+      }
+    },
+    sandwich: {
+      eyebrow:'Two generations, one income',
+      title:function(){ return 'If your income stopped, <em>who would carry both?</em>'; },
+      lede:'Three quick taps. 10 years of your income gives your kids time to finish school, while your parents keep their support.',
+      fields:[
+        { id:'income', lbl:'Your monthly income', opts:[[25000,'₱25K'],[40000,'₱40K'],[60000,'₱60K'],[100000,'₱100K'],[150000,'₱150K+']], def:40000 },
+        { id:'parents', lbl:'Of that, you give your parents', opts:[[3000,'₱3K/mo'],[5000,'₱5K/mo'],[10000,'₱10K/mo'],[15000,'₱15K/mo'],[20000,'₱20K+/mo']], def:5000 },
+        { id:'have', lbl:'Life insurance you already have', opts:[[0,'None yet'],[500000,'₱500K'],[1000000,'₱1M'],[2000000,'₱2M'],[3000000,'₱3M+']], def:0 }
+      ],
+      out:function(c){
+        var need = c.income * 12 * 10, gap = Math.max(need - c.have, 0), par = c.parents * 12 * 10, kids = Math.max(need - par, 0);
+        return { k:'Your two-generation protection gap', v:gap ? short(gap) : 'Covered',
+          p:gap ? short(kids) + ' keeps your own family going, and ' + short(par) + ' keeps Mama and Papa’s support for 10 years. You have ' + (c.have ? short(c.have) : 'no cover yet') + '.' : 'Your current cover reaches 10 years of your income. Let’s check your health and your parents’ cover next.',
+          nums:[[short(kids), 'for your own family'], [short(par), 'for your parents’ support'], [gap ? short(gap) : '₱0', 'your gap', true]],
+          summary:'Income ' + short(c.income) + '/mo, gives parents ' + peso(c.parents) + '/mo, has ' + short(c.have) + ' cover, gap ' + short(gap) };
+      }
+    },
+    retire: {
+      eyebrow:'Your retirement income',
+      title:function(){ return 'Will your income <em>keep coming?</em>'; },
+      lede:'Two quick taps. SSS or company pension included.',
+      fields:[
+        { id:'need', lbl:'You’ll need every month', opts:[[20000,'₱20K'],[30000,'₱30K'],[50000,'₱50K'],[80000,'₱80K'],[100000,'₱100K+']], def:30000 },
+        { id:'pension', lbl:'Pension you expect', opts:[[0,'None'],[5000,'₱5K'],[10000,'₱10K'],[20000,'₱20K'],[30000,'₱30K+']], def:5000 }
+      ],
+      out:function(c){
+        var gap = Math.max(c.need - c.pension, 0), fund = gap * 12 * 20, cov = gap * 12 / 0.06;
+        return { k:'Your pension won’t cover', v:gap ? peso(gap) + ' a month' : 'You’re covered',
+          p:gap ? 'That’s ' + short(fund) + ' over 20 years of retirement. Secure Income 10 at ' + short(cov) + ' coverage pays about that amount every year, guaranteed, from year 6.' : 'Your pension covers your monthly needs. Let’s look at health and legacy next.',
+          nums:[[peso(gap), 'a month your pension won’t cover', true], [short(fund), 'for 20 years of retirement'], [short(cov), 'Secure Income 10 coverage that pays it yearly']],
+          summary:'Needs ' + short(c.need) + '/mo, pension ' + short(c.pension) + ', gap ' + peso(gap) + '/mo' };
+      }
+    }
+  };
+  function calcOut(){ return CALCS[PATHS[S.path].calc].out(S.calc); }
+  var GOAL_ICONS = {
+    'House':'<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/>',
+    'Business':'<path d="M4 9l1.5-5h13L20 9"/><path d="M4 9a2.7 2.7 0 0 0 5.3 0a2.7 2.7 0 0 0 5.4 0a2.7 2.7 0 0 0 5.3 0"/><path d="M5 11v9h14v-9"/><path d="M10 20v-5h4v5"/>',
+    'Emergency fund':'<path d="M12 3a9 9 0 0 1 9 9H3a9 9 0 0 1 9-9z"/><path d="M12 12v6a2 2 0 0 0 4 0"/>',
+    'Travel':'<path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/>',
+    'Retirement':ICONS.sun
+  };
+  function renderCalc(){
+    var C = CALCS[PATHS[S.path].calc], pc = PATHS[S.path].c;
+    $('stCalcEyebrow').textContent = C.eyebrow;
+    $('stCalcTitle').innerHTML = C.title();
+    $('stCalcLede').textContent = C.lede;
+    var html = '<div class="st-calc-in">';
+    C.fields.forEach(function(f, n){
+      if(S.calc[f.id] === undefined) S.calc[f.id] = f.def;
+      html += '<div class="st-field"><p class="st-flbl" id="lbl_' + f.id + '"><span>' + (n + 1) + '</span>' + f.lbl + '</p>'
+        + '<div class="' + (f.tiles ? 'st-tiles' : 'st-chips') + '" role="group" aria-labelledby="lbl_' + f.id + '">';
+      f.opts.forEach(function(o){
+        var on = String(S.calc[f.id]) === String(o[0]);
+        html += '<button type="button" data-f="' + f.id + '" data-v="' + o[0] + '" aria-pressed="' + (on ? 'true' : 'false') + '">'
+          + (f.tiles && GOAL_ICONS[o[0]] ? '<i>' + svg('', 'currentColor', 26).replace('</svg>', GOAL_ICONS[o[0]] + '</svg>') + '</i>' : '')
+          + '<span>' + o[1] + '</span></button>';
+      });
+      html += '</div></div>';
+    });
+    html += '</div><aside class="st-calc-out" id="stCalcOut" aria-live="polite"></aside>';
+    $('stCalcBody').innerHTML = html;
+    var bs = $('stCalcBody').querySelectorAll('button');
+    for(var i = 0; i < bs.length; i++) bs[i].addEventListener('click', function(){
+      var f = this.getAttribute('data-f'), v = this.getAttribute('data-v');
+      S.calc[f] = /^\d+$/.test(v) ? parseInt(v, 10) : v;
+      var sib = this.parentNode.querySelectorAll('button');
+      for(var j = 0; j < sib.length; j++) sib[j].setAttribute('aria-pressed', sib[j] === this ? 'true' : 'false');
+      track('start_calc_input', { field:f, value:String(v) });
+      paintCalc(true);
+    });
+    paintCalc(false);
+  }
+  function paintCalc(bump){
+    var o = calcOut(), box = $('stCalcOut');
+    var minis = o.nums.filter(function(n){ return !n[2]; }).map(function(n){ return '<div><b>' + n[0] + '</b><small>' + n[1] + '</small></div>'; }).join('');
+    box.innerHTML = '<span class="k">' + o.k + '</span><span class="v">' + String(o.v).replace(/ a month$/, '<small>/ month</small>') + '</span>'
+      + (minis ? '<div class="mini">' + minis + '</div>' : '') + '<p>' + o.p + '</p>';
+    if(bump){ box.classList.remove('bump'); void box.offsetWidth; box.classList.add('bump'); }
+  }
+  $('stCalcNext').addEventListener('click', function(){ renderResults(); show('sResults', true); });
+
+  /* ---------- 6. results ---------- */
+  var lastLead = null;
+  function planList(){
+    var path = PATHS[S.path], a = S.age, list = path.plans.slice(), hidden = [];
+    if(S.ofw && ageOk(PLANS.ofw, a)) list.splice(1, 0, ['ofw', 'Health cover made for OFWs, wherever work takes you.']);
+    if(hasCondition()) list.unshift(['elp', 'Guaranteed acceptance: you can get covered even with a health condition. I’ll still check if a regular plan can approve you.']);
+    var seen = {}, out = [];
+    list.forEach(function(it){
+      if(seen[it[0]]) return; seen[it[0]] = true;
+      var p = PLANS[it[0]];
+      if(!ageOk(p, a)){ hidden.push(p); return; }
+      var yr = yearly(p, a), mo = yr ? yr / 12 : null, max = budgetOf(S.budget).max;
+      out.push({ id:it[0], plan:p, why:it[1], mo:mo, fits: mo === null || mo <= max });
+    });
+    var fit = out.filter(function(x){ return x.fits; }), later = out.filter(function(x){ return !x.fits; });
+    return { fit:fit, later:later, hidden:hidden };
+  }
+  function planHref(id, age, where){ return 'https://plans.donnanuqui.com/' + id + '/?src=start_' + S.path + (where ? '_' + where : '') + (age ? '&age=' + age : ''); }
+  function planCard(x, rank, lead, catKey){
+    var L = LOOK[x.id], cat = CATS[catKey || L[0]];
+    var chips = '<span class="chip">' + cat[0] + '</span>' + (lead ? '<span class="chip dark">Best fit for you</span>' : '');
+    var price = x.mo ? '<b>' + peso(x.mo) + '</b>/mo' + (x.fits ? '<small>from, at minimum coverage</small>' : '<small class="over">above your budget today</small>')
+      : 'Ask for a quote';
+    return '<article class="st-plan' + (lead ? ' lead' : '') + '" style="--cc:' + cat[1] + '">'
+      + '<div class="chips">' + chips + '</div>'
+      + '<h3 class="nm">' + x.plan.name + '</h3>'
+      + '<p class="big">' + L[1] + '</p><p class="cap">' + L[2] + '</p>'
+      + (x.why ? '<p class="why">' + x.why + '</p>' : '')
+      + '<div class="foot"><span class="price">' + price + '</span>'
+      + '<a class="go" href="' + planHref(x.id, x.forAge || S.age, x.where) + '" data-plan="' + x.id + '" data-rank="' + rank + '">See benefits <span aria-hidden="true">→</span></a></div>'
+      + '</article>';
+  }
+  function renderResults(){
+    var path = PATHS[S.path], o = calcOut(), L = planList(), a = S.age;
+    $('stResEyebrow').textContent = 'Your life stage';
+    $('stResTitle').innerHTML = path.label.replace(/^The /, 'The <em>') + '</em>';
+    $('stResWho').textContent = path.who;
+    $('stResAngle').textContent = path.angle;
+    $('stResNums').innerHTML = '<div class="st-nums">' + o.nums.map(function(n){ return '<div class="st-num' + (n[2] ? ' hl' : '') + '"><span class="v">' + n[0] + '</span><span class="l">' + n[1] + '</span></div>'; }).join('') + '</div>';
+
+    var flags = [];
+    if(hasCondition()) flags.push('Because of your health, I’m leading with a plan that has guaranteed acceptance. Many people with a managed condition still get approved for regular plans, so I’ll check that for you too.');
+    var hiddenHealth = L.hidden.filter(function(p){ return p.health; });
+    if(hiddenHealth.length && a > 60) flags.push('Health plans like ' + hiddenHealth.map(function(p){ return p.name; }).join(' and ') + ' accept applicants up to a certain age, so I’ve left them out. ' + (a <= 70 ? 'SUN Senior Care covers ages 50 to 70.' : ''));
+    else if(L.hidden.length) flags.push('I left out ' + L.hidden.map(function(p){ return p.name; }).join(', ') + ' because of age limits.');
+    $('stResFlag').innerHTML = flags.map(function(f){ return '<p class="st-flag">' + f + '</p>'; }).join('');
+
+    var html = '', leadX = L.fit.length ? L.fit[0] : (L.later.length ? L.later[0] : null);
+    if(!L.fit.length && L.later.length){
+      $('stPlansNote').textContent = 'These plans start a little above the budget you picked. In your proposal I can adjust the coverage and payment terms to find one that fits.';
+    } else {
+      $('stPlansNote').textContent = 'Estimates are at each plan’s minimum coverage for age ' + a + ', base plan only. Tap a plan to see what you’d get at your coverage.';
+    }
+    L.fit.forEach(function(x, i){ html += planCard(x, i + 1, x === leadX); });
+    if(L.later.length){
+      if(L.fit.length) html += '<p class="st-group">When your budget grows</p>';
+      L.later.forEach(function(x, i){ html += planCard(x, L.fit.length + i + 1, x === leadX); });
+    }
+    $('stPlans').innerHTML = html;
+    lastLead = leadX;
+
+    /* Breadwinners: insure Mama or Papa too */
+    var pb = $('stParents');
+    if(path.parents && (path.parentsAlways || S.calc.parent === 'yes')){
+      pb.innerHTML = '<div class="st-parent"><p class="pf-eyebrow" style="color:#8A3A2C">Insure Mama or Papa</p><h3>' + (path.parentsAlways ? 'Protect your kids’ fund from their hospital bills.' : 'Their health is part of your budget too.') + '</h3>'
+        + '<p class="st-note" style="color:var(--ink)">' + (path.parentsAlways ? 'When Mama or Papa gets sick, the bill usually comes out of your family’s savings. ' : 'A hospital bill for a parent usually lands on you. ') + 'Enter their age to see what fits them.</p>'
+        + '<div class="row"><label class="st-lbl" for="stParentAge">Parent’s age</label><input type="number" id="stParentAge" inputmode="numeric" min="18" max="80" placeholder="62"></div>'
+        + '<div id="stParentOut"></div></div>';
+      $('stParentAge').addEventListener('input', paintParents);
+      if(S.parentAge){ $('stParentAge').value = S.parentAge; paintParents(); }
+    } else { pb.innerHTML = ''; }
+
+    var msg = 'Hi Donna! I took your life-stage check (' + path.label + ')' + (leadX ? ' and my top plan is ' + leadX.plan.name : '') + '. Pwede ba nating pag-usapan?';
+    setAsk(msg);
+    $('stFinCheck').href = 'https://donnanuqui.com/financial-check?src=start_' + S.path;
+    resetLeadForm();
+    track('start_results_view', { lead_plan: leadX ? leadX.id : 'none', budget:S.budget, health:S.health, age:a, age_band:band(a), ofw:S.ofw ? 'yes' : 'no', shown: L.fit.length + L.later.length });
+  }
+  function paintParents(){
+    var v = String($('stParentAge').value).trim(), out = $('stParentOut');
+    if(!/^\d+$/.test(v)){ out.innerHTML = ''; return; }
+    var pa = parseInt(v, 10); S.parentAge = pa;
+    var rows = [];
+    ['ssc', 'elp'].forEach(function(id){
+      var p = PLANS[id];
+      if(!ageOk(p, pa)) return;
+      var yr = yearly(p, pa);
+      rows.push(planCard({ id:id, plan:p, why:'', mo:yr / 12, fits:true, forAge:pa, where:'parent' }, 'parent', false, 'parent').replace('from, at minimum coverage', 'for a ' + pa + '-year-old, minimum coverage'));
+    });
+    out.innerHTML = rows.length ? '<div class="st-plans">' + rows.join('') + '</div>'
+      : '<p class="st-note">At ' + pa + ', the parent plans I offer (ages 50 to 70) may not fit. Message me and I’ll check what’s still possible.</p>';
+  }
+
+  /* ---------- Prefer to talk now: Messenger, Viber, WhatsApp, Text (same as the Plan Finder) ---------- */
+  var DONNA_NUM = '639623858115';
+  var ASK_ICONS = {
+    msgr:'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.4 2 2 6.1 2 11.5c0 2.8 1.2 5.3 3.2 7v3.5l3-1.7c1.2.3 2.5.5 3.8.5 5.6 0 10-4.1 10-9.3S17.6 2 12 2zm1.1 12.4-2.6-2.7-5 2.7 5.5-5.8 2.6 2.7 4.9-2.7-5.4 5.8z"/></svg>',
+    viber:'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 3.2c.4-.1.8 0 1.1.3l2 2.4c.3.4.3 1 0 1.4l-1 1.2c.9 2 2.5 3.6 4.5 4.6l1.2-1c.4-.3 1-.3 1.4 0l2.4 2c.3.3.4.7.3 1.1-.4 1.6-1.9 2.7-3.5 2.5C9.6 17 5.1 12.5 4.5 7.1c-.2-1.7.6-3.4 2.1-3.9zM13 4a7 7 0 0 1 7 7h-1.6A5.4 5.4 0 0 0 13 5.6V4zm0 3a4 4 0 0 1 4 4h-1.6A2.4 2.4 0 0 0 13 8.6V7z"/></svg>',
+    wa:'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.4A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.2-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.1.3.6 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.3.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l2 .9c.3.1.4.2.5.3.1.2.1.8-.2 1.5z"/></svg>',
+    sms:'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2zm3 6v2h2V9H7zm4 0v2h2V9h-2zm4 0v2h2V9h-2z"/></svg>'
+  };
+  function setAsk(msg){
+    var t = encodeURIComponent(msg), html = '';
+    [
+      { k:'msgr', l:'Messenger', s:'Facebook chat', bg:'#0866FF', href:MESSENGER + '?text=' + t, nw:true },
+      { k:'viber', l:'Viber', s:'0962 385 8115', bg:'#7360F2', href:'viber://chat?number=%2B' + DONNA_NUM + '&draft=' + t },
+      { k:'wa', l:'WhatsApp', s:'0962 385 8115', bg:'#25D366', href:'https://wa.me/' + DONNA_NUM + '?text=' + t, nw:true },
+      { k:'sms', l:'Text', s:'Regular SMS', bg:'#3B3A35', href:'sms:+' + DONNA_NUM + '?body=' + t }
+    ].forEach(function(o){
+      html += '<a class="st-askopt" data-ask-k="' + o.k + '" href="' + o.href + '"' + (o.nw ? ' target="_blank" rel="noopener"' : '') + '>'
+        + '<i style="background:' + o.bg + '">' + ASK_ICONS[o.k] + '</i><span>' + o.l + '<small>' + o.s + '</small></span></a>';
+    });
+    $('stAskOpts').innerHTML = html;
+    $('stAskMsg').innerHTML = '<b>Your message:</b> ' + esc(msg);
+  }
+  setAsk('Hi Donna! I’m checking your life-stage plan finder and I have a question.');
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('[data-ask-k]') : null;
+    if(!a) return;
+    var k = a.getAttribute('data-ask-k');
+    track('start_contact_click', { method:k, screen:current.replace(/^s/, '').toLowerCase() });
+    track('generate_lead', { method:'contact_' + k, funnel:'life_stage' });
+  });
+
+  /* Plan clicks: the plan page opens in a full-screen panel on top of the funnel,
+     with "Back to your results" at the top, so they never lose their place.
+     Ctrl/Cmd-click or "Open full page" still opens the plan page normally. */
+  var sheet = $('stSheet'), frame = null, sheetPlan = '', sheetAt = 0;
+  function openSheet(href, id){
+    sheetPlan = id; sheetAt = Date.now();
+    $('stSheetName').textContent = PLANS[id] ? PLANS[id].name : '';
+    $('stSheetOpen').href = href;
+    $('stSheetBack').innerHTML = '<span aria-hidden="true">←</span> Back to ' + (current === 'sResults' ? 'your results' : 'the questions');
+    /* A new iframe each time: changing an existing iframe's address would add browser history entries */
+    if(frame) frame.remove();
+    frame = document.createElement('iframe'); frame.title = (PLANS[id] ? PLANS[id].name : 'Plan') + ' details'; frame.src = href;
+    sheet.appendChild(frame);
+    sheet.hidden = false; sheetOpen = true;
+    document.documentElement.style.overflow = 'hidden';
+    try{ history.pushState({ st:current, sheet:1 }, '', location.search || location.pathname); sheetPushed = true; }catch(x){ sheetPushed = false; }
+    setTimeout(function(){ $('stSheetBack').focus(); }, 50);
+  }
+  function closeSheet(fromButton){
+    if(!sheetOpen) return;
+    sheet.hidden = true; sheetOpen = false;
+    document.documentElement.style.overflow = '';
+    track('start_plan_back', { plan:sheetPlan, seconds: Math.round((Date.now() - sheetAt) / 1000) });
+    if(frame){ frame.remove(); frame = null; }
+    if(fromButton && sheetPushed){ ignorePop = true; try{ history.back(); }catch(x){} setTimeout(function(){ ignorePop = false; }, 600); }
+    sheetPushed = false;
+  }
+  $('stSheetBack').addEventListener('click', function(){ closeSheet(true); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && sheetOpen) closeSheet(true); });
+  $('stSheetOpen').addEventListener('click', function(){ track('start_plan_open_full', { plan:sheetPlan }); });
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a[data-plan]') : null;
+    if(!a) return;
+    track('start_plan_click', { plan:a.getAttribute('data-plan'), rank:a.getAttribute('data-rank'), budget:S.budget, age_band:band(S.age) });
+    if(e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return;
+    e.preventDefault();
+    openSheet(a.href, a.getAttribute('data-plan'));
+  });
+
+  /* ---------- Send me my results (Google Sheet, same sheet as the proposal forms) ---------- */
+  var SOURCE = (function(){
+    var q = {};
+    try{ (location.search || '').replace(/^\?/, '').split('&').forEach(function(kv){ if(!kv) return; var i = kv.indexOf('='); q[decodeURIComponent(i < 0 ? kv : kv.slice(0, i)).toLowerCase()] = i < 0 ? '' : decodeURIComponent(kv.slice(i + 1).replace(/\+/g, ' ')); }); }catch(x){}
+    var label = q.utm_source || q.src || (q.fbclid ? 'Facebook' : '') || '';
+    if(!label){ try{ if(document.referrer) label = new URL(document.referrer).hostname; }catch(x){} }
+    return (label || 'Direct') + (q.utm_campaign ? ' · ' + q.utm_campaign : '');
+  })();
+  /* Birthday: month / day / year, with the age worked out as they pick (same as the proposal forms). */
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  (function(){
+    var y = new Date().getFullYear(), i, m, d, yr;
+    m = '<select id="stDobM" aria-label="Birth month" class="empty"><option value="" selected disabled>Month</option>';
+    for(i = 0; i < 12; i++) m += '<option value="' + (i + 1) + '">' + MONTHS[i] + '</option>';
+    d = '<select id="stDobD" aria-label="Birth day" class="empty"><option value="" selected disabled>Day</option>';
+    for(i = 1; i <= 31; i++) d += '<option value="' + i + '">' + i + '</option>';
+    yr = '<select id="stDobY" aria-label="Birth year" class="empty"><option value="" selected disabled>Year</option>';
+    for(i = y - 18; i >= y - 80; i--) yr += '<option value="' + i + '">' + i + '</option>';
+    $('stDob').innerHTML = m + '</select>' + d + '</select>' + yr + '</select>';
+  })();
+  function readDob(){
+    var me = $('stDobM'), de = $('stDobD'), ye = $('stDobY');
+    if(!me.value || !de.value || !ye.value) return null;
+    var m = parseInt(me.value, 10), d = parseInt(de.value, 10), y = parseInt(ye.value, 10), dt = new Date(y, m - 1, d), now = new Date();
+    if(dt.getFullYear() !== y || dt.getMonth() !== m - 1 || dt.getDate() !== d || dt > now) return { ok:false };
+    var age = now.getFullYear() - y;
+    if(now.getMonth() < m - 1 || (now.getMonth() === m - 1 && now.getDate() < d)) age--;
+    var pad = function(n){ return (n < 10 ? '0' : '') + n; };
+    return { ok:true, age:age, iso: y + '-' + pad(m) + '-' + pad(d) };
+  }
+  function renderDobAge(){
+    var r = readDob(), box = $('stDobAge');
+    if(!r){ box.textContent = 'So your proposal uses your exact age.'; return; }
+    if(!r.ok){ box.textContent = 'That date doesn’t look right. Please check the month and day.'; return; }
+    box.innerHTML = 'You’re <b>' + r.age + '</b>.' + (r.age !== S.age ? ' I’ll use this age for your proposal.' : '');
+  }
+  $('stLeadForm').addEventListener('change', function(e){
+    if(e.target.tagName === 'SELECT') e.target.classList.toggle('empty', !e.target.value);
+    if(/^stDob/.test(e.target.id)) renderDobAge();
+  });
+  function resetLeadForm(){
+    var lead = $('stLead');
+    if(lead.getAttribute('data-sent') === '1') return;
+    $('stLeadErr').textContent = '';
+    renderDobAge();
+  }
+  $('stLeadForm').addEventListener('input', function(){ $('stLeadErr').textContent = ''; });
+  $('stLeadForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = $('stName').value.trim(), email = $('stEmail').value.trim(), mobile = $('stMobile').value.trim(), consent = $('stConsent').checked;
+    var dob = readDob(), gender = $('stGender').value;
+    var problem = !name ? 'Please enter your name.'
+      : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? 'Please enter a valid email so I can send your results.'
+      : (mobile && !/^(\+?63|0)?9\d{9}$/.test(mobile.replace(/[\s\-()]/g, ''))) ? 'Please check your mobile number, like 0917 123 4567, or leave it blank.'
+      : !dob ? 'Please pick your birthday: month, day and year.'
+      : !dob.ok ? 'That birthday doesn’t look right. Please check the month and day.'
+      : !gender ? 'Please select a gender. Premiums differ for men and women.'
+      : !consent ? 'Please tick the box so I can send your results.' : '';
+    if(problem){ $('stLeadErr').textContent = problem; return; }
+    var path = PATHS[S.path], o = calcOut(), L = planList(), lx = lastLead;
+    var shown = L.fit.concat(L.later).map(function(x){ return x.plan.name; }).join(', ');
+    var data = {
+      name:name, email:email, birthday:dob.iso, age:String(dob.age), gender:gender, mobile:mobile,
+      page:'start', plan: lx ? lx.plan.name : 'Not sure yet',
+      goals: path.label + ' | ' + o.summary + ' | Health: ' + healthOf(S.health).t + (S.ofw ? ' | OFW' : '') + (dob.age !== S.age ? ' | Age entered in funnel: ' + S.age : '') + ' | Shown: ' + shown,
+      forParent: (path.parents && (path.parentsAlways || S.calc.parent === 'yes')) ? ('parent 50+' + (S.parentAge ? ', age ' + S.parentAge : '')) : 'no',
+      followedPage:'not yet', coverage:'Not sure yet', budget: budgetOf(S.budget).t + '/mo',
+      estimate: (lx && lx.mo) ? Math.round(lx.mo) + '/mo at minimum coverage' : '',
+      source: SOURCE + ' · Life-stage funnel'
+    };
+    var q = []; for(var k in data) q.push(encodeURIComponent(k) + '=' + encodeURIComponent(data[k]));
+    try{ var img = new Image(); img.src = LEADS_URL + '?' + q.join('&') + '&t=' + Date.now(); }catch(x){}
+    track('start_results_sent', { lead_plan: lx ? lx.id : 'none' });
+    track('generate_lead', { method:'send_results', funnel:'life_stage', gender:gender, age_band:band(dob.age) });
+    var first = name.split(' ')[0];
+    var msg = 'Hi Donna! I’m ' + name + '. I just sent my life-stage results (' + path.label + ') from your site.';
+    $('stLead').setAttribute('data-sent', '1');
+    $('stLead').innerHTML = '<div class="st-done"><p class="pf-eyebrow" style="color:#E9C9A0">Got it</p>'
+      + '<h2>Salamat, ' + esc(first) + '! <em>Your results are on the way.</em></h2>'
+      + '<p>I’ll email your results and a proposal for ' + (lx ? '<b>' + esc(lx.plan.name) + '</b>' : 'your top plan') + ' within 24 hours. Check your spam folder too, just in case.</p>'
+      + '<a class="fb" href="' + FB_PAGE + '" target="_blank" rel="noopener" id="stFb">Follow my page for simple money tips</a>'
+      + '<a class="ms" href="' + MESSENGER + '?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener">Want it faster? Message me</a></div>';
+    $('stFb').addEventListener('click', function(){ try{ var i2 = new Image(); i2.src = LEADS_URL + '?action=follow&email=' + encodeURIComponent(email) + '&t=' + Date.now(); }catch(x){} });
+  });
+
+  $('stRestart').addEventListener('click', function(){
+    track('start_restart', {});
+    S.path = null; S.health = null; S.budget = null; S.calc = {}; S.parentAge = null;
+    wrap.removeAttribute('data-path');
+    trail = [];
+    setAsk('Hi Donna! I’m checking your life-stage plan finder and I have a question.');
+    show('sSplit', false);
+  });
+
+  /* ---------- Engagement: scroll depth, time on page, which results sections they reach ---------- */
+  function stepName(){ return current.replace(/^s/, '').toLowerCase(); }
+  /* Scroll depth 25 / 50 / 75 / 100, counted separately for each screen (results is the long one) */
+  var scrollHit = {};
+  window.addEventListener('scroll', function(){
+    var d = document.documentElement, max = d.scrollHeight - window.innerHeight;
+    if(max < 200) return;
+    var pct = Math.round((window.scrollY || d.scrollTop) / max * 100);
+    [25, 50, 75, 100].forEach(function(m){
+      var key = current + m;
+      if(pct >= m && !scrollHit[key]){ scrollHit[key] = true; track('scroll_depth', { percent:m, step:stepName() }); }
+    });
+  }, { passive:true });
+  /* Time actually spent on the page (only while the tab is visible), plus which step they were on */
+  var secsOn = 0, timeHit = {};
+  setInterval(function(){
+    if(document.visibilityState !== 'visible') return;
+    secsOn++;
+    [15, 30, 60, 120, 300, 600].forEach(function(m){
+      if(secsOn >= m && !timeHit[m]){ timeHit[m] = true; track('time_on_page', { seconds:m, step:stepName() }); }
+    });
+  }, 1000);
+  /* Leaving the page: how far they got */
+  var leftSent = false;
+  function sendExit(){ if(leftSent) return; leftSent = true; track('start_exit', { last_step:stepName(), seconds:secsOn }); }
+  document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'hidden') sendExit(); });
+  window.addEventListener('pagehide', sendExit);
+  /* Results sections they actually scroll to */
+  if('IntersectionObserver' in window){
+    var SECS = { stPlans:'plans', stParents:'parent_plans', stLead:'send_results_form', stAskOpts:'contact_options' }, seen = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting || en.target.offsetHeight === 0) return;
+        var n = SECS[en.target.id], key = stepName() + ':' + n;
+        if(seen[key]) return; seen[key] = true;
+        track('section_view', { section:n, step:stepName() });
+      });
+    }, { threshold:0.4 });
+    Object.keys(SECS).forEach(function(id){ var el = $(id); if(el) io.observe(el); });
+  }
+  /* Typing in the results form (first touch only), to see who starts but doesn't send */
+  var formStarted = false;
+  $('stLeadForm').addEventListener('focusin', function(){ if(formStarted) return; formStarted = true; track('start_form_start', {}); });
+
+  /* ---------- go ---------- */
+  renderPaths();
+  try{ history.replaceState({ st:'sSplit' }, '', location.search || location.pathname); }catch(e){}
+  try{
+    var qp = new URLSearchParams(location.search), pk = qp.get('path'), qa = qp.get('age');
+    if(qa && /^\d{2}$/.test(qa)){ S.age = Math.min(75, Math.max(18, parseInt(qa, 10))); ageIn.value = S.age; }
+    if(pk && PATHS[pk]) pickPath(pk, true);
+  }catch(e){}
+  track('start_view', {});
+})();
+</script>
+</body>
+</html>
