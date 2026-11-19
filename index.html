@@ -550,6 +550,11 @@
   .pf-more{ margin-top:14px; background:none; border:1px solid var(--line); color:var(--ink); font-family:var(--sans); font-size:.8rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:12px 18px; cursor:pointer; min-height:44px; }
   .pf-more:hover{ border-color:var(--ink); }
   .pf-card.pf-top{ border-left-width:6px; }
+  /* Hand-off from the readiness check (start.donnanuqui.com) */
+  .pf-fromcheck{ margin:0 0 16px; padding:14px 16px; background:var(--goldl); border:1px solid var(--gold); border-left:4px solid var(--goldd); }
+  .pf-fc-k{ font-size:.7rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--goldd); margin:0 0 4px; }
+  .pf-fc-t{ font-size:.92rem; line-height:1.5; color:var(--ink); margin:0 0 6px; }
+  .pf-fc-link{ font-size:.82rem; font-weight:600; color:var(--ink); }
 
   .pf-results-meta{ font-size:.82rem; color:var(--muted); margin:24px 0 14px; }
 
@@ -807,6 +812,7 @@
     <div class="pf-match-head">
       <p class="pf-step" style="margin:0"><b>3</b>Your matches</p>
     </div>
+    <div class="pf-fromcheck" id="pfFromCheck" hidden></div>
     <h2 class="pf-match-title" id="pfMatchTitle"></h2>
     <p class="pf-results-meta" id="pfResultsMeta" style="margin-top:6px"></p>
     <div class="pf-famsw" id="pfFamSw" role="group" aria-label="Plan type"></div>
@@ -2125,7 +2131,7 @@
   function selfGoals(){ return selectedGoals.filter(function(g){ return !GOAL_BY_ID[g].parent; }); }
   function wantsParents(){ return selectedGoals.indexOf('parents') !== -1; }
   function goalsText(list){
-    return (list || selectedGoals).map(function(g){ return GOAL_BY_ID[g].label.toLowerCase(); }).join(', ');
+    return (list || selectedGoals).map(function(g){ return GOAL_BY_ID[g].label.toLowerCase().replace(/\bi\b/g, 'I'); }).join(', ');
   }
   function tilesHtml(tiles, cov){
     var out = '';
@@ -2609,6 +2615,7 @@
       if(/bing/.test(t)) return 'Bing';
       if(/yahoo/.test(t)) return 'Yahoo';
       if(/viber/.test(t)) return 'Viber';
+      if(/start\.donnanuqui/.test(t)) return 'Readiness check';
       if(/me\.donnanuqui/.test(t)) return 'me.donnanuqui.com';
       if(/donnanuqui/.test(t)) return 'donnanuqui.com';
       return t;
@@ -2634,6 +2641,20 @@
      lockPlan: true on a product page (e.g. /sfw). The plan is fixed to that page's
      plan and the "Change plan" option is hidden. false here on the Plan Finder. */
   var PROP_CFG = { page:'plan_finder', lockPlan:false };
+
+  /* Coming from the Financial Readiness Check (start.donnanuqui.com)?
+     The link carries their age and their biggest gaps as Plan Finder goals,
+     e.g. ?from=check&age=34&goals=family,health&persona=breadwinner&tier=low&score=33 */
+  var FROM_CHECK = (function(){
+    var p; try{ p = new URLSearchParams(location.search); }catch(x){ return null; }
+    if(p.get('from') !== 'check') return null;
+    var a = parseInt(p.get('age'), 10);
+    return {
+      age: (!isNaN(a) && a >= 0 && a <= 100) ? a : null,
+      goals: (p.get('goals') || '').split(',').filter(function(g){ return !!GOAL_BY_ID[g]; }),
+      persona: p.get('persona') || '', tier: p.get('tier') || '', score: p.get('score') || ''
+    };
+  })();
 
   /* Birthday helpers. Age is counted from the last birthday. */
   var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -2913,7 +2934,8 @@
         var y = c ? premAt(plan, a, c) : (estimate(plan, a) || {}).value;
         return y ? Math.round(y/12) + '/mo' + (c ? ' at ' + fmtShort(c) : '') : '';
       })() : '',
-      source: TRAFFIC_SOURCE
+      source: TRAFFIC_SOURCE,
+      readiness: FROM_CHECK ? [FROM_CHECK.persona, FROM_CHECK.tier, FROM_CHECK.score ? FROM_CHECK.score + '%' : ''].filter(Boolean).join(' · ') : ''
     };
     var q = []; for(var k in data){ q.push(encodeURIComponent(k) + '=' + encodeURIComponent(data[k])); }
     try{
@@ -3632,8 +3654,40 @@
     btn.textContent = url;
   });
   try{ if(!history.state) history.replaceState({ pf:'step', step:1 }, ''); }catch(x){}
+  /* Pre-fill from the readiness check and open straight on "Your matches". */
+  function applyFromCheck(){
+    if(!FROM_CHECK) return;
+    if(FROM_CHECK.age !== null) document.getElementById('pfAge').value = FROM_CHECK.age;
+    FROM_CHECK.goals.forEach(function(g){ if(selectedGoals.indexOf(g) === -1) selectedGoals.push(g); });
+    var gb = document.querySelectorAll('#pfGoals .pf-goal');
+    for(var i = 0; i < gb.length; i++){
+      var on = selectedGoals.indexOf(gb[i].dataset.goal) !== -1;
+      gb[i].classList.toggle('active', on); gb[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    var box = document.getElementById('pfFromCheck');
+    if(FROM_CHECK.goals.length){
+      box.innerHTML = '<p class="pf-fc-k">From your readiness check</p>'
+        + '<p class="pf-fc-t">Showing the plans for your biggest gap: <b>' + esc(FROM_CHECK.goals.map(function(g){ return GOAL_BY_ID[g].label; }).join(' · ')) + '</b>. Best match first'
+        + (FROM_CHECK.age !== null ? ', priced for age ' + FROM_CHECK.age : '') + '.</p>'
+        + '<a class="pf-fc-link" href="https://start.donnanuqui.com/?path=check">Retake the check</a>';
+      box.hidden = false;
+    }
+    /* Phones: skip to step 3. Step 2 sits behind it, so "Edit answers" and Back stay on this page. */
+    var st = null; try{ st = history.state; }catch(x){}
+    if(wizOn() && FROM_CHECK.age !== null && FROM_CHECK.goals.length){
+      wizStep = 3;
+      if(!(st && st.fc)){
+        try{ history.replaceState({ pf:'step', step:2, fc:1 }, ''); history.pushState({ pf:'step', step:3, fc:1 }, ''); }catch(x){}
+      }
+    } else if(!wizOn() && !(st && st.reopen)){
+      setTimeout(function(){ var s3 = document.querySelector('.pf-s3'); if(s3) s3.scrollIntoView({ block:'start' }); window.scrollBy(0, -90); }, 60);
+    }
+    pfTrack('pf_from_check', { goals: FROM_CHECK.goals.join(','), age: FROM_CHECK.age, persona: FROM_CHECK.persona, tier: FROM_CHECK.tier });
+  }
+
   buildGoals();
   buildBudget();
+  applyFromCheck();
   applyWiz();
   render();
   restoreFromDetail();
