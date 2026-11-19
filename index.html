@@ -2652,7 +2652,8 @@
     return {
       age: (!isNaN(a) && a >= 0 && a <= 100) ? a : null,
       goals: (p.get('goals') || '').split(',').filter(function(g){ return !!GOAL_BY_ID[g]; }),
-      persona: p.get('persona') || '', tier: p.get('tier') || '', score: p.get('score') || ''
+      persona: p.get('persona') || '', tier: p.get('tier') || '', score: p.get('score') || '',
+      top: PLAN_BY_ID[p.get('top')] ? p.get('top') : ''
     };
   })();
 
@@ -3423,6 +3424,15 @@
       var pr = rank(shown[pi]);
       for(var j=0;j<pi;j++){
         if(VUL_IDS[shown[j].plan.id] && rank(shown[j]) === pr){ var prime = shown.splice(pi, 1)[0]; shown.splice(j, 0, prime); return; }
+      }
+    })();
+    /* Readiness check pick (e.g. Fit and Well for "Just me"): goes first while their goals
+       are still the ones the check sent, and the plan is open to their age. */
+    (function(){
+      if(!FROM_CHECK || !FROM_CHECK.top) return;
+      if(selectedGoals.slice().sort().join() !== FROM_CHECK.goals.slice().sort().join()) return;
+      for(var i=1;i<shown.length;i++){
+        if(shown[i].plan.id === FROM_CHECK.top){ shown.unshift(shown.splice(i, 1)[0]); return; }
       }
     })();
     var famNote = document.getElementById('pfFamNote');
