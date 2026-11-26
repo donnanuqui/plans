@@ -1781,11 +1781,11 @@
      from the ₱1M sample illustrations already used in the plan details. */
   var GOALS = [
     {id:'family', label:'Protect my family', sub:'If something happens to me', icon:'family', c:C_SAGE, plans:[
-      {id:'lifeassure', line:'₱1M for your family if you pass away, plus ₱1M cash if you’re diagnosed with a critical illness.', sample:true},
-      {id:'safer-life', line:'Up to 2× your coverage for your family, at a lower cost than lifetime plans.'},
       {id:'smarter-life-classic', line:'Double your coverage as life cover, guaranteed until age 100. No market ups and downs.'},
-      {id:'maxilink-100', line:'Double life cover until age 100, plus a fund that can grow over time.'},
       {id:'maxilink-prime', line:'At least 2× your coverage for your family, plus a fund that grows.'},
+      {id:'lifeassure', line:'₱1M for your family if you pass away, plus ₱1M cash if you’re diagnosed with a critical illness.', sample:true},
+      {id:'maxilink-100', line:'Double life cover until age 100, plus a fund that can grow over time.'},
+      {id:'safer-life', line:'Up to 2× your coverage for your family, at a lower cost than lifetime plans.'},
       {id:'smarter-life-elite', line:'Double life cover until 100, plus guaranteed cash for you every 2 years.'},
       {id:'maxilink-bright', also:true, line:'At least 2× your coverage as life cover, with premiums for 5 years.'},
       {id:'flexilink', also:true, line:'Life cover for your family with light regular payments and a fund that can grow.'},
@@ -3407,15 +3407,13 @@
       m.order = i; m.budget = budgetState(m.plan, ageVal, hasAge);
       var e = hasAge ? estimate(m.plan, ageVal) : null; m.price = e ? e.value : null;
     });
-    /* Best fit first; when two plans fit equally well, the lower price comes first. */
+    /* Best fit first; when two plans fit equally well, Donna's recommended order for the goal decides
+       (the order of each goal's plans list in GOALS), not the price. */
     var rank = function(m){ return (!budget || !hasAge) ? 0 : (!m.budget ? 1 : (m.budget.s === 'fits' ? 0 : 2)); };
     shown.sort(function(a, b){
       if(rank(a) !== rank(b)) return rank(a) - rank(b);
       if(a.score !== b.score) return b.score - a.score;
-      if(hasAge && sg.length){
-        if(a.price !== null && b.price !== null && a.price !== b.price) return a.price - b.price;
-        if((a.price === null) !== (b.price === null)) return a.price === null ? 1 : -1;
-      }
+      if(a.pos !== b.pos) return a.pos - b.pos;
       return a.order - b.order;
     });
     /* Donna's rule: whenever VULs show up, MaxiLink Prime comes first among them
